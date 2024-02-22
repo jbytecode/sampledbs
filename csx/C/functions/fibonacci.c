@@ -1,5 +1,10 @@
 #include <stdio.h>
 
+/*
+    The recursive implementation is not that efficient (why?).
+    Try to write a non-recursive version of the 
+    same function.
+*/
 int fibonacci(int n){
     if (n == 1){
         return 1;
