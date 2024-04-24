@@ -6,6 +6,8 @@
 
 - [Julia Examples](https://github.com/jbytecode/sampledbs/tree/main/csx/julia)
 
+- [JavaScript Examples](https://github.com/jbytecode/sampledbs/tree/main/csx/javascript)
+
 - [SQLite Databases](https://github.com/jbytecode/sampledbs/tree/main/sqlite)
 
 
