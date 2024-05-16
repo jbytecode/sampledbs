@@ -1,0 +1,40 @@
+canvas{
+    border: 1px solid black;
+    background-color: white;
+    display: block;
+    margin: 0 auto;
+}
+
+table{
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+input[type="button"]{
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+input[type="text"]{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+textarea{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}

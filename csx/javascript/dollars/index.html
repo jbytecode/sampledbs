@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dollars Example</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="library.js" defer></script>
+</head>
+
+<body onload="init()">
+    <table>
+        <tr>
+            <td>
+                <input id="txtStep" type="text" placeholder="Enter step" value="1000">
+                <input id="btnSimulate" type="button" value="Simulate" onclick="simulate()"></button>
+                <input id="btnReset" type="button" value="Reset" onclick="reset()"></button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <canvas id="dollarsCanvas" width="600" height="400"></canvas>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <textarea id="txtOutput" rows="10" cols="50"></textarea>
+            </td>
+    </table>
+</body>
+
+</html>
