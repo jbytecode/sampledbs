@@ -34,7 +34,7 @@ const drawDollars = () => {
 
     let step = width/100;
 
-    var dollarindex = 0;
+    let dollarindex = 0;
     for (let i = 0; i < width; i+=step) {
         let x = i;
         let y = height - dollars[dollarindex];
@@ -52,7 +52,7 @@ const printDollars = () => {
 }
 
 const simulate = () => {
-    var maxval = parseInt(document.getElementById("txtStep").value);
+    let maxval = parseInt(document.getElementById("txtStep").value);
     for (let i = 0; i < maxval; i++) {
         transaction();
     }
