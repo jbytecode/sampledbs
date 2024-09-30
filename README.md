@@ -11,6 +11,11 @@
 - [SQLite Databases](https://github.com/jbytecode/sampledbs/tree/main/sqlite)
 
 
+### Animated tools
+
+- [Dollars example](https://jbytecode.github.io/dollars/index.html)
+- [Postfix Calculator](https://jbytecode.github.io/postfix/index.html)
+
 ### External Links
 
 - [Scientific Computing and (Big) Data Analysis with Julia](https://github.com/jbytecode/julia-presentation)
