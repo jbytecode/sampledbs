@@ -14,3 +14,4 @@
 ### External Links
 
 - [Scientific Computing and (Big) Data Analysis with Julia](https://github.com/jbytecode/julia-presentation)
+- [For better learning in college lectures lay down the laptop and pick up a pen](https://www.brookings.edu/articles/for-better-learning-in-college-lectures-lay-down-the-laptop-and-pick-up-a-pen/)
