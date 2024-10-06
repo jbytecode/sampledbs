@@ -1,5 +1,6 @@
 # Useful CMD commands in Windows 
 
+- WINVER
 - TYPE
 - ECHO
 - `>` and `>>` Operators
@@ -17,5 +18,6 @@
 - DEL, ERASE
 - COPY
 - XCOPY
+
 
 
