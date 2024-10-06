@@ -16,9 +16,6 @@
 - [Dollars example](https://jbytecode.github.io/dollars/index.html)
 - [Postfix Calculator](https://jbytecode.github.io/postfix/index.html)
 
-### Online Operating Systems 
-
-- [https://copy.sh/v86/](https://copy.sh/v86/)
 
 ### External Links
 
