@@ -2,7 +2,7 @@
 
 - TYPE
 - ECHO
-- > and >> Operators
+- `>` and `>>` Operators
 - DIR
 - CD
 - MKDIR, MD
