@@ -18,6 +18,6 @@
 - DEL, ERASE
 - COPY
 - XCOPY
-
+- SHUTDOWN /s
 
 
