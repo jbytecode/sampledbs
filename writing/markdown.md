@@ -34,9 +34,15 @@
 |  $\sqrt{x}$|    \sqrt{x} |
 |  $\frac{a}{b}$|  \frac{a}{b} |
 |  $x_i$     |    x_i      |
+|  $x_{i, j}$ |  x_{i, j} |
 |  $\int$     |    \int      |
 |  $\int_a^b$     |    \int_a^b |      
 |  $\sum_{i=1}^n$ |  \sum_{i=1}^n |
+|  $\mathcal{R}$  | \mathcal{R} |
+|  $\mu$          | \mu         |
+|  $\log x$       | \log x      |
+|  $\exp x$       | \exp x      |
+|  $\texttt{abcdefghijk}$ | \texttt{abcdefghijk} |
 
 
 # LaTeX
