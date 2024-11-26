@@ -2,7 +2,7 @@
 
 ## Algorithm Flowchart
 
-[FlowChar wikipedia](https://en.wikipedia.org/wiki/Flowchart)
+[FlowChart wikipedia](https://en.wikipedia.org/wiki/Flowchart)
 
 ## Data Structures
 
