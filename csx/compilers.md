@@ -11,5 +11,12 @@
 - https://www.tutorialspoint.com/online_python_compiler.php
 
 
+# Online R Interpreters 
+
+- WebR
+
+1. https://docs.r-wasm.org/webr/latest/
+2. https://webr.r-wasm.org/latest/
+
 # SQL tool for SQLite
 - https://sqlitebrowser.org/dl/
