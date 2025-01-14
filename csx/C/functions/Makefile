@@ -7,6 +7,9 @@ factorial: factorial.c
 fibonacci: fibonacci.c 
 	cc -o fibonacci fibonacci.c 
 
+heron: heron.c 
+	cc -o heron heron.c 
+
 clean:
 	rm -f parabola 
 	rm -f factorial 
