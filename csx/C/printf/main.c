@@ -4,6 +4,8 @@ int main(){
 
     int a = 5;
 
+    long b = 1000000;
+
     float lowprecvalue = 3.14159265;
 
     double highprecvalue = 3.14159265;
@@ -15,6 +17,8 @@ int main(){
     char name[] = "C Programming Language";
 
     printf("Here is the integer: %d\n", a);
+
+    printf("Here is the long integer: %ld\n", b);
     
     printf("Here is the float: %0.9f\n", lowprecvalue);
 
