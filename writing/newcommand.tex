@@ -1,0 +1,210 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{xifthen}
+
+
+\title{New Commands in \LaTeX}
+\author{Mehmet Hakan Satman}
+\date{\today}
+
+
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+
+\section{A Simple New Command}
+
+\newcommand{\mycommand}[2]{This is the first argument: #1. This is the second argument: #2.}
+
+\begin{verbatim}
+\newcommand{
+    \mycommand}[2]{
+        This is the first argument: #1. 
+        This is the second argument: #2.
+    }
+\end{verbatim}
+
+Usage example:
+
+\begin{verbatim}
+\mycommand{Hello}{World}
+\end{verbatim}
+
+Result:
+
+\mycommand{Hello}{World}
+
+
+\section{Product of Two Numbers}
+
+\newcommand{\myprod}[2]{#1 \times #2}
+
+\begin{verbatim}
+\newcommand{\myprod}[2]{#1 \times #2}
+\end{verbatim}
+
+Usage example:
+\begin{verbatim}
+$$
+\myprod{2}{3}
+$$
+\end{verbatim}
+
+Result:
+
+$$
+\myprod{2}{3}
+$$
+
+
+
+
+\section{Combinations}
+
+\newcommand{\combination}[2]{\binom{#1}{#2}}
+
+\begin{verbatim}
+\newcommand{\combination}[2]{\binom{#1}{#2}}
+\end{verbatim}
+
+Usage example:
+\begin{verbatim}
+$$
+\combination{5}{2}
+$$
+\end{verbatim}
+
+Result:
+$$
+\combination{5}{2}
+$$
+
+
+\section{Exponential Distribution Function}
+
+\newcommand{\exponential}[1]{f(x) = \frac{1}{#1} e^{- \frac{x}{#1}}}
+
+\begin{verbatim}
+\newcommand{\exponential}[1]{f(x) = \frac{1}{#1} e^{- \frac{x}{#1}}}
+\end{verbatim}
+
+Usage example:
+\begin{verbatim}
+$$
+\exponential{100}
+$$
+\end{verbatim}
+
+Result: 
+
+$$
+\exponential{100}
+$$
+
+Example use 2:
+
+\begin{verbatim}
+$$
+\exponential{\theta}
+$$
+\end{verbatim}
+
+Result:
+
+$$
+\exponential{\theta}
+$$
+
+
+
+\section{Quadratic Function}
+
+\newcommand{\quadratic}[3]{#1 x^2 + #2 x + #3}
+\begin{verbatim}
+\newcommand{\quadratic}[3]{#1 x^2 + #2 x + #3}
+\end{verbatim}
+
+Usage example:
+\begin{verbatim}
+$$
+\quadratic{2}{5}{10}
+$$
+\end{verbatim}
+
+Result:
+
+$$
+\quadratic{2}{5}{10}
+$$
+
+
+\section{Delta of a Quadratic Equation}
+
+\newcommand{\quadraticdelta}[3]{#2^2 - 4 \times #1 \times #3}
+
+\begin{verbatim}
+\newcommand{\quadraticdelta}[3]{#2^2 - 4 \times #1 \times #3}
+\end{verbatim}
+
+Usage example:
+\begin{verbatim}
+$$
+\quadraticdelta{1}{2}{3}
+$$
+\end{verbatim}
+
+Result:
+
+$$
+\quadraticdelta{1}{2}{3}
+$$
+
+
+
+\section{If, Then, Else Command}
+
+This examples uses \texttt{xifthen} package. 
+Load the package in the preamble with \verb|\usepackage{xifthen}|.
+
+\newcommand{\mymin}[2]{
+    \ifthenelse{#1 < #2}{#1}{#2}
+}
+
+\begin{verbatim}
+\newcommand{\mymin}[2]{
+    \ifthenelse{#1 < #2}{#1}{#2}
+}
+\end{verbatim}
+
+Usage example:
+\begin{verbatim}
+$$
+\mymin{3}{5}
+$$
+\end{verbatim}
+
+Result:
+$$
+\mymin{3}{5}
+$$
+
+
+Usage example 2:
+
+\begin{verbatim}
+$$
+\mymin{10}{7}
+$$
+\end{verbatim}
+
+Result:
+
+$$
+\mymin{10}{7}
+$$
+
+\end{document}
