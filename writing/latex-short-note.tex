@@ -1,0 +1,543 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{lipsum}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\title{A Brief Note on \LaTeX}
+\author{Mehmet Hakan Satman}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{documentclass}
+
+\begin{verbatim}
+\documentclass[12pt]{article}
+\end{verbatim}
+
+\section{Packages}
+\begin{verbatim}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{lipsum}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\end{verbatim}  
+
+
+\section{Meta information}
+
+\subsection{Title}
+\begin{verbatim}
+\title{A Brief Note on \LaTeX}
+\end{verbatim}
+
+\subsection{Author}
+\begin{verbatim}
+\author{Mehmet Hakan Satman}
+\end{verbatim}
+
+\subsection{Date}
+\begin{verbatim}
+\date{\today}
+\end{verbatim}
+
+\subsection{Making Title}
+\begin{verbatim}
+\maketitle
+\end{verbatim}
+
+\section{Table of Contents}
+\begin{verbatim}
+\tableofcontents
+\end{verbatim}
+
+
+\section{Paragraphs}
+
+This is the first paragraph. It contains some text to 
+demonstrate how paragraphs are created in \LaTeX.
+
+This is the second paragraph. Notice the space between 
+this paragraph and the previous one, which indicates a new paragraph has started.
+
+\noindent This is the third paragraph. It follows immediately 
+after the second paragraph without any additional vertical space.
+
+\begin{verbatim}
+This is the first paragraph. It contains some text to 
+demonstrate how paragraphs are created in \LaTeX.
+
+This is the second paragraph. Notice the space between
+ this paragraph and the previous one, which indicates
+  a new paragraph has started.
+
+\noindent This is the third paragraph. It follows immediately
+ after the second paragraph without any additional vertical space.
+\end{verbatim}
+
+
+\section{Centering}
+\begin{center}
+This text is centered in the document.
+\end{center}
+
+\begin{verbatim}
+\begin{center}
+This text is centered in the document.
+\end{center}
+\end{verbatim}
+
+
+
+\section{Quotes}
+
+Inline Quote: ``This is an inline quote in \LaTeX.''
+
+\begin{verbatim}
+``This is an inline quote in \LaTeX.''
+\end{verbatim}
+
+
+\section{Bold, italic, and underline Text}
+
+Bold Text: \textbf{This text is bold.}
+\begin{verbatim}
+\textbf{This text is bold.}
+\end{verbatim}
+
+Italic Text: \textit{This text is italic.}
+\begin{verbatim}
+\textit{This text is italic.}
+\end{verbatim}
+
+Underline Text: \underline{This text is underlined.}
+\begin{verbatim}
+\underline{This text is underlined.}
+\end{verbatim}
+
+Bold and Italic Text: \textbf{\textit{This text is bold and italic.}}
+\begin{verbatim}
+\textbf{\textit{This text is bold and italic.}}
+\end{verbatim}
+
+Bold and Underline Text: \textbf{\underline{This text is bold and underlined.}}
+\begin{verbatim}
+\textbf{\underline{This text is bold and underlined.}}
+\end{verbatim}  
+
+Bold, italic, and Underline Text: \textbf{\textit{\underline{This text is bold, italic, and underlined.}}}
+\begin{verbatim}
+\textbf{\textit{\underline{This text is bold, italic, and underlined.}}}
+\end{verbatim}  
+
+
+\section{Colored Text}
+
+Required package: \verb|\usepackage{xcolor}|
+
+Red : \textcolor{red}{This text is red.}
+\begin{verbatim}
+\textcolor{red}{This text is red.}
+\end{verbatim}
+
+Blue: \textcolor{blue}{This text is blue.}
+\begin{verbatim}    
+\textcolor{blue}{This text is blue.}
+\end{verbatim}
+
+Green: \textcolor{green}{This text is green.}
+\begin{verbatim}
+\textcolor{green}{This text is green.}
+\end{verbatim}
+
+Orange: \textcolor{orange}{This text is orange.}
+\begin{verbatim}
+\textcolor{orange}{This text is orange.}
+\end{verbatim}
+
+
+\section{URLs}
+
+Required package: \verb|\usepackage{hyperref}|
+
+\url{https://www.example.com}
+
+\begin{verbatim}
+\url{https://www.example.com}
+\end{verbatim}
+
+
+
+
+\section{Sectioning Commands}
+
+Section:
+
+\begin{verbatim}
+\section{Section Title}
+\end{verbatim}
+
+Subsection:
+
+\begin{verbatim}
+\subsection{Subsection Title}
+\end{verbatim}
+
+Subsubsection:
+
+\begin{verbatim}
+\subsubsection{Subsubsection Title}
+\end{verbatim}
+
+
+
+\section{Mathematical Expressions}
+
+
+$$
+E = mc^2
+$$
+
+\begin{verbatim}
+$$
+E = mc^2
+$$
+\end{verbatim}
+
+
+\hrule
+
+$$
+\int_a^b f(x) \, dx = F(b) - F(a)
+$$
+
+\begin{verbatim}
+$$
+\int_a^b f(x) \, dx = F(b) - F(a)
+$$
+\end{verbatim}
+
+\hrule
+
+$$
+\Delta = b^2 - 4ac
+$$
+
+\begin{verbatim}
+$$
+\Delta = b^2 - 4ac
+$$
+\end{verbatim}
+
+\hrule
+
+$$
+\int_0^\infty \frac{1}{\theta} e^{-\frac{x}{\theta}} \, dx = 1
+$$
+
+\begin{verbatim}
+$$
+\int_0^\infty \frac{1}{\theta} e^{-\frac{x}{\theta}} \, dx = 1
+$$
+\end{verbatim}
+
+\hrule
+
+$$
+p(x) = a_n x^n + a_{n-1} x^{n-1} + \ldots + a_1 x + a_0
+$$
+
+\begin{verbatim}
+$$
+p(x) = a_n x^n + a_{n-1} x^{n-1} + \ldots + a_1 x + a_0
+$$
+\end{verbatim}
+
+\hrule
+
+$$
+f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!} (x - a)^n
+$$
+
+\begin{verbatim}
+$$
+f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!} (x - a)^n
+$$
+\end{verbatim}
+
+\hrule
+
+$$
+f(x) = \begin{cases} 
+      x^2 & x \geq 0 \\
+      -x & x < 0 
+   \end{cases}
+$$
+
+\begin{verbatim}
+$$
+f(x) = \begin{cases} 
+      x^2 & x \geq 0 \\
+      -x & x < 0 
+   \end{cases}
+$$
+\end{verbatim}
+
+\hrule
+
+$$
+sign(x) = \begin{cases} 
+      1 & x > 0 \\
+      0 & x = 0 \\
+      -1 & x < 0 
+   \end{cases}
+$$
+
+\begin{verbatim}
+$$
+sign(x) = \begin{cases} 
+      1 & x > 0 \\
+      0 & x = 0 \\
+      -1 & x < 0 
+   \end{cases}
+$$
+\end{verbatim}  
+
+\hrule
+
+$$
+abs(x) = \begin{cases} 
+      x & x \geq 0 \\
+      -x & x < 0 
+   \end{cases}  
+$$
+
+\begin{verbatim}
+$$
+abs(x) = \begin{cases} 
+      x & x \geq 0 \\
+      -x & x < 0 
+   \end{cases}  
+$$
+\end{verbatim}
+
+\hrule
+
+
+$$
+A = \begin{bmatrix}
+1 & 2 & 4 \\
+0 & 1 & 3 \\
+0 & 0 & 1
+\end{bmatrix}
+$$
+
+\begin{verbatim}
+$$
+A = \begin{bmatrix}
+1 & 2 & 4 \\
+0 & 1 & 3 \\
+0 & 0 & 1
+\end{bmatrix}
+$$
+\end{verbatim}
+
+\hrule 
+
+\begin{equation}
+\begin{split}
+    \max z = & x + 2y \\
+    \text{Subject to:} &  \\
+    & 2x + 3y \leq 52 \\
+    & x + y \ge 2 \\
+    & x \geq 0, y \geq 0 \\
+\end{split}
+\end{equation}
+
+
+\begin{verbatim}
+\begin{equation}
+\begin{split}
+    \max z = & x + 2y \\
+    \text{Subject to:} &  \\
+    & 2x + 3y \leq 52 \\
+    & x + y \ge 2 \\
+    & x \geq 0, y \geq 0 \\
+\end{split}
+\end{equation}
+\end{verbatim}
+
+\hrule 
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+Symbol & Description \\
+\hline
+$\alpha$ & \verb|\alpha| \\
+$\beta$ & \verb|\beta| \\
+$\gamma$ & \verb|\gamma| \\
+$\delta$ & \verb|\delta| \\
+$\Delta$ & \verb|\Delta| \\
+$\epsilon$ & \verb|\epsilon| \\
+$\varepsilon$ & \verb|\varepsilon| \\
+$\gamma$ & \verb|\gamma| \\
+$\Gamma$ & \verb|\Gamma| \\
+$\rho$ & \verb|\rho| \\
+$\eta$ & \verb|\eta| \\
+$\zeta$ & \verb|\zeta| \\
+$\theta$ & \verb|\theta| \\
+$\lambda$ & \verb|\lambda| \\
+$\mu$ & \verb|\mu| \\
+$\sigma$ & \verb|\sigma| \\
+$\pi$ & \verb|\pi| \\
+$\Sigma$ & \verb|\Sigma| \\
+$\int$ & \verb|\int| \\
+$\sum$ & \verb|\sum| \\
+$\frac{a}{b}$ & \verb|\frac{a}{b}| \\
+$\sqrt{x}$ & \verb|\sqrt{x}| \\
+$\sqrt[n]{x}$ & \verb|\sqrt[n]{x}| \\
+$\infty$ & \verb|\infty| \\
+$x_i$ & \verb|x_i| \\
+$x^n$ & \verb|x^n| \\
+$x_{i}^{n}$ & \verb|x_{i}^{n}| \\
+\hline
+\end{tabular}
+\caption{Common Mathematical Symbols in \LaTeX}
+\end{table}
+
+
+
+
+
+
+
+\section{Lorem Ipsum}
+
+\lipsum[1-2]
+
+\begin{verbatim}
+\lipsum[1-2]
+\end{verbatim}
+
+\section{Tables}
+\subsection{Tabular Environment}
+\begin{tabular}{|c|c|c|}
+\hline
+A & B & C \\
+\hline
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+\hline
+\end{tabular}
+
+\begin{verbatim}
+\begin{tabular}{|c|c|c|}
+\hline
+A & B & C \\
+\hline
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+\hline
+\end{tabular}
+\end{verbatim}  
+
+
+\subsection{Tables with Caption}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+X & Y & Z \\
+\hline
+7 & 8 & 9 \\
+10 & 11 & 12 \\
+\hline
+\end{tabular}
+\caption{A Simple Table}
+\end{table}
+
+\begin{verbatim}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+X & Y & Z \\
+\hline
+7 & 8 & 9 \\
+10 & 11 & 12 \\
+\hline
+\end{tabular}
+\caption{A Simple Table}
+\end{table}
+\end{verbatim}
+
+
+\section{Listings}
+
+\subsection{Itemize Environment}
+\begin{itemize}
+    \item First item
+    \item Second item
+    \item Third item
+\end{itemize}
+
+\begin{verbatim}
+\begin{itemize}
+    \item First item
+    \item Second item
+    \item Third item
+\end{itemize}
+\end{verbatim}
+
+\subsection{Enumerate Environment}
+\begin{enumerate}
+    \item First item
+    \item Second item
+    \item Third item
+\end{enumerate} 
+
+\begin{verbatim}
+\begin{enumerate}
+    \item First item
+    \item Second item
+    \item Third item
+\end{enumerate}
+\end{verbatim}
+
+
+\subsection{Text in boxes}
+
+\begin{center}
+\framebox{
+    \begin{minipage}{0.8\textwidth}
+    This is a text box in \LaTeX. You can use it to highlight important information or to create a visual separation from the surrounding text.
+    \end{minipage}
+}
+\end{center}
+
+
+\begin{verbatim}
+\begin{center}
+\framebox{
+    \begin{minipage}{0.8\textwidth}
+    This is a text box in \LaTeX. You can use it to highlight 
+    important information or to create a visual 
+    separation from the surrounding text.
+    \end{minipage}
+}
+\end{center}
+\end{verbatim}
+
+
+\end{document}
