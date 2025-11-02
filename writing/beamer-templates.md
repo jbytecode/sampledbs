@@ -1,4 +1,4 @@
-template list:
+Beamer template list:
 
 [https://deic.uab.cat/~iblanes/beamer_gallery/index_by_theme.html](https://deic.uab.cat/~iblanes/beamer_gallery/index_by_theme.html)
 
@@ -32,3 +32,9 @@ template list:
 - Warsaw
 
 
+Use:
+
+```latex
+\documentclass{beamer}
+\usetheme{CambridgeUS}
+```
