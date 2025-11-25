@@ -1,0 +1,651 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage[table]{xcolor}
+
+
+\title{Spreadsheet Functions}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\newcommand{\CE}[1]{\cellcolor{blue!15}#1}
+
+
+\section{Rounding Functions}
+
+\subsection{Round}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & =ROUND(1.1234,3)  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   1.123
+\end{verbatim}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & =ROUND(1.1237,3)  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   1.124
+\end{verbatim}
+
+
+\subsection{Roundup}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & =ROUNDUP(1.1234,3)  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   1.124
+\end{verbatim}
+
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & =ROUNDUP(1.1237,3)  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   1.124
+\end{verbatim}
+
+
+
+
+
+\subsection{Rounddown}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & =ROUNDDOWN(1.1234,3)  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   1.123
+\end{verbatim}
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & =ROUNDDOWN(1.1237,3)  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   1.123
+\end{verbatim}
+
+
+\section{Mathematical Functions}
+
+\subsection{SIGN}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & =SIGN(16)  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   1
+\end{verbatim}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & =SIGN(-8)  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   -1
+\end{verbatim}
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & =SIGN(0)  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   0
+\end{verbatim}
+
+
+\subsection{ABS}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & =ABS(-25)  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   25
+\end{verbatim}
+
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & =ABS(25)  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   25
+\end{verbatim}
+
+
+
+\subsection{POWER}
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & =POWER(2; 3)  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   8
+\end{verbatim}
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & =POWER(10; 4)  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   10000
+\end{verbatim}
+
+
+
+\subsection{LOG}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & =LOG(1000)  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   3
+\end{verbatim}
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & =LOG(8; 2)  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   3
+\end{verbatim}
+
+
+\subsection{LN}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & =LN(2,71828)  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   0.999999327347282
+\end{verbatim}
+
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & =LN(EXP(1))  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   1
+\end{verbatim}
+
+
+
+\subsection{LOG10}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & =LOG10(1000))  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   3
+\end{verbatim}
+
+
+
+\subsection{EXP}
+
+$$
+EXP(x) = e^x 
+$$
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & =EXP(1)  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   2.71828182845905
+\end{verbatim}
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & =LN(EXP(2))  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   2
+\end{verbatim}
+
+
+\subsection{SQRT}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & =SQRT(16)  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   4
+\end{verbatim}
+
+
+
+
+\subsection{PI}
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & =PI()  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+  3.14159265358979
+\end{verbatim}
+
+
+
+
+\subsection{SIN}
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & =SIN(PI()/2)  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+  1
+\end{verbatim}
+
+
+
+
+\subsection{COS}
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & =COS(2 * PI())  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+  1
+\end{verbatim}
+
+
+
+
+
+\subsection{ISNUMBER}
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} & 8 & =ISNUMBER(A1)  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+  TRUE
+\end{verbatim}
+
+
+
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} & Cat & =ISNUMBER(A1)  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+  FALSE
+\end{verbatim}
+
+
+
+
+
+\subsection{ISEVEN}
+
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} & 8 & =ISEVEN(A1)  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+  TRUE
+\end{verbatim}
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} & 9 & =ISEVEN(A1)  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+  FALSE
+\end{verbatim}
+
+
+
+
+
+
+\subsection{ISODD}
+
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} & 8 & =ISODD(A1)  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+  FALSE
+\end{verbatim}
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} & 9 & =ISODD(A1)  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+  TRUE
+\end{verbatim}
+
+
+
+
+
+\subsection{ISBLANK}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &   & =ISBLANK(A1)  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+  TRUE
+\end{verbatim}
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} & Cats  & =ISBLANK(A1)  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+  FALSE
+\end{verbatim}
+
+
+\end{document}
