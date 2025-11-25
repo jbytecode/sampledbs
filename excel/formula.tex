@@ -648,4 +648,660 @@ $$
 \end{verbatim}
 
 
+
+
+
+
+
+
+
+
+
+\section{Statistical Functions}
+
+\subsection{MIN}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} & 5  &   &  &  &  &  \\
+\hline
+ \CE{2} & 7 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & 12 &  &  &  &  &  \\  
+\hline
+ \CE{2} & 11 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & =MIN(A1:A4) &  &  &  &  &  \\ 
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   5
+\end{verbatim}
+
+
+
+
+\subsection{MAX}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} & 5  &   &  &  &  &  \\
+\hline
+ \CE{2} & 7 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & 12 &  &  &  &  &  \\  
+\hline
+ \CE{2} & 11 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & =MAX(A1:A4) &  &  &  &  &  \\ 
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   12
+\end{verbatim}
+
+
+
+
+
+
+\subsection{VAR}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} & 5  &   &  &  &  &  \\
+\hline
+ \CE{2} & 7 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & 12 &  &  &  &  &  \\  
+\hline
+ \CE{2} & 11 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & =VAR(A1:A4) &  &  &  &  &  \\ 
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   10.9166666666667
+\end{verbatim}
+
+
+
+\subsection{STDEV}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} & 5  &   &  &  &  &  \\
+\hline
+ \CE{2} & 7 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & 12 &  &  &  &  &  \\  
+\hline
+ \CE{2} & 11 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & =STDEV(A1:A4) &  &  &  &  &  \\ 
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   3.30403793359984
+\end{verbatim}
+
+
+
+
+\subsection{SUM}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} & 5  &   &  &  &  &  \\
+\hline
+ \CE{2} & 7 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & 12 &  &  &  &  &  \\  
+\hline
+ \CE{2} & 11 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & =SUM(A1:A4) &  &  &  &  &  \\ 
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   35
+\end{verbatim}
+
+
+
+
+
+
+
+
+\subsection{PRODUCT}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} & 5  &   &  &  &  &  \\
+\hline
+ \CE{2} & 7 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & 12 &  &  &  &  &  \\  
+\hline
+ \CE{2} & 11 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & =PRODUCT(A1:A4) &  &  &  &  &  \\ 
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   4620
+\end{verbatim}
+
+
+
+
+
+
+
+
+\subsection{AVERAGE}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} & 5  &   &  &  &  &  \\
+\hline
+ \CE{2} & 7 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & 12 &  &  &  &  &  \\  
+\hline
+ \CE{2} & 11 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & =AVERAGE(A1:A4) &  &  &  &  &  \\ 
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   8.75
+\end{verbatim}
+
+
+
+
+
+
+\subsection{COUNT}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} & 5  &   &  &  &  &  \\
+\hline
+ \CE{2} & 7 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & 12 &  &  &  &  &  \\  
+\hline
+ \CE{2} & 11 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & =COUNT(A1:A4) &  &  &  &  &  \\ 
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   4
+\end{verbatim}
+
+
+
+
+
+
+
+\subsection{MEDIAN}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} & 5  &   &  &  &  &  \\
+\hline
+ \CE{2} & 7 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & 12 &  &  &  &  &  \\  
+\hline
+ \CE{2} & 11 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & =MEDIAN(A1:A4) &  &  &  &  &  \\ 
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   9.0
+\end{verbatim}
+
+
+\subsection{PERCENTILE}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} & 5  &   &  &  &  &  \\
+\hline
+ \CE{2} & 7 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & 12 &  &  &  &  &  \\  
+\hline
+ \CE{2} & 11 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & =PERCENTILE(A1:A4; 0) &  &  &  &  &  \\ 
+\end{tabular}
+\end{table}
+
+
+\begin{verbatim}
+   5
+\end{verbatim}
+
+
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} & 5  &   &  &  &  &  \\
+\hline
+ \CE{2} & 7 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & 12 &  &  &  &  &  \\  
+\hline
+ \CE{2} & 11 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & =PERCENTILE(A1:A4; 1) &  &  &  &  &  \\ 
+\end{tabular}
+\end{table}
+
+
+\begin{verbatim}
+   12
+\end{verbatim}
+
+
+
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} & 5  &   &  &  &  &  \\
+\hline
+ \CE{2} & 7 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & 12 &  &  &  &  &  \\  
+\hline
+ \CE{2} & 11 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & =PERCENTILE(A1:A4; 0.5) &  &  &  &  &  \\ 
+\end{tabular}
+\end{table}
+
+
+\begin{verbatim}
+   9
+\end{verbatim}
+
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} & 5  &   &  &  &  &  \\
+\hline
+ \CE{2} & 7 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & 12 &  &  &  &  &  \\  
+\hline
+ \CE{2} & 11 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & =PERCENTILE(A1:A4; 0.25) &  &  &  &  &  \\ 
+\end{tabular}
+\end{table}
+
+
+\begin{verbatim}
+   6.5
+\end{verbatim}
+
+
+
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} & 5  &   &  &  &  &  \\
+\hline
+ \CE{2} & 7 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & 12 &  &  &  &  &  \\  
+\hline
+ \CE{2} & 11 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & =PERCENTILE(A1:A4; 0.75) &  &  &  &  &  \\ 
+\end{tabular}
+\end{table}
+
+
+\begin{verbatim}
+   11.25
+\end{verbatim}
+
+
+
+\subsection{QUARTILE}
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} & 5  &   &  &  &  &  \\
+\hline
+ \CE{2} & 7 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & 12 &  &  &  &  &  \\  
+\hline
+ \CE{2} & 11 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & =QUARTILE(A1:A4; 0) &  &  &  &  &  \\ 
+\end{tabular}
+\end{table}
+
+
+\begin{verbatim}
+   5
+\end{verbatim}
+
+
+
+
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} & 5  &   &  &  &  &  \\
+\hline
+ \CE{2} & 7 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & 12 &  &  &  &  &  \\  
+\hline
+ \CE{2} & 11 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & =QUARTILE(A1:A4; 1) &  &  &  &  &  \\ 
+\end{tabular}
+\end{table}
+
+
+\begin{verbatim}
+   6.5
+\end{verbatim}
+
+
+
+
+
+
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} & 5  &   &  &  &  &  \\
+\hline
+ \CE{2} & 7 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & 12 &  &  &  &  &  \\  
+\hline
+ \CE{2} & 11 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & =QUARTILE(A1:A4; 2) &  &  &  &  &  \\ 
+\end{tabular}
+\end{table}
+
+
+\begin{verbatim}
+   9
+\end{verbatim}
+
+
+
+
+
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} & 5  &   &  &  &  &  \\
+\hline
+ \CE{2} & 7 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & 12 &  &  &  &  &  \\  
+\hline
+ \CE{2} & 11 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & =QUARTILE(A1:A4; 3) &  &  &  &  &  \\ 
+\end{tabular}
+\end{table}
+
+
+\begin{verbatim}
+   11.25
+\end{verbatim}
+
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} & 5  &   &  &  &  &  \\
+\hline
+ \CE{2} & 7 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & 12 &  &  &  &  &  \\  
+\hline
+ \CE{2} & 11 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & =QUARTILE(A1:A4; 4) &  &  &  &  &  \\ 
+\end{tabular}
+\end{table}
+
+
+\begin{verbatim}
+   12
+\end{verbatim}
+
+
+
+\subsection{SKEW}
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} & 5  &   &  &  &  &  \\
+\hline
+ \CE{2} & 7 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & 12 &  &  &  &  &  \\  
+\hline
+ \CE{2} & 11 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & =SKEW(A1:A4) &  &  &  &  &  \\ 
+\end{tabular}
+\end{table}
+
+
+\begin{verbatim}
+   -0.592518588276328
+\end{verbatim}
+
+
+
+
+
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} & 5  &   &  &  &  &  \\
+\hline
+ \CE{2} & 7 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & 12 &  &  &  &  &  \\  
+\hline
+ \CE{2} & 11 &  &  &  &  &  \\ 
+\hline
+ \CE{2} & =KURT(A1:A4) &  &  &  &  &  \\ 
+\end{tabular}
+\end{table}
+
+
+\begin{verbatim}
+   -3.86900530272129
+\end{verbatim}
+
+
+
+
+
+
+
+
+\subsection{CORREL}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} & 5  &  10 &  &  &  &  \\
+\hline
+ \CE{2} & 7 &  14 &  &  &  &  \\ 
+\hline
+ \CE{2} & 12 &  24&  &  &  &  \\  
+\hline
+ \CE{2} & 11 &  22&  &  &  &  \\ 
+\hline
+ \CE{2} & =CORREL(A1:A4; B1:B4) &  &  &  &  &  \\ 
+\end{tabular}
+\end{table}
+
+
+\begin{verbatim}
+   1
+\end{verbatim}
+
+
+
+
+
+
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} & 5  &  22 &  &  &  &  \\
+\hline
+ \CE{2} & 7 &  24 &  &  &  &  \\ 
+\hline
+ \CE{2} & 12 &  14&  &  &  &  \\  
+\hline
+ \CE{2} & 11 &  10&  &  &  &  \\ 
+\hline
+ \CE{2} & =CORREL(A1:A4; B1:B4) &  &  &  &  &  \\ 
+\end{tabular}
+\end{table}
+
+
+\begin{verbatim}
+   -0.862595419847328
+\end{verbatim}
+
+
 \end{document}
