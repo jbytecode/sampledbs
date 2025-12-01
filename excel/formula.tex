@@ -1409,6 +1409,33 @@ $$
 
 
 
+\subsection{NOT}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & TRUE  &   &  &  &  \\
+\hline
+ \CE{2} &  & TRUE  &   &  &  &  \\
+\hline
+ \CE{3} &  & FALSE  &   &  &  &  \\
+\hline
+ \CE{4} &  & =NOT(B1) &  & &  &  \\
+\hline
+   \CE{5} &  & =NOT(B2) &  & &  &  \\
+\hline
+   \CE{6} &  & =NOT(B3) &  & &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   FALSE   
+   FALSE
+   TRUE
+\end{verbatim}
+
 
 
 
@@ -1523,8 +1550,82 @@ The answer is
    LOW
 \end{verbatim}
 
+\noindent Use \texttt{IFS} function (if your Excel supports it):
+
+\begin{verbatim}
+=IFS(A1 < 10; "LOW";
+     AND(A1 >= 10; A1 <= 20); "MEDIUM";
+     AND(A1 >= 21; A1 <= 30); "HIGH";
+     A1 > 30; "VERY HIGH")
+\end{verbatim}
 
 
+
+
+\subsubsection{How many real roots?}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} & -1  &  5 & 100  &  &  &  \\
+\hline
+ \CE{2} & =POWER(B1; 2) - 4 * A1 * C1  &    &  &  &  &  \\ 
+\hline
+\end{tabular}
+\end{table}
+
+Write an IF statement (indeed they are expressions in Excel) to determine how many real roots the 
+quadratic equation $Ax^2 + Bx + C = 0$ has, based on the values in A1, B1, and C1. 
+Return 0 (No real roots), 1 (repeated root), or 2 (two real roots).
+
+
+\begin{verbatim}
+=IF(B2 < 0; 0; 
+   IF(B2 = 0; 1; 2))
+\end{verbatim}
+
+
+\noindent Use \texttt{IFS} function (if your Excel supports it):
+
+\begin{verbatim}
+=IFS(B2 < 0; 0;
+     B2 = 0; 1;
+     B2 > 0; 2)
+\end{verbatim}
+
+
+
+\subsection{How is the weather outside?}
+Suppose that the temperature is in cell A1 (in degrees Celsius). 
+Write an IF statement to return the following:
+\begin{itemize}
+\item If the temperature is less than or equal to 0, return "Freezing"
+\item If the temperature is greater than 0 but less than or equal to 15, return "Cold"
+\item If the temperature is greater than 15 but less than or equal to 25, return "Warm"
+\item If the temperature is greater than 25 but less than or equal to 35, return "Hot"
+\item If the temperature is greater than 35, return "Too Hot"
+\end{itemize}
+
+\begin{verbatim}
+=IF(A1 <= 0; "Freezing";
+   IF(A1 <= 15; "Cold";
+      IF(A1 <= 25; "Warm";
+         IF(A1 <= 35; "Hot";
+            "Too Hot"))))
+\end{verbatim}
+
+
+\noindent Use \texttt{IFS} function (if your Excel supports it):
+
+\begin{verbatim}
+=IFS(A1 <= 0; "Freezing";
+     A1 <= 15; "Cold";
+     A1 <= 25; "Warm";
+     A1 <= 35; "Hot";
+     A1 > 35; "Too Hot")
+\end{verbatim}
 
 
 
