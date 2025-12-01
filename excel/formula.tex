@@ -8,9 +8,23 @@
 \usepackage{float}
 \usepackage[table]{xcolor}
 \usepackage{tikzsymbols}
+\usepackage{xcolor}
+\usepackage{minted}
 
 
-\title{Spreadsheet Functions}
+
+
+
+\title{Spreadsheet (Excel, LibreOffice, etc.) Functions\footnote{
+   This document is prepared for educational purposes only in the 
+   information technology course series at Istanbul University, Faculty of Economics.
+   The content includes formulas and functions commonly used in spreadsheet software such 
+   as Microsoft Excel, LibreOffice, and Google Sheets, etc. The notes are for those 
+   who already participated in the related courses. The source code of this content 
+   is avaiable at \url{https://github.com/jbytecode/sampledbs} in \LaTeX \; format. 
+}}
+\author{Mehmet Hakan Satman (PH.D.)\\
+  Istanbul University, Faculty of Economics, Department of Econometrics\\}
 
 \begin{document}
 
@@ -785,6 +799,50 @@ L
 \end{verbatim}
 
 
+\subsection{Function Composition}
+
+
+\subsubsection{Example 1}
+\begin{verbatim}
+=SQRT(POWER(3;2) + POWER(4;2))
+\end{verbatim}
+
+Answer:
+
+\begin{verbatim}
+  5
+\end{verbatim}
+
+\subsubsection{Example 2}
+\begin{verbatim}
+=LOG10(POWER(10;4))
+\end{verbatim}
+
+Answer:
+
+\begin{verbatim}
+  4
+\end{verbatim}
+
+\subsubsection{Example 3}
+\begin{verbatim}
+=ROUNDUP(SQRT(50);3)
+\end{verbatim}
+
+Answer:
+\begin{verbatim}
+  7.072
+\end{verbatim}
+
+\subsubsection{Example 4}
+\begin{verbatim}
+=ABS(MOD(29;6))
+\end{verbatim}
+
+Answer:
+\begin{verbatim}
+  5
+\end{verbatim}
 
 
 \section{Statistical Functions}
@@ -2311,6 +2369,114 @@ Output:   \dSmiley
    3
    #VALUE!
 \end{verbatim}
+
+
+
+
+
+\section{Visual Basic for Applications (VBA)}
+
+\subsection{\texttt{times} function}
+\begin{minted}{basic}
+' This function returns the product of two numbers
+Function times(a, b)
+    times = a * b
+End Function
+\end{minted}
+
+Usage in Excel:
+\begin{verbatim}
+=times(5; 6)
+\end{verbatim}
+
+
+
+
+\subsection{\texttt{factorial} function}
+\begin{minted}{basic}
+Rem This function returns factorial of n
+Function factorial(n)
+    Dim result As Long
+    Dim i As Long
+    result = 1
+    
+    For i = 2 To n
+        result = result * i
+    Next
+
+    factorial = result
+End Function
+\end{minted}
+
+Usage in Excel:
+
+\begin{verbatim}
+=factorial(5)
+\end{verbatim}
+
+
+
+\subsection{\texttt{paraboladelta} function}
+\begin{minted}{basic}
+Rem This functions returns delta of a given parabola
+Function paraboladelta(a As Double, b As Double, c As Double) As Double
+    paraboladelta = b * b - 4 * a * c
+End Function
+\end{minted}
+
+Usage in Excel:
+\begin{verbatim}
+=paraboladelta(1; -3; 2)
+\end{verbatim}
+
+
+\subsection{\texttt{numberofroots} function}
+\begin{minted}{basic}
+' This function returns
+' -> 0, if delta < 0
+' -> 1, if delta = 0
+' -> 2, if delta > 0
+Function numberofroots(a As Double, b As Double, c As Double) As Integer
+    Dim delta As Double
+    delta = b * b - 4 * a * c
+    If delta < 0 Then
+        numberofroots = 0
+    ElseIf delta = 0 Then
+        numberofroots = 1
+    Else
+        numberofroots = 2
+    End If
+End Function
+\end{minted}
+
+Usage in Excel:
+
+\begin{verbatim}
+=numberofroots(1; -3; 2)
+\end{verbatim}
+
+
+
+\subsection{\texttt{findminimum} function}
+\begin{minted}{basic}
+' This function returns the minimum of a given range
+Function findminimum(r As Range) As Double
+    mymin = 9999999
+    For i = 1 To r.Count
+        If r.Cells(i, 1) < mymin Then
+            mymin = r.Cells(i, 1)
+        End If
+    Next
+    findminimum = mymin
+End Function
+\end{minted}
+
+Usage in Excel:
+
+\begin{verbatim}
+=findminimum(A1:A10)
+\end{verbatim}
+
 
 
 \end{document}

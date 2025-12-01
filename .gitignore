@@ -2,4 +2,4 @@
 *.log
 *.out
 *.toc
-
+_minted/

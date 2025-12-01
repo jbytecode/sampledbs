@@ -150,7 +150,7 @@ End Function
 ```
 
 ```vb
-' This functions returns the minimum of a given range
+' This function returns the minimum of a given range
 Function findminimum(r As Range) As Double
     mymin = 9999999
     For i = 1 To r.Count
