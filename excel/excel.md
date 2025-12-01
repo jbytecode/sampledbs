@@ -24,6 +24,9 @@
 - isodd
 - isblank
 - base
+- mod
+- roman
+
 
 ## Statistical Functions
 - min
