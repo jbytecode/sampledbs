@@ -17,6 +17,7 @@
 - pi
 - sin
 - cos
+- radians
 - isnumber
 - iseven
 - isodd
@@ -81,7 +82,8 @@
 - len
 - istext
 - ISNONTEXT
-- TEXT
+- Replace
+- Search
 
 
 
