@@ -7,6 +7,7 @@
 \usepackage{hyperref}
 \usepackage{float}
 \usepackage[table]{xcolor}
+\usepackage{tikzsymbols}
 
 
 \title{Spreadsheet Functions}
@@ -481,6 +482,48 @@ $$
 \begin{verbatim}
   1
 \end{verbatim}
+
+
+
+\subsection{RADIANS}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & =RADIANS(90)  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+  1.5707963267949
+\end{verbatim}
+
+
+
+
+\subsection{DEGREES}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & =DEGREES(PI()/2)  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+  90
+\end{verbatim}
+
 
 
 
@@ -1301,6 +1344,536 @@ $$
 
 \begin{verbatim}
    -0.862595419847328
+\end{verbatim}
+
+
+
+\section{Logical Functions}
+
+
+\section{Random Numbers}
+
+\subsection{RAND}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & =RAND()  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   // A random number between 0 and 1, e.g.
+   0.5432101234
+\end{verbatim}
+
+
+
+\subsection{RANDBETWEEN}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & =RANDBETWEEN(1; 10)  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   // A random integer between 1 and 10, e.g.
+   // The range is inclusive, so 1 and 10 are possible outputs
+   7
+\end{verbatim}
+
+
+
+\section{Date and Time Functions}
+
+\subsection{NOW}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & =NOW()  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   01/12/25 08:10 PM
+\end{verbatim}
+
+
+
+
+\subsection{YEAR}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & 01/12/25 08:10 PM  &  &  &  &  \\
+\hline
+ \CE{2} &  & =YEAR(B1) &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   2025
+\end{verbatim}
+
+
+
+
+
+\subsection{MONTH}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & 01/12/25 08:10 PM  &  &  &  &  \\
+\hline
+ \CE{2} &  & =MONTH(B1) &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   12
+\end{verbatim}
+
+
+
+
+
+\subsection{DAY}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & 01/12/25 08:10 PM  &  &  &  &  \\
+\hline
+ \CE{2} &  & =DAY(B1) &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   1
+\end{verbatim}
+
+
+
+
+
+\subsection{HOUR}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & 01/12/25 08:10 PM  &  &  &  &  \\
+\hline
+ \CE{2} &  & =HOUR(B1) &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   20
+\end{verbatim}
+
+
+
+
+
+\subsection{MINUTE}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & 01/12/25 08:10 PM  &  &  &  &  \\
+\hline
+ \CE{2} &  & =MINUTE(B1) &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   10
+\end{verbatim}
+
+
+
+\subsection{SECOND}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & 01/12/25 08:10 PM  &  &  &  &  \\
+\hline
+ \CE{2} &  & =SECOND(B1) &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   50
+\end{verbatim}
+
+
+
+
+\section{String Functions}
+
+
+\subsection{CHAR}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & =CHAR(65)  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   A
+\end{verbatim}
+
+
+
+\subsection{CODE}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & =CODE("B")  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   66
+\end{verbatim}
+
+
+
+
+\subsection{UNICODE}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & =UNICODE("\dSmiley")  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   9786
+\end{verbatim}
+
+
+
+\subsection{UNICHAR}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & =UNICHAR(9786)  &  &  &  &  \\
+\hline
+ \CE{2} &  &  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+
+Output:   \dSmiley
+
+
+
+
+\subsection{LOWER}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & istanBUL  &  &  &  &  \\
+\hline
+ \CE{2} &  & =LOWER(B1) &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   istanbul
+\end{verbatim}
+
+
+
+\subsection{UPPER}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & istanBUL  &  &  &  &  \\
+\hline
+ \CE{2} &  & =UPPER(B1) &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   İSTANBUL
+\end{verbatim}
+
+
+
+
+\subsection{CONCATENATE}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & İstanbul  &  University &  &  &  \\
+\hline
+ \CE{2} &  & =CONCATENATE(B1; C1) &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+ İstanbulUniversity
+\end{verbatim}
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & İstanbul  &  University &  &  &  \\
+\hline
+ \CE{2} &  & =CONCATENATE(B1;" "; C1) &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+ İstanbul University
+\end{verbatim}
+
+
+
+
+\subsection{LEFT}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & İstanbul  &  University &  &  &  \\
+\hline
+ \CE{2} &  & =LEFT(B1; 3) &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+ İst
+\end{verbatim}
+
+
+
+
+
+\subsection{RIGHT}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & İstanbul  &  University &  &  &  \\
+\hline
+ \CE{2} &  & =RIGHT(B1; 3) &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+ bul
+\end{verbatim}
+
+
+
+
+\subsection{MID}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & İstanbul  &  University &  &  &  \\
+\hline
+ \CE{2} &  & =MID(B1; 6; 3) &  &  &  &  \\
+\hline 
+ \CE{3} &  & =MID(C1; 5; 2) &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+ bul
+ er
+\end{verbatim}
+
+
+
+
+\subsection{LEN}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & İstanbul  &  University &  &  &  \\
+\hline
+ \CE{2} &  & =LEN(B1) &  &  &  &  \\
+\hline 
+ \CE{3} &  & =LEN(C1) &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   8
+   10
+\end{verbatim}
+
+
+
+
+\subsection{ISTEXT}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & İstanbul  &  1453 &  &  &  \\
+\hline
+ \CE{2} &  & =ISTEXT(B1) &  &  &  &  \\
+\hline 
+ \CE{3} &  & =ISTEXT(C1) &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   TRUE
+   FALSE
+\end{verbatim}
+
+
+
+
+
+
+\subsection{ISNONTEXT}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & İstanbul  &  1453 &  &  &  \\
+\hline
+ \CE{2} &  & =ISNONTEXT(B1) &  &  &  &  \\
+\hline 
+ \CE{3} &  & =ISNONTEXT(C1) &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   FALSE
+   TRUE
+\end{verbatim}
+
+
+\subsection{REPLACE}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & İstanbul  &   &  &  &  \\
+\hline
+ \CE{2} &  & =REPLACE(A1; 4; 2; "*") &  &  &  &  \\
+\hline 
+ \CE{3} &  & =REPLACE(A1; 3; 5; "?") &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   İs*bul
+   İs?l
+\end{verbatim}
+
+
+
+\subsection{SEARCH}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  & İstanbul  &   &  &  &  \\
+\hline
+ \CE{2} &  & =SEARCH("bul"; A1) &  &  &  &  \\
+\hline 
+ \CE{3} &  & =SEARCH("tan"; A1) &  &  &  &  \\
+\hline 
+ \CE{4} &  & =SEARCH("something"; A1) &  &  &  &  \\
+
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   6
+   3
+   #VALUE!
 \end{verbatim}
 
 
