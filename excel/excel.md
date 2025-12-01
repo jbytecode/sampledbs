@@ -85,6 +85,10 @@
 - Replace
 - Search
 
+## To be added
+
+- FLOOR
+- CEILING
 
 
 
