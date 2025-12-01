@@ -43,6 +43,7 @@
 - forecast.ets
 - combin
 - fact
+- sumsq
 
 ## Logical Functions and Operations
 
