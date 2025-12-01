@@ -4,6 +4,7 @@
 - round
 - rounddown
 - roundup
+- int
 
 ## Mathematical Functions
 - sign
