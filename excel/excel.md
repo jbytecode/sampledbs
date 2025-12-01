@@ -41,6 +41,8 @@
 - correl
 - forecast
 - forecast.ets
+- combin
+- fact
 
 ## Logical Functions and Operations
 
