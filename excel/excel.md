@@ -23,6 +23,7 @@
 - iseven
 - isodd
 - isblank
+- base
 
 ## Statistical Functions
 - min
