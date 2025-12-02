@@ -92,6 +92,7 @@
 - ISNONTEXT
 - Replace
 - Search
+- vlookup
 
 ## To be added
 

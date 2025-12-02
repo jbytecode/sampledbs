@@ -21,7 +21,7 @@
    The content includes formulas and functions commonly used in spreadsheet software such 
    as Microsoft Excel, LibreOffice, and Google Sheets, etc. The notes are for those 
    who already participated in the related courses. The source code of this content 
-   is avaiable at \url{https://github.com/jbytecode/sampledbs} in \LaTeX \; format. 
+   is available at \url{https://github.com/jbytecode/sampledbs} in \LaTeX \; format. 
 }}
 \author{Mehmet Hakan Satman (PH.D.)\\
   Istanbul University, Faculty of Economics, Department of Econometrics\\}
@@ -2372,6 +2372,84 @@ Output:   \dSmiley
 
 
 
+
+
+
+\subsection{VLOOKUP}
+
+Basic Usage:
+
+\begin{verbatim}
+=VLOOKUP(lookup_value; table_array; col_index_num; [range_lookup])
+\end{verbatim}
+
+\noindent where 
+\begin{itemize}
+\item \texttt{lookup\_value} is the value to search for in the first column of the table\_array
+\item \texttt{table\_array} is the range of cells that contains the data
+\item \texttt{col\_index\_num} is the column number in the table\_array from which to retrieve the value
+\item \texttt{range\_lookup} is a logical value that specifies whether to find an exact match (FALSE) or an approximate match (TRUE). If omitted, TRUE is assumed
+\end{itemize}
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} & 2 &  Economics  &   &  &  &  \\
+\hline
+ \CE{2} & 3 &  Industrial Relations &  &  &  &  \\
+\hline 
+ \CE{3} & 5 & Econometrics &  &  &  &  \\
+\hline 
+ \CE{4} & 8 & Business Administration &  &  &  &  \\
+\hline
+   \CE{5} &  & =VLOOKUP(8; A1:B4; 2; FALSE) &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   Business Administration
+\end{verbatim}
+
+Description of the example:
+
+\begin{itemize}
+\item The function looks for the value 8 in the first column of the range A1:B4
+\item It finds the value 8 in cell A4
+\item It then retrieves the value from the second column of the same row, which is "Business Administration"
+\end{itemize}
+
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} & 101 &  Introduction to Economics  &  4 &  &  &  \\
+\hline
+ \CE{2} & 102 &  Information Technologies &  2  &  &  &  \\
+\hline 
+ \CE{3} & 103 &  Basic Statistics & 3 &  &  &  \\
+\hline 
+ \CE{4} & 104 &  Operations Research & 3 &  &  &  \\
+\hline
+   \CE{5} &  & =VLOOKUP(104; A1:C4; 3; FALSE) &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+The output: 
+
+\begin{verbatim}
+   3
+\end{verbatim}
+
+Why? Because the function looks for the value 104 in the first column of the range A1:C4,
+finds it in cell A4, and retrieves the value from the third column of the same row, which is 3.
 
 
 \section{Visual Basic for Applications (VBA)}
