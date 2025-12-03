@@ -52,7 +52,7 @@
 \hline
    \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
 \hline
- \CE{1} &  & =ROUND(1.1234,3)  &  &  &  &  \\
+ \CE{1} &  & =ROUND(1.1234; 3)  &  &  &  &  \\
 \hline
  \CE{2} &  &  &  &  &  &  \\
 \end{tabular}
@@ -68,7 +68,7 @@
 \hline
    \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
 \hline
- \CE{1} &  & =ROUND(1.1237,3)  &  &  &  &  \\
+ \CE{1} &  & =ROUND(1.1237; 3)  &  &  &  &  \\
 \hline
  \CE{2} &  &  &  &  &  &  \\
 \end{tabular}
@@ -86,7 +86,7 @@
 \hline
    \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
 \hline
- \CE{1} &  & =ROUNDUP(1.1234,3)  &  &  &  &  \\
+ \CE{1} &  & =ROUNDUP(1.1234; 3)  &  &  &  &  \\
 \hline
  \CE{2} &  &  &  &  &  &  \\
 \end{tabular}
@@ -104,7 +104,7 @@
 \hline
    \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
 \hline
- \CE{1} &  & =ROUNDUP(1.1237,3)  &  &  &  &  \\
+ \CE{1} &  & =ROUNDUP(1.1237; 3)  &  &  &  &  \\
 \hline
  \CE{2} &  &  &  &  &  &  \\
 \end{tabular}
@@ -125,7 +125,7 @@
 \hline
    \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
 \hline
- \CE{1} &  & =ROUNDDOWN(1.1234,3)  &  &  &  &  \\
+ \CE{1} &  & =ROUNDDOWN(1.1234; 3)  &  &  &  &  \\
 \hline
  \CE{2} &  &  &  &  &  &  \\
 \end{tabular}
@@ -142,7 +142,7 @@
 \hline
    \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
 \hline
- \CE{1} &  & =ROUNDDOWN(1.1237,3)  &  &  &  &  \\
+ \CE{1} &  & =ROUNDDOWN(1.1237; 3)  &  &  &  &  \\
 \hline
  \CE{2} &  &  &  &  &  &  \\
 \end{tabular}
@@ -348,7 +348,7 @@
 \hline
    \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
 \hline
- \CE{1} &  & =LN(2,71828)  &  &  &  &  \\
+ \CE{1} &  & =LN(2.71828)  &  &  &  &  \\
 \hline
  \CE{2} &  &  &  &  &  &  \\
 \end{tabular}
@@ -1021,6 +1021,31 @@ Answer:
 
 
 
+
+
+\subsection{SUMPRODUCT}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} & 5  &  4 &  &  &  &  \\
+\hline
+ \CE{2} & 7 &  0 &  &  &  &  \\ 
+\hline
+ \CE{3} & 12 & 2 &  &  &  &  \\  
+\hline
+ \CE{4} & 11 &  3 &  &  &  &  \\ 
+\hline
+ \CE{5} & =SUMPRODUCT(A1:A4; B1:B4) &  &  &  &  &  \\ 
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+   77
+\end{verbatim}
 
 
 
