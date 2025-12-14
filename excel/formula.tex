@@ -10,6 +10,7 @@
 \usepackage{tikzsymbols}
 \usepackage{xcolor}
 \usepackage{minted}
+\usepackage{natbib}
 
 \usepackage[
    a4paper,
@@ -30,6 +31,7 @@
    as Microsoft Excel, LibreOffice, and Google Sheets, etc. The notes are for those 
    who already participated in the related courses. The source code of this content 
    is available at \url{https://github.com/jbytecode/sampledbs} in \LaTeX \; format. 
+   \cite{MicrosoftExcelSupport} and \cite{LibreOfficeDocumentation} are used as references.
 }}
 \author{Mehmet Hakan Satman (PH.D.)\\
   Istanbul University, Faculty of Economics, Department of Econometrics\\}
@@ -731,6 +733,44 @@ $$
 \end{verbatim}
 
 
+
+\subsection{ISERROR}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &   & = 9/0  &  &  &  &  \\
+\hline
+ \CE{2} &   & = ISERROR(A1)  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+
+\begin{verbatim}
+  A2 = TRUE
+\end{verbatim}
+
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &   & \#DIV/0!  &  &  &  &  \\
+\hline
+ \CE{2} &   & = ISERROR(A1)  &  &  &  &  \\
+\end{tabular}
+\end{table}
+
+
+\begin{verbatim}
+  TRUE
+\end{verbatim}
 
 
 \subsection{BASE}
@@ -1877,6 +1917,25 @@ Write an IF statement to return the following:
 
 
 
+\subsection{IFERROR}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+   \CE{ } & \CE{A} & \CE{B} & \CE{C} & \CE{D} & \CE{E} & \CE{F}  \\
+\hline
+ \CE{1} &  =IFERROR(9/0; "Undefined")   &    &  &  &  &  \\
+\hline
+ \CE{2} &     &    &  &  &  &  \\ 
+\hline
+\end{tabular}
+\end{table}
+
+
+\begin{verbatim}
+   Undefined
+\end{verbatim}
 
 
 \section{Random Numbers}
@@ -2589,5 +2648,8 @@ Usage in Excel:
 \end{verbatim}
 
 
+% Add the bibliography
+\bibliographystyle{plain}
+\bibliography{references}
 
 \end{document}
