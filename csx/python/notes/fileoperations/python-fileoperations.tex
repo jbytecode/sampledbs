@@ -1,0 +1,613 @@
+\documentclass[12pt]{report}
+\usepackage{fancyvrb}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{pythonhighlight}
+\usepackage
+[
+a4paper,% other options: a3paper, a5paper, etc
+left=3cm,
+right=1cm,
+top=3cm,
+bottom=4cm,
+% use vmargin=2cm to make vertical margins equal to 2cm.
+% us  hmargin=3cm to make horizontal margins equal to 3cm.
+% use margin=3cm to make all margins  equal to 3cm.
+]
+{geometry}
+\author{Mehmet Hakan Satman (PhD.)}
+\title{Python Dosyalama İşlemleri ve SQL Bağlantısı}
+
+\renewcommand{\contentsname}{İçindekiler}
+\setcounter{chapter}{1}
+
+\begin{document}
+	\maketitle
+	\tableofcontents
+	
+\pagebreak
+
+\section{open, write ve close}
+Basit dosyalama işlemleri için \texttt{file} fonksiyonundan faydalanabiliriz. \texttt{file} ile bir dosyaya yazılabilir, satırlar tek tek okunabilir veya tüm dosya içeriği tek seferde belleğe yüklenebilir. Aşağıdaki Python kodu ile bir dosya açılmakta içine \textit{Merhaba Dünya!} ifadesi yazdırılmaktadır:
+
+
+\begin{python}
+dosya = open("dosyam.txt", "w")
+dosya.write("Merhaba Dunya!")
+dosya.close()
+\end{python}
+
+Kod içinde \texttt{open} fonksiyonu ile belirtilen isimde bir dosya açılır. İkinci argüman \texttt{w} olarak verilmiştir. Böylece dosyanın yazılmak için açıldığı anlaşılır. İşletim sistemi düzeyinde bir dosyanın okunmak, yazılmak veya hem okunup hem de yazılmak üzere açıldığı meselesi önem kazanır. Bu argümanın alabileceğini birçok değerden bazıları şunlardır:
+
+\begin{itemize}
+	\item \textbf{w}: Dosya yalnızca yazılmak için açılır. Yazma işlemi dosyanın başından itibaren gerçekleştirilir. 
+	\item \textbf{r}: Dosya yalnızca okunmak için açılır.
+	\item \textbf{a}: Dosya yazılmak için açılır ancak bu kez yazılma işlemi var olan dosyanın sonundan itibaren gerçekleştirilir. 
+\end{itemize}
+
+dosya nesnesine ait olan \texttt{write} fonksiyonu ile içeriğe belirtilen ifade eklenmiştir. Dosya açma modu \texttt{w} olarak verildiği için yazma işlemi dosyanın başından itibaren gerçekleştirilir.
+
+Son olarak dosya nesnesine ait olan \texttt{close} fonksiyonu ile dosya kapatılır. Oluşan dosyam.txt adlı dosyanın içeriği bir metin editörü ile izlenebilir:
+
+\begin{verbatim}
+Merhaba Dünya!
+\end{verbatim}
+
+Aynı kod tekrar çalıştırıldığında dosyam.txt adlı dosyanın içeriği 
+
+\begin{verbatim}
+Merhaba Dünya!
+\end{verbatim}
+
+olur çünkü \texttt{w} modu her dosya açma işleminde dosya imlecini dosyanın başına getirmektedir. Örnek kodda dosya açma modu \texttt{a} (Append) ile değiştirilirse aşağıdaki şekilde olur:
+
+\begin{python}
+	dosya = open("dosyam.txt", "a")
+	dosya.write("Merhaba Dunya!")
+	dosya.close()
+\end{python}
+
+Bu kod birkaç kez üst üste çalıştırılırsa dosyam.txt adlı dosyanın içeriği aşağıdaki şekilde olur:
+
+\begin{verbatim}
+Merhaba Dünya!Merhaba Dünya!Merhaba Dünya!Merhaba Dünya!Merhaba Dünya!
+\end{verbatim}
+
+Kayıtlar arasında \texttt{enter} tuşunun da yer alması isteniyorsa yazılacak her bir satırın sonuna \texttt{\\n} ifadesi eklenebilir:
+
+\begin{python}
+dosya = open("dosyam.txt", "w")
+
+dosya.write("Merhaba Dunya!\n")
+dosya.write("Hosca kal Dunya!\n")
+
+dosya.close()
+\end{python}
+
+Yukarıdaki örnekte dosya \texttt{w} ile açıldığından belirtilen içerik silinir. Ayrıca dosyaya iki satırlık veri enter ile ayrılmış şekilde yazılır. Kod çalıştırıldığında dosyam.txt adlı dosyanın içeriği aşağıdaki gibi olur:
+
+\begin{verbatim}
+Merhaba Dunya!
+Hoşça kal Dunya!
+\end{verbatim}
+
+
+\section{open, read ve close}
+\texttt{open} fonksiyonu belirtilen dosya adı ve dosya açma moduyla çağırıldığında bir nesne döndürür:
+
+\begin{python}
+dosya = open("dosyam.txt", "w")
+
+tip = type(dosya)
+print(tip)
+
+dosya.close()
+\end{python}
+
+Bu program çalıştırıldığında alınan 
+
+\begin{verbatim}
+<class '_io.TextIOWrapper'>
+\end{verbatim}
+
+çıktısıyla birlikte dosya'nın tipinin \texttt{io.TextIOWrapper} olduğu görülür. Öncesinde kullandığımın write ve close fonksiyonları bu sınıf içinde tanımlanmış üye fonksiyonlarıydı. Bu sınıfın tanımladığı diğer fonksiyonlar ile diğer bazı temel dosyalama işlemleri gerçekleştirilebilir. Örneğin içeriği 
+
+\begin{verbatim}
+Merhaba Dunya!
+Hoşça kal Dunya!
+\end{verbatim}
+
+olan dosyayı okumaya çalışalım:
+
+
+\begin{python}
+dosya = open("dosyam.txt", "r")
+
+icerik = dosya.read()
+
+print(icerik)
+
+dosya.close()
+\end{python}
+
+Bu kodun çıktısı aşağıdaki gibi olur:
+
+\begin{verbatim}
+Merhaba Dunya!
+Hoşça kal Dunya!
+\end{verbatim}
+
+\texttt{read} fonksiyonu ile dosyanın tüm içeriği \texttt{icerik} adlı değişkende saklanır. Bu işlem çok büyük dosyalarda kullanılamaz çünkü okunmak istenen dosya boyutu mevcut belleğin üstünde olabilir. Bazen dosyayı parça parça okuyup bu parçalar üstünde bazı işlemler gerçekleştirmek isteriz. Dosyadan tek bir satır okumak için 
+
+
+
+\begin{python}
+dosya = open("dosyam.txt", "r")
+
+icerik = dosya.readline()
+
+print(icerik)
+
+dosya.close()
+\end{python}
+
+kullanılabilir. Buradaki \texttt{readline} fonksiyonu dosya adlı nesneye aittir ve yukarıda belirttiğimiz sınıf içinde tanımlanmıştır. Bu kod çalıştırıldığında ekranda
+
+\begin{verbatim}
+Merhaba Dunya!
+\end{verbatim}
+
+görülür çünkü yalnızca ilk satır okunup dosya kapatılmıştır. Dosya izin verdikçe satırlar bir döngü ile de okunabilir:
+
+
+\begin{python}
+dosya = open("dosyam.txt", "r")
+
+while True:
+	icerik = dosya.readline()
+	if len(icerik) == 0:
+		break
+	print(icerik)
+
+dosya.close()
+\end{python}
+
+Yukarıdaki döngü ile dosyadan her seferinde yalnızca bir satır veri okunmakta, eğer okunan verinin uzunluğu sıfırsa döngüden çıkılmaktadır. Aşağıdaki çıktı elde edilir:
+
+\begin{verbatim}
+Merhaba Dunya!
+
+Hoşça kal Dunya!
+
+\end{verbatim}
+
+
+
+Bu satırların hepsi tek seferde bir liste içinde yer alacak şekilde okunabilirdi:
+
+
+\begin{python}
+dosya = open("dosyam.txt", "r")
+
+icerikler = dosya.readlines()
+
+for satir in icerikler:
+	print(satir)
+
+dosya.close()
+\end{python}
+
+Dosyanın içeriğini bu şekilde okumanın, \texttt{read} ile tek seferde okumaktan farkı şudur: \texttt{readlines} tüm satırları bir liste içinde saklar. \texttt{text} ise her şeyi tek bir string içinde saklar ve tutulan veri satır satır ayrıştırılmış durumda değildir. 
+
+
+\section{CSV dosyalarının okunması}
+Bir CSV (Comma seperated values) dosyasının aşağıdaki şekilde kaydedilmiş olduğunu varsayalım:
+
+\begin{verbatim}
+X; Y
+1; 10
+2; 15
+3; 20
+4; 21
+5; 25
+6; 19
+7; 30
+8; 32
+9; 30
+10; 35
+\end{verbatim}
+
+dosyam.csv olarak kaydedilen bu CSV dosyası için aşağıdaki Python kodunun çalıştırıldığını düşünelim:
+
+
+\begin{python}
+dosya = open("dosyam.csv", "r")
+
+basliklar = dosya.readline()
+
+basliklistesi = basliklar.split(";")
+
+print(basliklistesi)
+
+dosya.close()
+\end{python}
+
+dosyam.txt dosyası okuma modunda açılmış ve dosyadan tek bir satır okunmuştur. Biz verinin ilk satırında değişken adlarının yer aldığını biliyoruz. Veriden ilk satırı okuyup bu satırın \texttt{basliklar} degiskeninde tutulmasını sağladık. Başlık satırı noktalı virgül ile ayrılmış başlık adlarını içermektedir. Bu yüzden basliklar adındaki ve string tipinindeki nesne üzerinden \texttt{split} fonksiyonunu çağırdık. Split fonksiyonu bir string ifadeyi belirtilen ifade için parçalara ayırır ve bu parçaların bir listesini döndürür. Sonrasında ise \texttt{basliklistesi} adlı liste print ile ekrana yazılır. Kod çalıştırıldığında aşağıdaki çıktı elde edilir: 
+
+\begin{verbatim}
+['X', ' Y\n']
+\end{verbatim}
+
+Ayrıca CSV dosyasında her bir satır birer enter içerdiğinde readline fonksiyonunun bu enter karakterlerini de aldığını görüyoruz. Öncesinde enter karakterlerini silip sonrasında split fonksiyonunu kullanabilirdik:
+
+
+\begin{python}
+dosya = open("dosyam.txt", "r")
+
+basliklar = dosya.readline()
+
+basliklistesi = basliklar.replace("\n","").split(";")
+
+print(basliklistesi)
+
+dosya.close()
+\end{python}
+
+Bu programda
+
+\begin{python}
+basliklistesi = basliklar.replace("\n","").split(";")
+\end{python}
+
+olan satırda basliklar satırından enter karakteri silinir ve sonrasında oluşan satır noktalı virgül ile parçalanır. Çıktı aşağıdaki gibi olur:
+
+\begin{verbatim}
+['X', ' Y']
+\end{verbatim}
+
+Şimdi programı tamamlayıp verinin geri kalanını da okuyabiliriz:
+
+\begin{python}
+dosya = open("dosyam.txt", "r")
+
+basliklar = dosya.readline()
+
+basliklistesi = basliklar.replace("\n","").split(";")
+
+csv = []
+
+satirlar = dosya.readlines()
+for satir in satirlar:
+	csv.append(satir.replace("\n", "").split(";"))
+
+print(basliklistesi)
+print(csv)
+dosya.close()
+\end{python}
+
+Program çalıştırıldığında aşağıdaki çıktılar elde edilir:
+
+
+\begin{python}
+['X', ' Y']
+[
+	['1', ' 10'], 
+	['2', ' 15'], 
+	['3', ' 20'], 
+	['4', ' 21'], 
+	['5', ' 25'], 
+	['6', ' 19'], 
+	['7', ' 30'], 
+	['8', ' 32'], 
+	['9', ' 30'], 
+	['10', ' 35']
+]
+\end{python}
+
+
+Veriler her satırda iki string ifade yer alacak şekilde otomatik olarak oluşturulur. Buradaki veri yapısının iki boyutlu bir liste olduğu görülebilir. Satır elemanlarına çift indis ile ulaşılabilir:
+
+
+\begin{python}
+print(csv[2][0])
+print(csv[2][1])
+print(csv[2][0:])
+\end{python}
+
+csv adlı liste 2 boyutludur. \texttt{csv[2][0]} ile üçüncü satır ve birinci sütun elemanına erişilir. \texttt{csv[2][1]} ile üçüncü satır ve ikinci sütun elemanına erişilir. \texttt{csv[2][0:]} ile üçünkü satır elemanı bir liste olarak elde edilir. Kod çalıştırıldığında aşağıdaki değerler elde edilir:
+
+\begin{verbatim}
+3
+20
+['3', ' 20']
+\end{verbatim}
+
+
+\section{Nesnelerin Serileştirilmesi}
+Bir Python nesnesinin bir dosyada saklanmasını veya bir dosyadan okunmasını isteyebiliriz. \texttt{class} ile oluşturulmuş bir nesnenin bir dosyada belirli formatlarla kaydedilmesine nesne serileştirme adı verilir. Aşağıdaki kodu inceleyelim:
+
+\begin{python}
+class Person:
+	def __init__(self, name, surname, age):
+		self.name = name
+		self.surname = surname
+		self.age = age
+\end{python}
+
+Person adlı sınıftan aşağıdaki gibi bir nesne oluşturulım:
+
+\begin{python}
+p1 = Person("Zeki", "Yel", 42)
+\end{python}
+
+\texttt{p1} adlı nesne Person tipinde bir veri nesnesini gösterir. Bu veri nesnesi Person'a ait init fonksiyonu sayesinde dışarıdan alınan \texttt{name}, \texttt{surname} ve \texttt{age} değerlerine sahip olur. Şimdi Person sınıfına aşağıdaki fonksiyonu da ekleyelim:
+
+\begin{python}
+class Person:
+	def __init__(self, name, surname, age):
+		self.name = name
+		self.surname = surname
+		self.age = age
+
+	def write(self):	
+		myfile = open(self.name + "-" + self.surname + ".txt", "w")	
+		myfile.write(self.name + ";" + self.surname + ";" + str(self.age))
+		myfile.close()
+\end{python}	
+
+Sınıfa eklenen yeni fonksiyon, söz konusu nesnenin \texttt{name} ve \texttt{surname} değerlerinin bir bileşimi ile bir dosya adı ve dosya oluşturur. Bu dosyaya ilgili nesnenin içeriğini noktalı virgül ayraçlarıyla yazar ve son olarak dosyayı kapatır. Söz konusu sınıfı şimdi aşağıdaki şekilde uygulayalım:
+
+\begin{python}
+p1 = Person("Zeki", "Yel", 42)
+p1.write()
+\end{python}
+
+\texttt{p1} nesnesi üzerinden \texttt{write} fonksiyonu çağırılır çağırılmaz geçerli klasörde  \texttt{zeki-yel.txt} adlı bir dosya oluşacaktır. Bu dosyanın içeriği aşağıdaki gibi olur:
+
+\begin{python}
+Zeki;Yel;42
+\end{python}
+
+
+\section{Sqlite3 Veritabanı Bağlantısı}
+Python ile SqLite veritabanlarına \texttt{sqlite3} paketi yardımıyla bağlanabiliriz. Bir veritabanına bağlantı ve bağlantının kapatılması aşağıdaki şekilde gerçekleştirebilir:
+
+\begin{python}
+import sqlite3
+
+mydb = sqlite3.connect("mydatabase.db")
+
+mydb.close()
+\end{python}
+
+Örnek kodda \texttt{mydatabase.db} adlı dosyaya bir bağlantı gerçekleştirilir. Adı belirtilen dosya yoksa ilk defa oluşturulur. Varsa, var olan dosyaya bir bağlantı gerçekleştirilir. Bu veritabanı ile ilgili işlemler, örnekte, \texttt{mydb} değişkeni aracılığı ile işleme tabi tutulur. Son olarak da close fonksiyonu ile bağlantı sonlandırılır. 
+Şimdi söz konusu veritabanı içinde bir tablo oluşturalım:
+
+\begin{python}
+	import sqlite3
+	
+	mydb = sqlite3.connect("mydatabase.db")
+	
+	mydb.execute(
+	"""
+	create table Ogrenciler
+	(id text, name text, surname text)
+	"""
+	)
+	
+	mydb.close()
+\end{python}
+
+Örnekte kullanılan \texttt{"""} karakteri birden fazla satıra sahip string değerleri tanımlanamak için kullanılmıştır. mydb üzerinden çağırılan \texttt{execute} fonksiyonu ile Ogrenciler adında yeni bir tablo oluşturulur.  Bu tabloya yeni veriler ekleyelim:
+
+\begin{python}
+import sqlite3
+
+mydb = sqlite3.connect("mydatabase.db")
+
+c = mydb.cursor()
+
+c.execute("insert into Ogrenciler (id, name, surname) values ('12564545', 'Cemil', 'Demir')")
+
+mydb.commit()
+
+mydb.close()
+\end{python}
+
+Yukarıdaki Python kodunda öncelikle veritabanına bir bağlantı sağlanır ve bu bağlantıya mydb değişkeni ile erişilir. cursor() fonksiyonu ile veritabanı için bir kursör nesnesine ulaşılır. Verileri yazma işi doğrudan veritabanı üzerinden değil, bu kursör üzerinden gerçekleştirilir. Kursör nesnesi üzerinden çağrılan execute fonksiyonı ile SQL'e ait INSERT INTO cümleceği (Statement) çalıştırılır. Sonrasında mydb üzerinden çağırılan commit fonksiyonu ile kursör üzerinde yapılan değişiklikler veritabanına yansılıtılır. Son olarak da veritabanı bağlantısı sonlandırılır. Tablo içeriği aşağıdaki şekilde değilmiş olacaktır:
+
+\begin{verbatim}
+12564545|Cemil|Demir
+\end{verbatim}
+
+Şimdi veritabanına birkaç kayıt daha ekleyelim:
+
+
+\begin{python}
+import sqlite3
+
+mydb = sqlite3.connect("mydatabase.db")
+
+c = mydb.cursor()
+
+c.execute("insert into Ogrenciler (id, name, surname) values ('12564546', 'Cemile', 'Ay')")
+c.execute("insert into Ogrenciler (id, name, surname) values ('12564547', 'Hasan', 'Bulut')")
+c.execute("insert into Ogrenciler (id, name, surname) values ('12564548', 'Cavit', 'Turuncu')")
+c.execute("insert into Ogrenciler (id, name, surname) values ('12564549', 'Zuhal', 'Pul')")
+
+mydb.commit()
+
+mydb.close()
+\end{python}
+
+
+Aşağıdaki Python kodu ile tüm kayıtları okuyabiliriz:
+
+\begin{python}
+import sqlite3
+
+mydb = sqlite3.connect("mydatabase.db")
+
+c = mydb.cursor()
+
+c.execute("select * from Ogrenciler")
+
+satirlar  = c.fetchall()
+
+for satir in satirlar:
+	print(satir)
+
+mydb.close()
+\end{python}
+
+Örnekte görüldüğü gibi sorgudan dönen tüm satırlara fetchall fonksiyonu ile ulaşılmıştır.  Bu satırların herbirine sırasıyla erişmek için bir for döngüsü kullanılmıştır. Döngü sırasında satirlar değişkenindeki her bir satır ekrana yazdırılır. Programın çıktısı aşağıdaki gibi gerçekleşir:
+
+\begin{verbatim}
+('12564545', 'Cemil', 'Demir')
+('12564546', 'Cemile', 'Ay')
+('12564547', 'Hasan', 'Bulut')
+('12564548', 'Cavit', 'Turuncu')
+('12564549', 'Zuhal', 'Pul')
+\end{verbatim}
+
+Sorgudaki ilk satıra erişmek için fetchone fonksiyonu kullanılabilir:
+
+\begin{python}
+import sqlite3
+
+mydb = sqlite3.connect("mydatabase.db")
+
+c = mydb.cursor()
+
+c.execute("select * from Ogrenciler")
+
+satir  = c.fetchone()
+print(satir)
+
+mydb.close()
+\end{python}
+
+Çıktı aşağıdaki gibi olur:
+
+\begin{verbatim}
+('12564545', 'Cemil', 'Demir')
+\end{verbatim}
+
+Her bir satır tek tek kayıt sonuna kadar bir döngü içinde okunabilir:
+
+\begin{python}
+import sqlite3
+	
+mydb = sqlite3.connect("mydatabase.db")
+	
+c = mydb.cursor()
+	
+c.execute("select * from Ogrenciler")
+	
+while True:
+	satir = c.fetchone()
+	if satir is None:
+		break
+	print(satir)
+	
+mydb.close()	
+\end{python}
+	
+Çıktı aşağıdaki gibi olur:
+
+\begin{verbatim}
+('12564545', 'Cemil', 'Demir')
+('12564546', 'Cemile', 'Ay')
+('12564547', 'Hasan', 'Bulut')
+('12564548', 'Cavit', 'Turuncu')
+('12564549', 'Zuhal', 'Pul')
+\end{verbatim}
+
+Kayıtlar okunurken herbir alana indis numarası ile erişilebilir:
+
+
+\begin{python}
+import sqlite3
+
+mydb = sqlite3.connect("mydatabase.db")
+
+c = mydb.cursor()
+
+c.execute("select * from Ogrenciler")
+
+satirlar = c.fetchall()
+
+for satir in satirlar:
+	print("Okunan satir: " + satir[1] + " " + satir[2])
+
+mydb.close()
+\end{python}
+
+\begin{verbatim}
+Okunan satir: Cemil Demir
+Okunan satir: Cemile Ay
+Okunan satir: Hasan Bulut
+Okunan satir: Cavit Turuncu
+Okunan satir: Zuhal Pul
+\end{verbatim}
+
+
+Veritabanından okunan verilerin Excel veya R'dan okunabilmesi için bir CSV dosyasında saklanmasını isteyebiliriz. Aşağıdaki kod ile Ogrenciler tablosundaki Excel'de açılabilmek üzere bir metin dosyasında saklanır:
+
+\begin{python}
+import sqlite3
+
+mydb = sqlite3.connect("mydatabase.db")
+myfile = open("mydatabase.csv", "w")
+
+c = mydb.cursor()
+c.execute("select * from Ogrenciler")
+
+satirlar = c.fetchall()
+
+myfile.write("Numara;Ad;Soyad\n")
+
+count = 0
+
+for satir in satirlar:	
+	myfile.write(satir[0] + ";" + satir[1] + ";" + satir[2] + "\n")
+	count += 1
+
+print(str(count) + " satir yazildi.")
+myfile.close()
+mydb.close()
+\end{python}
+
+
+Kod çalıştırıldığında aşağıdaki ekran çıktısı elde edilir:
+
+\begin{verbatim}
+5 satir yazildi.
+\end{verbatim}
+
+Ekran çıktısının yanında mydatabase.csv adlı bir dosya oluşturulmıştur. Bu dosya Excel veya metin editöründe açıldığında aşağıdaki içeriğe sahip olduğu görülür:
+
+
+\begin{verbatim}
+Numara;Ad;Soyad
+12564545;Cemil;Demir
+12564546;Cemile;Ay
+12564547;Hasan;Bulut
+12564548;Cavit;Turuncu
+12564549;Zuhal;Pul
+\end{verbatim}
+
+
+\subsection{Çalışma soruları}
+Ogrenciler tablosından aşağıdaki sorgulamarı gerçekleştiriniz:
+
+\begin{enumerate}
+	\item Adı C ile başlayan öğrencileri listeleyiniz.
+	\item Soyadı Ay olan öğrencileri listeleyiniz.
+	\item Adı Zuhal ve soyadı Pul olan öğrencinin numarasını gösteriniz.
+	\item Hasan Bulut adlı öğrencinin numarasını 0505440011 olarak değiştiriniz.
+	\item Cemile Ay'ın kaydını siliniz.
+	\item Tüm tabloyu temizleyiniz.
+\end{enumerate}
+	
+\end{document}

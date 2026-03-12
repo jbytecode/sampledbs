@@ -1,0 +1,439 @@
+\documentclass[12pt]{report}
+\usepackage{fancyvrb}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage
+[
+a4paper,% other options: a3paper, a5paper, etc
+left=3cm,
+right=1cm,
+top=3cm,
+bottom=4cm,
+% use vmargin=2cm to make vertical margins equal to 2cm.
+% us  hmargin=3cm to make horizontal margins equal to 3cm.
+% use margin=3cm to make all margins  equal to 3cm.
+]
+{geometry}
+\author{Mehmet Hakan Satman (PhD.)}
+\title{Python ile Nesne Yönelimli Programlama \\ (Object oriented programming with Python)}
+
+\renewcommand{\contentsname}{İçindekiler}
+\setcounter{chapter}{1}
+
+\begin{document}
+	\maketitle
+	\tableofcontents
+	
+\pagebreak
+\section{Class (Sınıf)}
+\texttt{list} veri yapısının bir sınıf, herhangi bir listenin de bu sınıfın bir örneği (object) olduğu söylenebilir. 
+
+\begin{Verbatim}[frame = single]
+a = [1, 2, 3, 4, 10, 90, 100]
+print(type(a))
+\end{Verbatim}
+
+Programı çalıştırıldığında: 
+
+\begin{Verbatim}[frame = single]
+<type 'list'>
+\end{Verbatim}
+
+\texttt{a} değişkeninin \texttt{list} tipinde olduğu görülebiliyordu. Burada \texttt{a} bir \texttt{list} olmanın yanında aynı zamanda \texttt{list} sınıfından (class) örneklendirilmiş bir nesnedir (object).
+
+Python'da \texttt{dir} fonksiyonu ile bu nesnenin sahip olduğu değişken ve fonksiyon isimlerine erişilebilir:
+
+\begin{Verbatim}[frame = single]
+>>> dir(a)
+['__add__', '__class__', '__contains__', '__delattr__', '__delitem__', 
+'__dir__','__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', 
+'__getitem__', '__gt__','__hash__', '__iadd__', '__imul__', '__init__',
+ '__init_subclass__', '__iter__', '__le__','__len__', '__lt__', '__mul__', 
+'__ne__', '__new__', '__reduce__', '__reduce_ex__','__repr__',
+ '__reversed__', '__rmul__', '__setattr__', '__setitem__', '__sizeof__',
+'__str__', '__subclasshook__', 'append', 'clear', 'copy', 'count',
+ 'extend', 'index', 'insert', 'pop', 'remove', 'reverse', 'sort']
+\end{Verbatim}
+
+Çıktıdan görüldüğü üzere \texttt{a}'nın \texttt{insert}, \texttt{pop}, \texttt{remove} ve \texttt{sort} gibi üyeleri vardır. Bu üyeler bir değişken olabileceği gibi bir fonksiyon da olabilir. Burada sayılan fonksiyonlar, \texttt{a} nesnesi üzerinden \texttt{nokta} (dot) operatörü ile çağırılabilirler:
+
+\begin{Verbatim}[frame = single]
+>>> a
+[1, 2, 3, 4, 10, 90, 100]
+>>> a.pop()
+100
+>>> a
+[1, 2, 3, 4, 10, 90]
+>>> a.pop()
+90
+>>> a
+[1, 2, 3, 4, 10]
+>>> a.pop()
+10
+>>> a
+[1, 2, 3, 4]
+>>> a.insert(1, -1000)
+>>> a
+[1, -1000, 2, 3, 4]
+\end{Verbatim}
+
+Görüldüğü gibi \texttt{pop} fonksiyonu ile listenin sonundaki elemana ulaşılmış, aynı zamanda bu eleman listeden çıkarılmıştır. Benzer şekilde \texttt{insert} fonksiyonu ile \texttt{a}'nın birinci elemanı olarak $-1000$ değeri yerleştirilmiştir. Python'da indisler $0$'dan başladığı için ilk eleman listenin sıfırıncı elemanıdır. Bu bağlamda listenin 1 indisli elemanı aslında listenin ikinci elemanına karşılık gelir.
+
+Burada dikkat edilmesi gereken nokta listeye ait bir işlevin liste üzerinden çağırılıyor olduğudur. Bunun tersi de mümkün olabilirdi. Örneğin:
+
+
+\begin{Verbatim}[frame = single]
+pop(a)
+pop(a)
+pop(a)
+insert(a, 1, -1000)
+\end{Verbatim}
+
+şeklinde çalışan ve aynı etkiyi veren fonksiyonlar yazılabilirdi. Burada dikkat edilmesi gereken, \texttt{pop} ve \texttt{insert} fonksiyonlarının listeye ait olmadığı ve hepsinin argüman olarak bir liste aldığıdır. Oysa ki nesne yönelimli yaklaşımla bu kodun
+
+\begin{Verbatim}[frame = single]
+nesne.fonksion(arguman)
+\end{Verbatim}
+
+şeklinde yazılabilmesi sağlanmıştır. Tüm bunların sonucunda söyleyebiliriz ki Python sınıfları örneklerine ait değişken ve fonksiyonları \texttt{sarmalar} (Encapsulation). Bu terim hem fonksiyon ve değişkenlerin ilgili sınıf tarafından içerildiği anlamına gelir, hem de, bu fonksiyon ve değişkenlere yalnızca ilgili sınıftan türetilen nesneler üzerinden erişilebileceği anlamına gelir. 
+
+
+\pagebreak
+\section{Parabol için bir sınıf denemesi}
+Her parabolun (ikinci dereceden polinom fonksiyon) belirli bir düzen izlediğini söyleyebiliriz. Örneğin $x$ bağımsız değişkeni için bir parabolun 
+
+$$
+f(x) = ax^2 + bx + c
+$$
+
+şeklinde tanımlandığını söyleyebiliriz. $a \ne 0$ için farklı $a$, $b$ ve $c$ değerleriyle oluşturulmuş ve bu kalıba uyan tüm fonksiyonların bir parabol olduğunu söyleyebiliriz. Nesne yönelimli programlama terimleriyle konuşursak, her parabol, parabol sınıfından örneklendirilmiş bir nesnedir. Tabi ki bu bir programlama paradigmasıdır ve bu tanım yalnızca ilgili paradigmayı bağlar. Başka bir paradigma, örneğin fonksiyonel programlama, terimleriyle konuşulduğunda bu tanımlar değişebilir.
+
+Şimdi Parabol sınıfı için Python kodunu oluşturalım:
+
+\begin{Verbatim}[frame = single]
+class Parabol:
+
+	def __init__(self, a, b, c):
+		self.a = a
+		self.b = b
+		self.c = c
+		
+\end{Verbatim}
+
+
+Görüldüğü gibi tüm sınıflar \texttt{class} anahtar kelimesi ile tanımlanır. Sınıfların içerdiği elemanlar, class direktifinden sonra girintiyle yazılır. Bu girinti sayesinde yazılacak olan tanımların ilgili sınıfa ait olduğu belirtilmiş olur. 
+
+Bir sınıftan bir nesne örneklenir örneklenmez özel bir fonksiyonun Python tarafından tetiklenmesi sağlanır. Bu fonksiyon \texttt{\_\_init\_\_} adını alır. 
+Nesne oluşur oluşmaz çağırıldığı ve bazı başlangıç işlerinin yürütüldüğü fonksiyon olması bakımından \texttt{\_\_init\_\_}'e \texttt{constructor} (yapıcı) adı verilir. 
+
+Bu fonksiyonun ilk argümanı \texttt{self} ile adlandırılmıştır. \texttt{self}, bu sınıftan örneklendirilecek olan her nesnenin kendisine işaret eder. Sonraki argümanlar \texttt{a}, \texttt{b} ve \texttt{c} ile isimlendirilmiştir ve bir parabolu tanımlamak için gerekli ve yeterli bilgiyi içerirler. 
+
+Yapıcı fonksiyon içinde \texttt{self.a = a} gibi bir atama, dışarıdan fonksiyona argüman olarak gönderilen \texttt{a} değerinin oluşan nesnede saklanacağı anlamına gelir. Şimdi bu parabol sınıfından bir nesne örneklendirelim:
+
+\begin{Verbatim}[frame = single]
+p1 = Parabol(-2, 5, 10)
+print(p1)
+\end{Verbatim}
+
+Bu kod çalıştırıldığında aşağıdakine benzer bir çıktı elde edilir:
+
+
+\begin{Verbatim}[frame = single]
+<__main__.Parabol object at 0x107763950>
+\end{Verbatim}
+
+Çıktıdan Parabol'un bir \texttt{object} olduğu görülür. \texttt{0x1077..} ile verilen bu nesnenin bellekte kapladığı alanın başlangıç adresidir. Şimdilik bununla ilgilenmiyoruz.
+
+Bir parabol $a$, $b$ ve $c$ sabitleriyle tanımlanmıştır. Öte yandan parabol ile yapılabilecek bir takım işlemer de vardır. Örneğin bu parabolün varsa köklerini aramak isteyebilirdik. Ya da tepe veya dip noktası araştırılabilirdi. Bu işlevleri Parabol sınıfından örneklendirilmiş nesneler üzerinde çalışacak şekilde tanımlayabiliriz.
+
+Aşağıdaki kodu inceleyelim:
+
+
+\begin{Verbatim}[frame = single]
+class Parabol:
+
+	def __init__(self, a, b, c):
+		self.a = a
+		self.b = b
+		self.c = c
+
+	def roots(self):
+		delta = self.b * self.b - 4 * self.a * self.c
+		x1 = (-self.b + (delta ** 0.5)) / (2 * self.a)
+		x2 = (-self.b - (delta ** 0.5)) / (2 * self.a)
+		return (x1, x2)
+\end{Verbatim}
+
+\texttt{roots} fonksiyonu sahip olduğu girintiyle \texttt{Parabol} sınıfında tanımlanmıştır. Ayrıca \texttt{self} argümanını alarak bu sınıftan örneklendirilmiş her nesnede bu nesnenin tüm üyelerine ulaşabilecek şekilde tanımlandığı görülür. \texttt{delta} değişkeni \texttt{roots} fonksiyonunun kapsamı içinde geçerlidir ve 
+
+$$
+\Delta = b^2 - 4ac
+$$
+
+tanımına uygun şekilde yazılmıştır. Burada \texttt{b} yerine \texttt{self.b} yazılması, bu nesneye ait \texttt{b} değişkeninin kullanılacağı anlamına gelir. \texttt{self.b}, nesne oluşurken dış dünyadan aktarılan argüman değerinden kopyalanmıştır. Sonrasında \texttt{x1} ve \texttt{x2} değişkenleri fonksiyon kapsamında kalmakla birlikte
+
+$$
+x_1 = \frac{-b + \sqrt{\Delta}}{2a}
+$$
+
+ve 
+
+$$
+x_2 = \frac{-b - \sqrt{\Delta}}{2a}
+$$
+
+tanımlarına uygun şekilde yazılmıştır. Fpnksiyon ilk elemanın $x_1$ ve ikinci elemanın $x_2$ olduğu bir \texttt{tuple} nesnesi döndürür. Bu sınıfı aşağıdaki şekilde kullanabilirdik:
+
+
+\begin{Verbatim}[frame = single]
+p1 = Parabol(-2, 5, 10)
+print(p1.roots())
+\end{Verbatim}
+
+
+Program çalıştırıldığında aşağıdaki çıktı elde edilir:
+
+
+\begin{Verbatim}[frame = single]
+(-1.3117376914898995, 3.8117376914898995)
+\end{Verbatim}
+
+
+Son olarak da, aynı temel kavramları kullanarak, Parabol sınıfını tepe noktasını döndürecek bir fonksiyon ekleyerek şimdilik sonlandıralım:
+
+
+\begin{Verbatim}[frame = single]
+class Parabol:
+
+	def __init__(self, a, b, c):
+		self.a = a
+		self.b = b
+		self.c = c
+	
+	def roots(self):
+		delta = self.b * self.b - 4 * self.a * self.c
+		x1 = (-self.b + (delta ** 0.5)) / (2 * self.a)
+		x2 = (-self.b - (delta ** 0.5)) / (2 * self.a)
+		return (x1, x2)
+	
+	def maxOrMin(self):
+		return -self.b / (2 * self.a)
+
+
+
+p1 = Parabol(-2, 5, 10)
+print(p1.maxOrMin())
+\end{Verbatim}
+
+Program çalıştırıldığında aşağıdaki gibi bir çıktı elde ederiz:
+
+
+\begin{Verbatim}[frame = single]
+1.25
+\end{Verbatim}
+
+Böylece $x = 1.25$ noktasında bir maksimum veya minimuma sahip olduğunu söyleyebiliriz. Söz konusu parabolun $a$ sabiti negatif olduğundan bulduğumuz bir global maksimumdur. 
+
+
+\pagebreak
+\section{Vector2D Sınıfı}
+İki  boyutlu uzayda yer alan bir vektörleri kapsayacak şekilde bir \texttt{Vector2D} sınıfı yazmak istemiş olalım:
+
+
+\begin{Verbatim}[frame = single]
+class Vector2D:
+
+	def __init__(self, x, y):
+		self.x = x
+		self.y = y
+	
+	def __str__(self):
+		return f"Vector2D({self.x}, {self.y})"
+
+
+v1 = Vector2D(0, 5)
+print(v1)
+\end{Verbatim}
+
+
+Vector2D, Parabol sınıfından farklı olarak \texttt{\_\_str\_\_} isimli bir fonksiyon tanımlar. Bu özel fonksiyon Vector2D sınıfından üretilmiş bir nesnenin string olarak ele alınması durumunda otomatik olarak çağırılır. Diğer bir deyişle söz konusu fonksiyon, bir Vector2D'nin nasıl string veri tipine dönüştürülmesi gerektiğini tanımlar. Sonrasında Vector2D sınıfından \texttt{v1} adlı bir nesne oluşturulmuştur. \texttt{print} fonksiyonu ile bu vektörün bir string gösteriminin yazılması sağlanır. Program çalıştırıldığında aşağıdaki çıktı elde edilir:
+
+
+\begin{Verbatim}[frame = single]
+Vector2D(0, 5)
+\end{Verbatim}
+
+Python, bize ait olan Vector2D sınıfının içerdiği ve biz tarafından yazılmamış olan bir takım fonksiyonları otomatik olarak dahil eder. Bunun sebebi, her yazdığımız sınıfın açıkça belirtilse de belirtilmese de \texttt{object} isimli bir sınıftan miras alınmasıdır (interitance). Vector2D sınıfını gerek olmasa da şöyle de tanımlayabilirdik:
+
+\begin{Verbatim}[frame = single]
+class Vector2D(object):
+
+	def __init__(self, x, y):
+		self.x = x
+		self.y = y
+	
+	def __str__(self):
+		return f"Vector2D({self.x}, {self.y})"
+
+
+v1 = Vector2D(0, 5)
+print(v1)
+\end{Verbatim}
+
+object sınıfından miras alınarak yazılan Vector2D, başka bir tabirle, object adlı sınıfı genişletir. Böylece object içinde tanımlanmış fonksiyonların aynı zamanda Vector2D'de de tanımlanmış gibi kullanılabilmesine olanak sağlanmış olur. Bunun yanında object sınıfını genişleten Vector2D, kendine ait olan yeni fonksiyonları da tanımlayabilir. init ve str gibi başında çift tire işareti barındıran bu özel fonksiyonların biz yazmış olmasak da aynı zamanda Vector2D'den de erişilebiliyor olmasının sebebi budur. 
+
+object sınıfında tanımlanmış olan init ve str gibi fonksiyonları Vector2D yeniden tanımladığı için, bu tanımları bir nevi ezer (override).
+
+Özel \texttt{\_\_add\_\_} fonksiyonunu yeniden tanımlayarak bir Vector2D ile başka bir Vector2D'nin toplatılmasını ve sonucun yine bir Vector2D olarak döndürülmesini sağlayabiliriz. Aşağıdaki kodu inceleyelim:
+
+
+\begin{Verbatim}[frame = single]
+class Vector2D(object):
+
+	def __init__(self, x, y):
+		self.x = x
+		self.y = y
+	
+	def __str__(self):
+		return f"Vector2D({self.x}, {self.y})"
+	
+	def __add__(self, other):
+		return Vector2D(self.x + other.x, self.y + other.y)
+
+v1 = Vector2D(0, 5)
+v2 = Vector2D(2, 3)
+v3 = v1 + v2
+print(v3)
+\end{Verbatim}
+
+
+Program çalıştırıldığında aşağıdaki sonuç elde edilir:
+\begin{Verbatim}[frame = single]
+Vector2D(2, 8)
+\end{Verbatim}
+
+add fonksiyonu ile başka bir Vector2D nesnesinin argüman olarak alınması ve mevcut Vector2D nesnesiyle toplanması sağlanmıştır. Bir nevi $+$ operatörünün Vector2D için nasıl davranması gerektiğinin tanımlamasını sunan bu işlem \textit{operatör aşırı yükleme} (operator overloading) adını alır.
+
+\pagebreak
+\section{Shape sınıfı}
+Geometrik bir şekli tanımlayan Shape sınıfının alan ve çevre bulmak için bir takım fonksiyonlara sahip olduğunu düşünelim:
+
+\begin{Verbatim}[frame = single]
+class Shape:
+
+	def cevre(self):
+		pass
+	
+	def alan(self):
+		pass
+\end{Verbatim}
+
+Tanımda yer alan \texttt{pass} anahtar kelimesi, fonksiyonların yalnızca tanım bilgisi ile yer alması için kullanılmıştır. Şimdi Shape sınıfını miras alarak Rectangle (Dikdörtgen) sınıfını tanımlayalım:
+
+\begin{Verbatim}[frame = single]
+class Rectangle(Shape):
+
+	def __init__(self, a, b):
+		self.a = a
+		self.b = b
+	
+	def cevre(self):
+		return 2 * (self.a + self.b)
+	
+	def alan(self):
+		return self.a * self.b
+\end{Verbatim}
+
+Şimdi de kare için Square adlı sınıfı tanımlayalım. Kare, dikdörtgenin özel hali olduğundan Square sınıfını Shape yerine Rectangle sınıfını miras alarak yazabiliriz:
+
+
+\begin{Verbatim}[frame = single]
+class Square(Rectangle):
+	
+	def __init__(self, a):
+		Rectangle.__init__(self, a, a)
+\end{Verbatim}
+
+Görüldüğü gibi Square sınıfının yapıcısı (constructor) tek bir $a$ argümanı alır. Ancak miras aldığı Rectangle sınıfının $a$ ve $b$ gibi iki kenara karşılık gelen argümanlar alması gerekir. Square sınıfından bir nesne oluşur oluşmaz, üst sınıfın yapıcısı çağırılır ve Rectangle sınıfının bir örneğinin kısa ve uzun kenarların $a$ uzunluğunda olması sağlanır. Aslında Square sınıfının yaptığı pek bir işlem yoktur. Yalnızca özelliklerini miras aldığı bir Rectangle nesnesi gibi davranır. Square için bir cevre ve alan fonksiyonu tanımlanmadığına dikkat edilmelidir. Bunun sebebi, dikdörtgenin a ve b kenarları için çalışan çevre ve alan fonksiyonlarının kenarları a ve a olan kare için de çalışması beklenir. Bir kenarı 3 cm olan bir kareyi aşağıdaki şekilde oluşturabiliriz:
+
+
+\begin{Verbatim}[frame = single]
+r = Square(3)
+print(r.cevre())
+print(r.alan())
+\end{Verbatim}
+
+Program çalıştırıldığında aşağıdaki gibi bir çıktı elde edilir:
+
+\begin{Verbatim}[frame = single]
+12
+9
+\end{Verbatim}
+
+
+\pagebreak
+\section{Zincirleme Miras}
+Aşağıdaki gibi tanımlanmış A, B ve C sınıflarını ele alalım:
+
+\begin{Verbatim}[frame = single]
+class A:
+	def func(self):
+		pass
+
+class B(A):
+	def func(self):
+		pass
+
+class C(B):
+	def func(self):
+		return("func is defined in class C")
+		
+myobject = C()
+print(myobject.func())
+\end{Verbatim}
+
+Örnekte B, A'yı; C de B'yi miras alarak tanımlanır. \texttt{myobject} ise C sınıfından türetilen bir nesnedir. \texttt{myobject} üzerinden \texttt{func} adlı fonksiyon çağırılırsa ne olur?
+
+Sonuç aşağıdaki gibi olacaktır:
+
+\begin{Verbatim}[frame = single]
+func is defined in class C
+\end{Verbatim}
+
+Bunun sebebi C'nin söz konusu fonksiyonu tanımlamış olduğudur. Bu sonuçtan hareketle 
+
+\begin{Verbatim}[frame = single]
+myobject = B()
+print(myobject.func())
+\end{Verbatim}
+
+kodunun \texttt{None} yazdıracağını söyleyebiliriz. Çünkü hem B hem de genişlettiği A, bu fonksiyonun gövdesini tanımlamaz.
+
+Şimdi bu durumun benzerini ele alalım:
+
+\begin{Verbatim}[frame = single]
+class A:
+	def func(self):
+		return "func is defined in class A"
+
+class B(A):
+	pass
+
+class C(B):
+	pass
+
+myobject = C()
+print(myobject.func())
+\end{Verbatim}
+
+Örnekte B A'yı, C de B'yi genişletir. Ancak B ve C genişletmekten öte hiçbir ek işlev tanımlamaz. myobject nesnesi ise C'den örneklendirilmiştir. Kendisine ait bir \texttt{func} fonksiyonu olmayan C söz konusu çağırımda nasıl davranır?
+
+Sonuç aşağıdaki gibi olacaktır:
+
+
+\begin{Verbatim}[frame = single]
+func is defined in class A
+\end{Verbatim}
+
+
+\end{document}

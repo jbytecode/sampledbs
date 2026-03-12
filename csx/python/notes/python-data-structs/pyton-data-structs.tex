@@ -1,0 +1,721 @@
+\documentclass[12pt]{report}
+\usepackage{fancyvrb}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{pythonhighlight}
+\usepackage
+[
+a4paper,% other options: a3paper, a5paper, etc
+left=3cm,
+right=1cm,
+top=3cm,
+bottom=4cm,
+% use vmargin=2cm to make vertical margins equal to 2cm.
+% us  hmargin=3cm to make horizontal margins equal to 3cm.
+% use margin=3cm to make all margins  equal to 3cm.
+]
+{geometry}
+\author{Mehmet Hakan Satman (PhD.)}
+\title{Python Veri Yapıları}
+
+\renewcommand{\contentsname}{İçindekiler}
+\setcounter{chapter}{1}
+
+\begin{document}
+	\maketitle
+	\tableofcontents
+	
+\pagebreak
+\section{list}
+
+\texttt{list} veri yapısı farklı tipte olabilen Python değişken veya değerlerinin saklanabildiği dinamik bir veri yapısıdır. Aşağıdaki örnekte bir Python listesi oluşturulmaktadır:
+
+\begin{python}
+>>> a = [1, 5, 7, -1]
+\end{python}
+
+\texttt{list} tipindeki bir nesnenin ulaşılabilecek fonksiyon ve özellikleri \texttt{dir} fonksiyonu ile elde edilebilir:
+
+\begin{python}
+	>>> dir(a)
+	['__add__', '__class__', '__contains__', '__delattr__', '__delitem__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__gt__', '__hash__', '__iadd__', '__imul__', '__init__', '__init_subclass__', '__iter__', '__le__', '__len__', '__lt__', '__mul__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__reversed__', '__rmul__', '__setattr__', '__setitem__', '__sizeof__', '__str__', '__subclasshook__', 'append', 'clear', 'copy', 'count', 'extend', 'index', 'insert', 'pop', 'remove', 'reverse', 'sort']
+\end{python}
+
+Şimdi bu üye fonksiyonların bazılarına değinelim:
+
+\subsection{count}
+Bir liste üzerinden \texttt{count} fonksiyonu ile o listenin belirtilen elemandan kaç adet olduğu bilgisi elde edilir. Aşağıdaki örneği inceleyelim:
+
+\begin{python}
+>>> a = [1, 2, 3, 3, 3, 3, 4, 4]
+>>> a.count(1)
+1
+>>> a.count(2)
+1
+>>> a.count(3)
+4
+>>> a.count(4)
+2	
+\end{python}
+
+\subsection{reverse}
+Bir listenin son elemanı ilk elemanı olacak şekilde tersini elde etmek için kullanılır. Düzenlemeler orijinal liste üzerinde gerçekleştirilir. Böylece işlem sonrasında orijinal sıralama kaydedilir. Aşağıdaki örneği inceleyelim:
+
+\begin{python}
+>>> a = [1, 2, 3, 3, 3, 3, 4, 4]
+>>> a.reverse()
+>>> a
+[4, 4, 3, 3, 3, 3, 2, 1]
+\end{python} 
+
+
+\subsection{clear}
+Bir Python listesinin içeriğinin silinmesi için kullanılır:
+
+\begin{python}
+>>> a = [1, 2, 3, 3, 3, 3, 4, 4]
+>>> a.clear()
+>>> a
+[]	
+\end{python}	
+
+Örnekten de anlaşılacağı üzere boş liste için \texttt{[]} ifadesi kullanılır.
+
+\subsection{sort}
+Bir Python listesinin sıralanması için kullanılabilecek bir fonksiyondur:
+
+\begin{python}
+>>> a = [9, 8, 4, 0, 0, 1, 1, 7, 8, 3]
+>>> a.sort()
+>>> a
+[0, 0, 1, 1, 3, 4, 7, 8, 8, 9]
+\end{python}
+
+
+\subsection{index}
+Belirtilen elemanın listenin hangi elemanı olduğu bilgisini döndürür:
+
+\begin{python}
+>>> a = [9, 8, 4, 0, 0, 1, 1, 7, 8, 3]
+>>> a.index(3)
+9
+\end{python}
+
+Burada, 3'ün indisi 9 olarak döndürülmüştür. Python'da liste indislerinin sıfırdan başladığı unutulmamalıdır. 
+
+\subsection{append}
+Listenin sonuna eklemek için kullanılır:
+
+\begin{python}
+>>> a = [9, 8, 4, 0, 0, 1, 1, 7, 8, 3]
+>>> a.append(1000)
+>>> a
+[9, 8, 4, 0, 0, 1, 1, 7, 8, 3, 1000]
+\end{python}
+
+\subsection{pop}
+Listenin son elemanını döndüren fonksiyondur. Ancak bu elemanı döndürmeden hemen önce bu elemanı listeden çıkartır:
+
+\begin{python}
+>>> a = [9, 8, 4, 0, 0, 1, 1, 7, 8, 3]
+>>> lastelement = a.pop()
+>>> 
+>>> a
+[9, 8, 4, 0, 0, 1, 1, 7, 8]
+>>> lastelement
+3
+\end{python}
+
+\subsection{insert}
+Bir listenin belirtilen indisine bir elemanın yerleştirilmesini sağlar. Belirtilen indisteki eski elemanın ve sonrakilerin indisleri birer birim ötelenir. 
+
+\begin{python}
+>>> a.insert(0, 1000)
+>>> a
+[1000, 9, 8, 4, 0, 0, 1, 1, 7, 8, 3]
+>>> a.insert(5, 42)
+>>> a
+[1000, 9, 8, 4, 0, 42, 0, 1, 1, 7, 8, 3]
+\end{python}
+
+\subsection{extend}
+Bir listenin sonuna, başka bir listenin elemanlarının eklenmesi sağlanır:
+
+\begin{python}
+>>> a = [9, 8, 4, 0, 0, 1, 1, 7, 8, 3]
+>>> a.extend([-9, -8, -7])
+>>> a
+[9, 8, 4, 0, 0, 1, 1, 7, 8, 3, -9, -8, -7]
+\end{python}
+
+\subsection{remove}
+Bir listenin belirtilen bir elemanını listeden çıkartır. Burada elemanın indisi değil kendi değeri argüman olarak verilir. Bu elemandan birden fazla varsa ilki silinir:
+
+\begin{python}
+>>> a
+[9, 8, 4, 0, 0, 1, 1, 7, 8, 3, -9, -8, -7]
+>>> a.remove(-9)
+>>> a.remove(0)
+>>> a.remove(1)
+>>> a
+[9, 8, 4, 0, 1, 7, 8, 3, -8, -7]
+\end{python}
+
+Silinmek istenen eleman listede yoksa bir hata alınır:
+
+\begin{python}
+>>> a
+[9, 8, 4, 0, 1, 7, 8, 3, -8, -7]
+>>> a.remove(100)
+Traceback (most recent call last):
+File "<stdin>", line 1, in <module>
+ValueError: list.remove(x): x not in list
+\end{python}
+
+Bu yüzden öncelikle listenin belirtilen elemana sahip olup olmadığı kontrol edilebilir:
+
+\begin{python}
+>>> if a.count(42) > 0:
+...     a.remove(42)
+\end{python}
+
+
+\subsection{copy}
+Bir listenin kopyasını döndüren üye fonksiyondur:
+
+\begin{python}
+>>> a
+[9, 8, 4, 0, 1, 7, 8, 3, -8, -7]
+>>> b = a.copy()
+>>> b
+[9, 8, 4, 0, 1, 7, 8, 3, -8, -7]
+\end{python}
+
+\subsection{İndis ile erişim}
+Listelerin elemanlarına indis operatörü ile erişilebilir:
+
+\begin{python}
+>>> a
+[9, 8, 0, 1, 7, 8, 3, -8, -7]
+>>> a[0]
+9
+>>> a[1]
+8
+>>> a[2]
+0
+\end{python}
+
+
+Ayrıca listenin belirtilen aralıktaki elemanlarının bir listesine de erişilebilir. Burada \texttt{:} operatörü bir aralık belirtir. Aralığın ilk elemanı dahildir ancak son elemanı dahil değildir. \texttt{0:3} gibi bir aralık listenin 0., 1. ve 2. elemanlarının oluşturduğu bir liste döndürür.
+
+\begin{python}
+>>> a
+[9, 8, 0, 1, 7, 8, 3, -8, -7]
+>>> a[0:3]
+[9, 8, 0]
+\end{python}
+
+\subsection{del}
+Listeye ait olmayan bu direktif ile bir Python listesinin belirtilen elemanı listeden silinebilir:
+\begin{python}
+>>> a
+[9, 8, 4, 0, 1, 7, 8, 3, -8, -7]
+>>> del a[2]
+>>> a
+[9, 8, 0, 1, 7, 8, 3, -8, -7]
+\end{python}
+
+\subsection{list comprehension}
+Python listeleri belirli bir örüntü oluşturacak şekilde tanımlanabilir. Aşağıdaki örneği inceleyelim:
+
+\begin{python}
+>>> a = [i**2 for i in range(1, 10)]
+>>> a
+[1, 4, 9, 16, 25, 36, 49, 64, 81]
+\end{python}
+
+Örnekte $i$'nin $1,2,...,9$ değerleri için $i^2$'nin bir listesi oluşturulur. Aşağıdaki örneği inceleyelim:
+
+\begin{python}
+>>> a = [i ** 2 for i in range(1, 10) if i % 2 == 0]
+>>> a
+[4, 16, 36, 64]
+\end{python}
+
+Bu kez de $i$'nin $1,2,...,9$ değerleri içinden çift olanlarının bir listesi oluşturulmuştur. Aşağıdaki örnekte $i = 1, 2, 3, 4, 5$ ve $j = 1, 2, 3, 4, 5$ için çarpım tablosu değerleri elde edilmektedir:
+
+\begin{python}
+>>> a = [(i, j,  i * j) for i in range(1, 6) for j in range(1,6)]
+>>> a
+[(1, 1, 1), (1, 2, 2), (1, 3, 3), (1, 4, 4), (1, 5, 5), (2, 1, 2), (2, 2, 4), (2, 3, 6), (2, 4, 8), (2, 5, 10), (3, 1, 3), (3, 2, 6), (3, 3, 9), (3, 4, 12), (3, 5, 15), (4, 1, 4), (4, 2, 8), (4, 3, 12), (4, 4, 16), (4, 5, 20), (5, 1, 5), (5, 2, 10), (5, 3, 15), (5, 4, 20), (5, 5, 25)]
+\end{python}
+
+$(x, y, z)$ gibi parantez içinde gösterilen bu ifadeler \texttt{tuple} tipindedir ve sonraki bölümde incelenecektir. 
+
+\subsection{Operatörler}
+Python listeleri için bir takım operatörler tanımlanmıştır. Şimdi bunlardan birkaçını inceleyelim. \texttt{+} operatörü ile iki listenin birleştirilmesi sağlanır. Sonuç olarak yeni bir liste döndürülür. Var olan listelerin içerikleri bozulmaz:
+
+\begin{python}
+>>> a = [1,2,3]
+>>> b = [9,8,7]
+>>> c = a + b
+>>> c
+[1, 2, 3, 9, 8, 7]
+\end{python}
+
+\texttt{*} operatörü ile bir listenin $n$ kez kendisiyle birleştirilmesi sağlanır:
+
+\begin{python}
+>>> a = [1,2,3]
+>>> b = a * 5
+>>> b
+[1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3]
+\end{python}
+
+\texttt{in} operatörü ile bir elemanın bir liste içinde olup olmadığı test edilir. Eleman listede varsa \texttt{True} aksi durumda \texttt{False} döndürülür:
+
+\begin{python}
+>>> a
+[1, 2, 3]
+>>> 2 in a
+True
+>>> 6 in a
+False
+>>> 10 in [1,2,3,4,5,6,7,8,9,10]
+True
+\end{python}
+
+
+
+
+\section{tuple}
+Parantez ile $(x, y, ..., z)$ şeklinde tanımlanan ifadeler Python'da \texttt{tuple} tipindedir:
+
+\begin{python}
+>>> a = (1,2,3)
+>>> type(a)
+<class 'tuple'>
+\end{python}
+
+\texttt{count} ve \texttt{index} fonksiyonları bir \texttt{tuple} nesnesi üzerinden listelerde olduğu gibi kullanılabilir:
+
+\begin{python}
+>>> a = (1,2,3)
+>>> a.count(1)
+1
+>>> a.index(3)
+2
+\end{python}
+
+\texttt{Tuple} tipindeki veri nesneleri listeler gibi davranır ancak değerleri değiştirilemez, yeni veri eklenemez ve veri silinemez (immutable). Program akışı esnasında içeriğinin değişmemesi gereken veriler için güvenlik gibi sebeplerle tercih edilebilir. Bunun yanında bir \texttt{tuple} verisinin elemanlarına listelerde olduğu gibi kolaylıkla erişilir:
+
+\begin{python}
+>>> a = (1, -2, 9)
+>>> a[0]
+1
+>>> a[1]
+-2
+>>> a[2]
+9
+>>> len(a)
+3
+\end{python}
+
+\texttt{tuple} tipindeki veri nesnelerinin elemanlarının değiştirilmesi istenirse hata alınır:
+
+\begin{python}
+>>> a = (1, -2, 9)
+>>> a[0] = 100
+Traceback (most recent call last):
+File "<stdin>", line 1, in <module>
+TypeError: 'tuple' object does not support item assignment
+\end{python}
+
+Bir \texttt{tuple} nesnesi tek bir eleman içerecek ise bu elemandan sonra virgül kullanılmalıdır. Aksi durumda bir \texttt{tuple} yerine içeriğin kendisi elde edilir:
+
+\begin{python}
+>>> a = (30)
+>>> a
+30
+>>> a = (30, )
+>>> a
+(30,)
+\end{python}
+
+
+\texttt{list} fonksiyonu ile bir \texttt{tuple} nesnesinin elemanlarından yeni bir liste oluşturulur:
+
+\begin{python}
+>>> a = (42, 39, 80)
+>>> b = list(a)
+>>> b
+[42, 39, 80]
+>>> type(b)
+<class 'list'>
+\end{python}
+
+Bir listeyi de \texttt{tuple} fonksiyonu ile \texttt{tuple} tipinde bir nesne elde etmek için kullanabiliriz: 
+
+\begin{python}
+>>> mylist = [6, 8, 10, 12]
+>>> t = tuple(mylist)
+>>> t
+(6, 8, 10, 12)
+>>> type(t)
+<class 'tuple'>
+\end{python}
+
+
+\section{set}
+
+\texttt{set} veri yapısı her elemanın yalnızca bir kez bulunmasının izin verildiği bir veri yapısıdır. Küme parantezi ile tanımlanabilir:
+
+\begin{python}
+>>> myset = {"ekonometri", "istatistik", "yoneylem arastirmasi"}
+>>> type(myset)
+<class 'set'>
+>>> myset
+{'istatistik', 'yoneylem arastirmasi', 'ekonometri'}
+\end{python}
+
+\texttt{set} veri yapısında veriler, kaydedildikleri sırada tutulmak zorunda değildir. Bu halleriyle, amaca uygun olarak, matematikteki küme kavramına yakındır. 
+
+\subsection{add}
+Bir \texttt{set} nesnesine yeni bir eleman eklemek için kullanılır. Var olan eleman öncesinde varsa ekleme yapılmaz:
+
+\begin{python}
+>>> myset = {"ekonometri", "istatistik", "yoneylem"}
+>>> myset.add("iktisat")
+>>> myset.add("isletme")
+>>> myset
+{'yoneylem', 'iktisat', 'istatistik', 'ekonometri', 'isletme'}
+>>> myset.add("isletme")
+>>> myset
+{'yoneylem', 'iktisat', 'istatistik', 'ekonometri', 'isletme'}
+\end{python}
+
+
+\subsection{clear}
+Listelerde olduğu gibi içeriğin temizlenmesi için kullanılır:
+
+\begin{python}
+>>> myset = {"ekonometri", "istatistik", "yoneylem"}
+>>> myset.clear()
+>>> myset
+set()
+\end{python}
+
+Görüldüğü gibi \texttt{set()} ifadesi boş bir \texttt{set} tanımlar.
+
+
+\subsection{pop}
+Listelerdekine benzer şekilde çalışır. Ancak \texttt{set} nesneleri sıralı olmadığı için döndürülecek elemanın tesadüfi olduğu düşünülebilir:
+
+\begin{python}
+>>> myset = {"ekonometri", "istatistik", "yoneylem"}
+>>> myset.pop()
+'istatistik'
+>>> myset.pop()
+'yoneylem'
+>>> myset.pop()
+'ekonometri'
+>>> myset.pop()
+Traceback (most recent call last):
+File "<stdin>", line 1, in <module>
+KeyError: 'pop from an empty set'
+\end{python}
+
+\texttt{set} içinde herhangi bir eleman kalmadığında, görüldüğü gibi bir hata alınır. 
+
+
+\subsection{remove}
+Belirtilen bir elemanın \texttt{set} içinden silinmesi için kullanılır, belirtilen eleman yoksa bir hata alınır:
+
+\begin{python}
+>>> myset = {"ekonometri", "istatistik", "yoneylem"}
+>>> myset.remove("yoneylem")
+>>> myset
+{'istatistik', 'ekonometri'}
+>>> myset.remove("iktisat")
+Traceback (most recent call last):
+File "<stdin>", line 1, in <module>
+KeyError: 'iktisat'
+\end{python}
+
+\subsection{union}
+İki \texttt{set} nesnesinin birleşim kümesini bir \texttt{set} nesnesi olarak döndürür:
+
+\begin{python}
+>>> myset = {"ekonometri", "istatistik", "yoneylem"}
+>>> myotherset = {"iktisat", "isletme", "yoneylem"}
+>>> 
+>>> birlesim = myset.union(myotherset)
+>>> birlesim
+{'yoneylem', 'istatistik', 'ekonometri', 'iktisat', 'isletme'}
+\end{python}
+
+
+\subsection{intersection}
+\texttt{set} nesnesinin belirtilen başka bir \texttt{set} nesnesiyle olan kesişim kümesi yine bir \texttt{set} olarak döndürülür:
+
+\begin{python}
+>>> myset = {"ekonometri", "istatistik", "yoneylem"}
+>>> myotherset = {"iktisat", "isletme", "yoneylem"}
+>>> myset.intersection(myotherset)
+{'yoneylem'}
+\end{python}
+
+
+\subsection{difference}
+\texttt{set} nesnesinin belirtilen bir \texttt{set} nesnesinden farkının kümesini yine bir \texttt{set} olarak döndürür:
+
+\begin{python}
+>>> myset = {"ekonometri", "istatistik", "yoneylem"}
+>>> myotherset = {"iktisat", "isletme", "yoneylem"}
+>>> myset.difference(myotherset)
+{'istatistik', 'ekonometri'}
+\end{python}
+
+\subsection{discard}
+Belirtilen bir elemanın \texttt{set} nesnesinden silinmesi sağlanır. Eleman yoksa hata alınmaz.
+
+\begin{python}
+>>> myset = {"ekonometri", "istatistik", "yoneylem"}
+>>> myset.discard("yoneylem")
+>>> myset
+{'istatistik', 'ekonometri'}
+>>> myset.discard("yoneylem")
+>>> myset
+{'istatistik', 'ekonometri'}
+\end{python}
+
+
+
+\section{dict}
+\texttt{dict} veri yapısı \texttt{anahtar: deger} şeklinde veriler tutmak için kullanılır. Listelerden farklı olarak indis olarak belirtilen anlamlı anahtar değerler kullanılabilir:
+
+\begin{python}
+>>> sozluk = {"go": "git", "come": "gel"}
+>>> sozluk["go"]
+'git'
+>>> sozluk["come"]
+'gel'
+>>> type(sozluk)
+<class 'dict'>
+\end{python}
+
+Alt bölümlerde \texttt{dict} veri yapısının sahip olduğu bazı üye fonksiyonlara değineceğiz.
+
+\subsection{keys}
+\texttt{dics} nesnesindeki anahtar değerleri döndürür:
+
+\begin{python}
+>>> notlar.keys()
+dict_keys(['matematik', 'ekonometri', 'yoneylem'])
+>>> list(notlar.keys())
+['matematik', 'ekonometri', 'yoneylem']
+\end{python}
+
+\subsection{values}
+\texttt{dics} nesnesindeki  değerleri döndürür:
+
+\begin{python}
+>>> notlar = {"matematik": 80, "ekonometri": 90, "yoneylem": 75}
+>>> notlar.values()
+dict_values([80, 90, 75])
+>>> list(notlar.values())
+[80, 90, 75]
+\end{python}
+
+
+\subsection{get}
+İndis operatörü gibi, belirli bir anahtar değere karşılık gelen değeri döndürür:
+
+\begin{python}
+>>> notlar = {"matematik": 80, "ekonometri": 90, "yoneylem": 75}
+>>> notlar.get("matematik")
+80
+>>> notlar["matematik"]
+80
+\end{python}
+
+
+\subsection{clear, copy, pop}
+Sırasıyla içeriği temizlemek, içeriğin bir kopyasını elde etmek ve belirli bir elemanı döndürüp listeden temizlemek için kullanılırlar:
+
+\begin{python}
+>>> notlar = {"matematik": 80, "ekonometri": 90, "yoneylem": 75}
+>>> ekonot = notlar.pop("ekonometri")
+>>> ekonot
+90
+>>> notlar
+{'matematik': 80, 'yoneylem': 75}
+>>> notlar.clear()
+>>> notlar
+{}
+\end{python}
+
+
+\section{Veri nesnelerinin döngüler ile kullanımı}
+Python'da veri yapıları ve döngüler arasında sıkı bir ilişki vardır. Tek bir eleman için tanımlı olan işlemler veri yapılarının tüm elemanlarına döngüler yoluyla uygulanabilir. not: bir diğer yaklaşım olarak fonksiyonel programlama ve özyineleme (rescursion) incelenebilir.
+
+\subsection{Liste ve döngüler}
+
+Listelerin elemanları için tanımlı bir işlem \texttt{for} döngüleri ile listenin tüm elemanlarına uygulanabilir:
+
+\begin{python}
+>>> a = [1,2,42, 39, 80]
+>>> for i in a:
+...     print(i)
+... 
+1
+2
+42
+39
+80
+\end{python}
+
+
+Aşağıdaki program ile bir listenin elemanlarının karelerinin bir listesi oluşturulmaktadır:
+
+\begin{python}
+>>> a = [1,2,42, 39, 80]
+>>> b = []
+>>> for i in a:
+...     b.append(i ** 2)
+... 
+>>> b
+[1, 4, 1764, 1521, 6400]
+\end{python} 
+
+Aynı işlemi aşağıdaki gibi gerçekleştirebilirdik:
+
+\begin{python}
+>>> a = [1,2,42, 39, 80]
+>>> b = [i ** 2 for i in a]
+>>> 
+>>> a
+[1, 2, 42, 39, 80]
+>>> b
+[1, 4, 1764, 1521, 6400]
+\end{python}
+
+\texttt{b} listesini oluşturmanın diğer bir yolu da \texttt{map} fonksiyonunu kullanmaktır:
+
+\begin{python}
+	>>> def karele(x): 
+	...     return x ** 2
+	... 
+	>>> b = map(karele, a)
+	>>> b
+	<map object at 0x104e0da90>
+\end{python}
+
+\texttt{map} fonksiyonundan dönen değerin tipi \texttt{map\_object} olmaktadır ancak bu değer bir liste olarak da elde edilebilir:
+
+\begin{python}
+>>> def karele(x): 
+...     return x ** 2
+... 
+>>> b = list(map(karele, a))
+>>> b
+[1, 4, 1764, 1521, 6400]
+\end{python}
+
+Karele fonksiyonu bir \texttt{lambda} ifade olarak tanımlanıp \texttt{map} içinde doğrudan kullanılabilirdi:
+
+\begin{python}
+>>> a = [1,2,42, 39, 80]
+>>> b = list(map(lambda x: x ** 2, a))
+>>> b
+[1, 4, 1764, 1521, 6400]
+\end{python}
+
+\texttt{filter} fonksiyonu ile bir listenin elemanlarından belirli bir koşulu sağlayanlarının bir listesi oluşturulabilir. Örneğin bir listenin çift elemanlarını filtreleyen bir Python kodunu aşağıdaki şekilde yazabiliriz:
+
+\begin{python}
+>>> def ciftmi(x):
+...     return x % 2 == 0
+... 
+>>> a = [1,2,42, 39, 80]
+>>> b = filter(ciftmi, a)
+>>> b
+<filter object at 0x104e0db10>
+>>> list(b)
+[2, 42, 80]
+\end{python}
+
+Sonuçlar doğrudan bir liste olarak alınabilirdi:
+
+\begin{python}
+	>>> def ciftmi(x):
+	...     return x % 2 == 0
+	... 
+	>>> a = [1,2,42, 39, 80]
+	>>> b = list(filter(ciftmi, a))
+	>>> b
+	[2, 42, 80]
+\end{python}
+
+\texttt{ciftmi} fonksiyonunu kullanmak yerine bir lambda ifadesi \texttt{filter} fonksiyonu içinde doğrudan kullanılabilirdi:
+
+\begin{python}
+>>> a = [1,2,42, 39, 80]
+>>> b = list(filter(lambda x: x % 2 == 0, a))
+>>> b
+[2, 42, 80]
+\end{python}
+
+\subsection{dict ve döngüler}
+\texttt{dict} tipindeki veri nesneleri anahtar ve değer şeklinde veri tuttuğundan döngülerle birlikte farklı kullanımları söz konusudur. Aşağıdaki \texttt{dict} nesnesini ele alalım:
+
+\begin{python}
+>>> d = {"tr": "Turkce", "en": "English", "fr": "Franch", "g": "German"}
+\end{python}
+
+Bu veri yapısı üzerinden bir \texttt{for} döngüsü aşağıdaki şekilde kurulabilir:
+
+\begin{python}
+>>> for eleman in d:
+...     print(eleman)
+... 
+tr
+en
+fr
+g
+\end{python}
+
+Görüldüğü gibi \texttt{for} döngüsü ile anahtar değerlerine ulaşılabilmektedir. Anahtar değerler alındığına göre bu anahtarlara karşılık gelen değerlere aşağıdaki gibi ulaşılabilir:
+
+\begin{python}
+>>> for eleman in d:
+...     print(d[eleman])
+... 
+Turkce
+English
+Franch
+German
+\end{python}
+
+\texttt{map} fonksiyonu ile tüm anahtar değerler için bir işlemin uygulanması sağlanabilir:
+
+\begin{python}
+>>> def f(x):
+...     return x + "!"
+... 
+>>> list(map(f, d))
+['tr!', 'en!', 'fr!', 'g!']
+\end{python}
+
+Benzer işlemler anahtarlar yerine değerlere de uygulanabilir:
+
+
+\begin{python}
+>>> def f(x):
+...     return d[x]
+... 
+>>> list(map(f, d))
+['Turkce', 'English', 'Franch', 'German']
+\end{python}
+
+\end{document}
