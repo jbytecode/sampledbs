@@ -17,6 +17,7 @@
 
 1. https://docs.r-wasm.org/webr/latest/
 2. https://webr.r-wasm.org/latest/
+3. https://webr.sh/
 
 # SQL tool for SQLite
 
