@@ -1,0 +1,645 @@
+\documentclass[10pt]{article}
+
+\usepackage{float}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=blue,
+    filecolor=black,
+    linkcolor=blue,
+    urlcolor=red
+}
+
+
+
+\begin{document}
+
+\title{SQL Notes}
+\author{Mehmet Hakan Satman}
+\date{May 2026}
+
+\maketitle
+
+\tableofcontents
+
+\section{About the notes}
+
+These notes cover the basics of SQL using the Northwind database in SQLite.
+This document is intended to provide a quick reference for SQL queries and operations, 
+and is used in my 1st year information technologies course at Istanbul University. 
+The notes include examples of SELECT, UPDATE, DELETE, and INSERT INTO statements, 
+as well as the use of the LIMIT clause and various filtering techniques.
+The notes also include limited examples of JOIN operations and summary statistics using some 
+aggregate functions (e.g., COUNT, SUM, AVG).
+
+
+\section{The Database Schema}
+
+The database is \texttt{Northwind.sqlite}, which is available to download at 
+\url{https://github.com/jbytecode/sampledbs/tree/main/sqlite}. This database contains 
+the following tables:
+
+\begin{itemize}
+    \item Categories
+    \item Customers
+    \item Employees
+    \item Order Details
+    \item Orders
+    \item Products
+    \item Shippers
+    \item Suppliers
+    \item Regions
+    \item Territories
+    \item EmployeeTerritories
+\end{itemize}
+
+
+\section{LIMIT}
+
+The \texttt{LIMIT} clause is used to specify the maximum number of records to return from a query. 
+It is often used in conjunction with the \texttt{SELECT} statement to limit the number of rows returned.
+
+\section{SELECT}
+
+\subsection{Basic Select}
+\begin{verbatim}
+SELECT CompanyName, ContactName, City FROM Customers LIMIT 5;
+\end{verbatim}
+
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+CompanyName	& ContactName	& City \\
+\hline
+Alfreds Futterkiste	& Maria Anders	& Berlin \\
+Ana Trujillo Emparedados y helados	& Ana Trujillo	& México D.F. \\
+Antonio Moreno Taquería	& Antonio Moreno	& México D.F. \\
+Around the Horn	& Thomas Hardy	& London \\
+Berglunds snabbköp	& Christina Berglund	& Luleå \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\subsection{Filter by City}
+\begin{verbatim}
+SELECT CompanyName, ContactName, City FROM Customers 
+WHERE City = 'Berlin'
+LIMIT 5;
+\end{verbatim}
+
+
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+CompanyName	& ContactName	& City \\
+\hline
+Alfreds Futterkiste	& Maria Anders	& Berlin \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\subsection{Filter by Country and Order by Company Name}
+\begin{verbatim}
+SELECT CompanyName, ContactName, City, Country FROM Customers 
+WHERE Country = 'UK'
+ORDER BY CompanyName DESC
+LIMIT 5;
+\end{verbatim}
+
+
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|}
+\hline
+CompanyName	& ContactName	& City	& Country \\
+\hline
+Seven Seas Imports	& Hari Kumar	& London	& UK \\
+North/South	& Simon Crowther	& London	& UK \\
+Island Trading	& Helen Bennett	& Cowes	& UK \\
+Eastern Connection	& Ann Devon	& London	& UK \\
+Consolidated Holdings	& Elizabeth Brown	& London	& UK \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\subsection{Filter by Country and Order by City and Country}
+\begin{verbatim}
+SELECT CompanyName, ContactName, City, Country FROM Customers 
+WHERE Country IN ('UK', 'Germany')
+ORDER BY Country ASC, City ASC
+LIMIT 15;
+\end{verbatim}
+
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|}
+\hline
+CompanyName	& ContactName	& City	& Country \\
+\hline
+Drachenblut Delikatessen	& Sven Ottlieb	& Aachen	& Germany \\
+Alfreds Futterkiste	& Maria Anders	& Berlin	& Germany \\
+Königlich Essen	& Philip Cramer	& Brandenburg	& Germany \\
+QUICK-Stop	& Horst Kloss	& Cunewalde	& Germany \\
+Lehmanns Marktstand	& Renate Messner	& Frankfurt a.M.	& Germany \\
+Ottilies Käseladen	& Henriette Pfalzheim	& Köln	& Germany \\
+Morgenstern Gesundkost	& Alexander Feuer	& Leipzig	& Germany \\
+Blauer See Delikatessen	& Hanna Moos	& Mannheim	& Germany \\
+Frankenversand	& Peter Franken	& München	& Germany \\
+Toms Spezialitäten	& Karin Josephs	& Münster	& Germany \\
+Die Wandernde Kuh	& Rita Müller	& Stuttgart	& Germany \\
+Island Trading	& Helen Bennett	& Cowes	& UK \\
+Around the Horn	& Thomas Hardy	& London	& UK \\
+B's Beverages	& Victoria Ashworth	& London	& UK \\
+Consolidated Holdings	& Elizabeth Brown	& London	& UK \\
+\hline
+\end{tabular}
+\end{table}
+
+
+
+\subsection{Filter by Phone Number}
+
+\begin{verbatim}
+SELECT CompanyName, Phone 
+FROM Customers 
+WHERE Phone LIKE '(91)%' 
+LIMIT 5;
+\end{verbatim}
+
+\begin{table}[H]
+\begin{tabular}{|l|l|}
+\hline
+CompanyName	& Phone \\
+\hline
+Bólido Comidas preparadas	& (91) 555 22 82 \\
+FISSA Fabrica Inter. Salchichas S.A.	& (91) 555 94 44 \\
+Romero y tomillo	& (91) 745 6200 \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Filter by Phone Number Ending with 82}
+\begin{verbatim}
+SELECT CompanyName, Phone 
+FROM Customers 
+WHERE Phone LIKE '%82' 
+LIMIT 5;
+\end{verbatim}
+
+
+\begin{table}[H]
+\begin{tabular}{|l|l|}
+\hline
+CompanyName	& Phone \\
+\hline
+Bólido Comidas preparadas	& (91) 555 22 82 \\
+Consolidated Holdings	& (171) 555-2282 \\
+Godos Cocina Típica	& (95) 555 82 82 \\
+Gourmet Lanchonetes	& (11) 555-9482 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+
+\subsection{Filter by Phone Number Containing Hyphen}
+\begin{verbatim}
+SELECT CompanyName, Phone 
+FROM Customers 
+WHERE Phone LIKE '%-%' 
+LIMIT 5;
+\end{verbatim}
+
+\begin{table}[H]
+\begin{tabular}{|l|l|}
+\hline
+CompanyName	& Phone \\
+\hline
+Alfreds Futterkiste	& 030-0074321 \\
+Ana Trujillo Emparedados y helados	& (5) 555-4729 \\
+Antonio Moreno Taquería	& (5) 555-3932 \\
+Around the Horn	& (171) 555-7788 \\
+Berglunds snabbköp	& 0921-12 34 65 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\subsection{Filter by Fax Number Null (Empty)}
+\begin{verbatim}
+SELECT CompanyName, Fax 
+FROM Customers 
+WHERE Fax IS NULL
+LIMIT 5;
+\end{verbatim}
+
+\begin{table}[H]
+\begin{tabular}{|l|l|}
+\hline
+CompanyName	& Fax \\
+\hline
+Antonio Moreno Taquería	& \\
+B's Beverages	& \\
+Chop-suey Chinese	& \\
+Comércio Mineiro	& \\
+Familia Arquibaldo	& \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Filter by Fax Number Not Null (Not Empty)}
+\begin{verbatim}
+SELECT CompanyName, Fax 
+FROM Customers 
+WHERE Fax IS NOT NULL
+LIMIT 5;
+\end{verbatim}
+
+
+\begin{table}[H]
+\begin{tabular}{|l|l|}
+\hline
+CompanyName	& Fax \\
+\hline
+Alfreds Futterkiste	& 030-0076545 \\
+Ana Trujillo Emparedados y helados	& (5) 555-3745 \\
+Around the Horn	& (171) 555-6750 \\
+Berglunds snabbköp	& 0921-12 34 67 \\
+Blauer See Delikatessen	& 0621-08924 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+
+\subsection{Products in Stock Ordered by Price}
+\begin{verbatim}
+SELECT ProductName, UnitPrice, UnitsInStock 
+FROM Products 
+WHERE 
+UnitsInStock > 0
+ORDER BY UnitPrice ASC
+LIMIT 5;
+\end{verbatim}
+
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+ProductName	& UnitPrice	& UnitsInStock \\
+\hline
+Geitost	& 2.5	& 112 \\
+Guaraná Fantástica	& 4.5	& 20 \\
+Konbu	& 6	& 24 \\
+Filo Mix	& 7	& 38 \\
+Tourtière	& 7.45	& 21 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+
+
+\subsection{Products Out of Stock}
+\begin{verbatim}
+SELECT ProductName, UnitPrice, UnitsInStock 
+FROM Products 
+WHERE 
+UnitsInStock = 0
+LIMIT 5;
+\end{verbatim}
+
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+ProductName	& UnitPrice	& UnitsInStock \\
+\hline
+Chef Anton's Gumbo Mix	& 21.35	& 0 \\
+Alice Mutton	& 39	& 0 \\
+Thüringer Rostbratwurst	& 123.79	& 0 \\
+Gorgonzola Telino	& 12.5	& 0 \\
+Perth Pasties	& 32.8	& 0 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\subsection{Products and Their Suppliers}
+\begin{verbatim}
+SELECT ProductName, SupplierID 
+FROM Products 
+LIMIT 5;
+\end{verbatim}
+
+
+\begin{table}[H]
+\begin{tabular}{|l|l|}
+\hline
+ProductName	& SupplierID \\
+\hline
+Chai	& 1 \\
+Chang	& 1 \\
+Aniseed Syrup	& 1 \\
+Chef Anton's Cajun Seasoning	& 2 \\
+Chef Anton's Gumbo Mix	& 2 \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Suppliers with Specific IDs}
+\begin{verbatim}
+SELECT SupplierID, CompanyName, ContactName 
+FROM Suppliers
+WHERE 
+SupplierID IN (1, 2);
+\end{verbatim}
+
+
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+SupplierID	& CompanyName	& ContactName \\
+\hline
+1	& Exotic Liquids	& Charlotte Cooper \\
+2	& New Orleans Cajun Delights	& Shelley Burke \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\subsection{Products and Their Suppliers - Inner Join}
+\begin{verbatim}
+SELECT Products.ProductName, Suppliers.CompanyName
+FROM Products
+INNER JOIN Suppliers
+ON Products.SupplierID = Suppliers.SupplierID
+LIMIT 5;
+\end{verbatim}
+
+\begin{table}[H]
+\begin{tabular}{|l|l|}
+\hline
+ProductName	& CompanyName \\
+\hline
+Chai	& Exotic Liquids \\
+Chang	& Exotic Liquids \\
+Aniseed Syrup	& Exotic Liquids \\
+Chef Anton's Cajun Seasoning	& New Orleans Cajun Delights \\
+Chef Anton's Gumbo Mix	& New Orleans Cajun Delights \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Products with Unit Price Between 10 and 15}
+\begin{verbatim}
+SELECT ProductID, ProductName, UnitPrice 
+FROM Products 
+WHERE 
+UnitPrice > 10 AND UnitPrice < 15
+ORDER BY UnitPrice
+LIMIT 5;
+\end{verbatim}
+
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+ProductID	& ProductName	& UnitPrice \\
+\hline
+46	& Spegesild	& 12 \\
+31	& Gorgonzola Telino	& 12.5 \\
+68	& Scottish Longbreads	& 12.5 \\
+48	& Chocolade	& 12.75 \\
+77	& Original Frankfurter grüne Soße	& 13 \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{OR}
+
+\begin{verbatim}
+SELECT CompanyName, City from Customers 
+WHERE 
+City = 'Madrid' OR City = 'Portland'
+ORDER BY City 
+LIMIT 5;
+\end{verbatim}
+
+
+\begin{table}[H]
+\begin{tabular}{|l|l|}
+\hline
+CompanyName	& City \\
+\hline
+Bólido Comidas preparadas	& Madrid \\
+FISSA Fabrica Inter. Salchichas S.A.	& Madrid \\
+Romero y tomillo	& Madrid \\
+Lonesome Pine Restaurant	& Portland \\
+The Big Cheese	& Portland \\
+\hline
+\end{tabular}
+\end{table}
+
+
+
+\subsection{Summary Statistics}
+
+\begin{verbatim}
+SELECT * FROM OrderDetails
+WHERE 
+OrderID = 10248;
+\end{verbatim}
+
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+OrderID	& ProductID	& UnitPrice	& Quantity	& Discount \\
+\hline
+10248	& 11	& 14	& 12	& 0.0 \\
+10248	& 42	& 9.8	& 10	& 0.0 \\
+10248	& 72	& 34.8	& 5	& 0.0 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\begin{verbatim}
+SELECT ProductID, SUM(Quantity) 
+FROM OrderDetails
+WHERE 
+OrderID = 10248
+\end{verbatim}
+
+\begin{table}[H]
+\begin{tabular}{|l|l|}
+\hline
+ProductID	& SUM(Quantity) \\
+\hline
+11	& 27 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\begin{verbatim}
+SELECT ProductID, SUM(Quantity) 
+FROM 'Order Details'
+GROUP BY ProductID 
+LIMIT 5;
+\end{verbatim}
+
+\begin{table}[H]
+\begin{tabular}{|l|l|}
+\hline
+ProductID	& SUM(Quantity) \\
+\hline
+1	& 828 \\
+2	& 1057 \\
+3	& 328 \\
+4	& 453 \\
+5	& 298 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\subsection{Regions}
+
+\begin{verbatim}
+SELECT * FROM Regions;
+\end{verbatim}
+
+
+\begin{table}[H]
+\begin{tabular}{|l|l|}
+\hline
+RegionID	& RegionDescription \\
+\hline
+1	& Eastern \\
+2	& Western \\
+3	& Northern \\
+4	& Southern \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\begin{verbatim}
+SELECT * FROM Regions
+WHERE 
+RegionID < 3
+ORDER BY RegionDescription DESC;
+\end{verbatim}
+
+\begin{table}[H]
+\begin{tabular}{|l|l|}
+\hline
+RegionID	& RegionDescription \\
+\hline
+2	& Western \\
+1	& Eastern \\
+\hline
+\end{tabular}
+\end{table}
+
+
+
+
+\section{UPDATE}
+
+Description: Updates the unit price values of the products 
+with product IDs 1, 2, 3, 4, and 5 by multiplying their current unit price values by 1.25.
+
+\subsection{Update Unit Prices of Specific Products}
+\begin{verbatim}
+UPDATE Products
+SET UnitPrice = UnitPrice * 1.25
+WHERE ProductID IN (1, 2, 3, 4, 5);
+\end{verbatim}
+
+\subsection{Increase Units in Stock of Specific Products}
+
+
+Description: Increases the units in stock values of the products 
+with product IDs 1 and 2 by adding 10 to their current units in stock values.
+
+\begin{verbatim}
+UPDATE Products
+SET 
+UnitsInStock = UnitsInStock + 10
+WHERE ProductID IN (1, 2);
+\end{verbatim}
+
+
+
+\subsection{Update Customer Information}
+
+Description: Updates the city and phone number of the customer with a customer ID 
+of 1 to 'İstanbul' and '(90) 212 123 45 67', respectively.
+
+\begin{verbatim}
+UPDATE Customers 
+SET 
+City = 'İstanbul', 
+Phone = '(90) 212 123 45 67' 
+WHERE 
+CustomerID = 1;
+\end{verbatim}
+
+
+\section{DELETE}
+
+\subsection{Delete Specific Products}
+
+Description: Deletes the products with product IDs 1, 2, 3, 4, and 5 from 
+the Products table.
+
+\begin{verbatim}
+DELETE FROM Products
+WHERE ProductID IN (1, 2, 3, 4, 5);
+\end{verbatim}
+
+
+\section{INSERT INTO}
+
+\subsection{Insert a New Product}
+
+Description: Insert a new product with the name 'New Product', 
+a supplier ID of 1, a category ID of 1, a unit price of 9.99, and 100 
+units in stock into the Products table.
+
+\begin{verbatim}
+INSERT INTO Products 
+(ProductName, SupplierID, CategoryID, UnitPrice, UnitsInStock)
+VALUES 
+('New Product', 1, 1, 9.99, 100);
+\end{verbatim}
+
+
+\subsection{Insert a New Customer}
+
+Description: Insert a new customer with the name 'New Customer',
+a contact name of 'John Doe', a city of 'New York', and a 
+country of 'USA' into the Customers table.
+
+\begin{verbatim}
+INSERT INTO Customers
+(CustomerName, ContactName, City, Country)
+VALUES
+('New Customer', 'John Doe', 'New York', 'USA');
+\end{verbatim}
+
+
+\section{DROP TABLE}
+
+\subsection{Delete Products Table}
+
+Description: Deletes the Products table from the database if it exists.
+
+\begin{verbatim}
+DROP TABLE IF EXISTS Products;
+\end{verbatim}
+
+
+
+\end{document}
