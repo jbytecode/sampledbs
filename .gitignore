@@ -4,4 +4,8 @@
 *.toc
 *.bbl
 *.blg
+*.idx
+*.ilg
+*.ind
+
 _minted/
