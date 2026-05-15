@@ -11,12 +11,14 @@
     urlcolor=red
 }
 
+\usepackage{imakeidx}
+\makeindex[intoc]
 
 
 \begin{document}
 
 \title{SQL Notes}
-\author{Mehmet Hakan Satman}
+\author{Mehmet Hakan Satman (Ph.D.)\\Istanbul University, Department of Econometrics}
 \date{May 2026}
 
 \maketitle
@@ -58,14 +60,41 @@ the following tables:
 \section{LIMIT}
 
 The \texttt{LIMIT} clause is used to specify the maximum number of records to return from a query. 
-It is often used in conjunction with the \texttt{SELECT} statement to limit the number of rows returned.
+It is often used in conjunction with the \texttt{SELECT} statement to limit the number of rows returned.\index{LIMIT}
+
+
+\section{Comments}
+
+In SQL, we can define single-line comments using two hyphens (\texttt{--}).\index{Comments}
+
+\begin{verbatim}
+-- Get first 5 Customers from Sweden
+SELECT 
+ContactName, ContactTitle, Country, City 
+FROM Customers 
+WHERE
+Country = 'Sweden'
+LIMIT 5;
+\end{verbatim}
+
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|}
+\hline
+ContactName & ContactTitle & Country & City \\
+\hline
+Christina Berglund & Order Administrator & Sweden & Luleå \\
+Maria Larsson & Owner & Sweden & Bräcke \\
+\hline
+\end{tabular}
+\end{table}
+
 
 \section{SELECT}
 
 \subsection{Basic Select}
 \begin{verbatim}
 SELECT CompanyName, ContactName, City FROM Customers LIMIT 5;
-\end{verbatim}
+\end{verbatim}\index{SELECT}
 
 \begin{table}[H]
 \begin{tabular}{|l|l|l|}
@@ -87,7 +116,7 @@ Berglunds snabbköp	& Christina Berglund	& Luleå \\
 SELECT CompanyName, ContactName, City FROM Customers 
 WHERE City = 'Berlin'
 LIMIT 5;
-\end{verbatim}
+\end{verbatim}\index{WHERE}
 
 
 \begin{table}[H]
@@ -107,7 +136,7 @@ SELECT CompanyName, ContactName, City, Country FROM Customers
 WHERE Country = 'UK'
 ORDER BY CompanyName DESC
 LIMIT 5;
-\end{verbatim}
+\end{verbatim}\index{ORDER BY}
 
 
 \begin{table}[H]
@@ -131,7 +160,7 @@ SELECT CompanyName, ContactName, City, Country FROM Customers
 WHERE Country IN ('UK', 'Germany')
 ORDER BY Country ASC, City ASC
 LIMIT 15;
-\end{verbatim}
+\end{verbatim}\index{ORDER BY}
 
 \begin{table}[H]
 \begin{tabular}{|l|l|l|l|}
@@ -166,7 +195,7 @@ SELECT CompanyName, Phone
 FROM Customers 
 WHERE Phone LIKE '(91)%' 
 LIMIT 5;
-\end{verbatim}
+\end{verbatim}\index{LIKE}
 
 \begin{table}[H]
 \begin{tabular}{|l|l|}
@@ -186,7 +215,7 @@ SELECT CompanyName, Phone
 FROM Customers 
 WHERE Phone LIKE '%82' 
 LIMIT 5;
-\end{verbatim}
+\end{verbatim}\index{LIKE}
 
 
 \begin{table}[H]
@@ -210,7 +239,7 @@ SELECT CompanyName, Phone
 FROM Customers 
 WHERE Phone LIKE '%-%' 
 LIMIT 5;
-\end{verbatim}
+\end{verbatim}\index{LIKE}
 
 \begin{table}[H]
 \begin{tabular}{|l|l|}
@@ -233,7 +262,7 @@ SELECT CompanyName, Fax
 FROM Customers 
 WHERE Fax IS NULL
 LIMIT 5;
-\end{verbatim}
+\end{verbatim}\index{IS NULL}
 
 \begin{table}[H]
 \begin{tabular}{|l|l|}
@@ -255,7 +284,7 @@ SELECT CompanyName, Fax
 FROM Customers 
 WHERE Fax IS NOT NULL
 LIMIT 5;
-\end{verbatim}
+\end{verbatim}\index{IS NOT NULL}
 
 
 \begin{table}[H]
@@ -282,7 +311,7 @@ WHERE
 UnitsInStock > 0
 ORDER BY UnitPrice ASC
 LIMIT 5;
-\end{verbatim}
+\end{verbatim}\index{ORDER BY}\index{WHERE}\index{SELECT}\index{LIMIT}
 
 \begin{table}[H]
 \begin{tabular}{|l|l|l|}
@@ -308,7 +337,7 @@ FROM Products
 WHERE 
 UnitsInStock = 0
 LIMIT 5;
-\end{verbatim}
+\end{verbatim}\index{WHERE}\index{SELECT}\index{LIMIT}
 
 \begin{table}[H]
 \begin{tabular}{|l|l|l|}
@@ -330,7 +359,7 @@ Perth Pasties	& 32.8	& 0 \\
 SELECT ProductName, SupplierID 
 FROM Products 
 LIMIT 5;
-\end{verbatim}
+\end{verbatim}\index{SELECT}
 
 
 \begin{table}[H]
@@ -353,7 +382,7 @@ SELECT SupplierID, CompanyName, ContactName
 FROM Suppliers
 WHERE 
 SupplierID IN (1, 2);
-\end{verbatim}
+\end{verbatim}\index{IN}
 
 
 \begin{table}[H]
@@ -375,7 +404,7 @@ FROM Products
 INNER JOIN Suppliers
 ON Products.SupplierID = Suppliers.SupplierID
 LIMIT 5;
-\end{verbatim}
+\end{verbatim}\index{INNER JOIN}
 
 \begin{table}[H]
 \begin{tabular}{|l|l|}
@@ -391,6 +420,37 @@ Chef Anton's Gumbo Mix	& New Orleans Cajun Delights \\
 \end{tabular}
 \end{table}
 
+
+\subsection{Products and Their Categories - Inner Join}
+\begin{verbatim}
+SELECT 
+Products.ProductName, Categories.CategoryName FROM Products  
+INNER JOIN Categories
+ON 
+Products.CategoryID = Categories.CategoryID
+LIMIT 10;
+\end{verbatim}\index{INNER JOIN}
+
+
+\begin{table}[H]
+\begin{tabular}{|l|l|}
+\hline
+ProductName	& CategoryName \\
+\hline
+Chai	& Beverages \\
+Chang	& Beverages \\
+Aniseed Syrup	& Condiments \\
+Chef Anton's Cajun Seasoning	& Condiments \\
+Chef Anton's Gumbo Mix	& Condiments \\
+Grandma's Boysenberry Spread	& Condiments \\
+Uncle Bob's Organic Dried Pears	& Produce \\
+Northwoods Cranberry Sauce	& Condiments \\
+Mishi Kobe Niku	& Meat/Poultry \\
+Ikura	& Seafood \\
+\hline
+\end{tabular}
+\end{table}
+
 \subsection{Products with Unit Price Between 10 and 15}
 \begin{verbatim}
 SELECT ProductID, ProductName, UnitPrice 
@@ -399,7 +459,7 @@ WHERE
 UnitPrice > 10 AND UnitPrice < 15
 ORDER BY UnitPrice
 LIMIT 5;
-\end{verbatim}
+\end{verbatim}\index{WHERE}\index{AND}\index{ORDER BY}\index{LIMIT}
 
 \begin{table}[H]
 \begin{tabular}{|l|l|l|}
@@ -415,6 +475,39 @@ ProductID	& ProductName	& UnitPrice \\
 \end{tabular}
 \end{table}
 
+
+\subsection{Orders Shipped to Belgium}
+\begin{verbatim}
+SELECT 
+OrderID, ShipAddress, ShipCity, ShipCountry 
+FROM Orders 
+WHERE 
+ShipCountry = 'Belgium'
+LIMIT 10;
+\end{verbatim}\index{WHERE}\index{LIMIT}
+
+
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|}
+\hline
+OrderID	& ShipAddress	& ShipCity	& ShipCountry \\
+\hline
+10252	& Boulevard Tirou, 255	& Charleroi	& Belgium \\
+10302	& Boulevard Tirou, 255	& Charleroi	& Belgium \\
+10458	& Boulevard Tirou, 255	& Charleroi	& Belgium \\
+10463	& Boulevard Tirou, 255	& Charleroi	& Belgium \\
+10475	& Boulevard Tirou, 255	& Charleroi	& Belgium \\
+10529	& Rue Joseph-Bens 532	& Bruxelles	& Belgium \\
+10649	& Rue Joseph-Bens 532	& Bruxelles	& Belgium \\
+10760	& Rue Joseph-Bens 532	& Bruxelles	& Belgium \\
+10767	& Boulevard Tirou, 255	& Charleroi	& Belgium \\
+10841	& Boulevard Tirou, 255	& Charleroi	& Belgium \\
+\hline
+\end{tabular}
+\end{table}
+
+
+
 \subsection{OR}
 
 \begin{verbatim}
@@ -423,7 +516,7 @@ WHERE
 City = 'Madrid' OR City = 'Portland'
 ORDER BY City 
 LIMIT 5;
-\end{verbatim}
+\end{verbatim}\index{OR}\index{ORDER BY}\index{WHERE}\index{SELECT}\index{LIMIT}
 
 
 \begin{table}[H]
@@ -448,7 +541,7 @@ The Big Cheese	& Portland \\
 SELECT * FROM OrderDetails
 WHERE 
 OrderID = 10248;
-\end{verbatim}
+\end{verbatim}\index{WHERE}\index{SELECT}
 
 \begin{table}[H]
 \begin{tabular}{|l|l|l|l|l|}
@@ -468,7 +561,7 @@ SELECT ProductID, SUM(Quantity)
 FROM OrderDetails
 WHERE 
 OrderID = 10248
-\end{verbatim}
+\end{verbatim}\index{WHERE}\index{SELECT}\index{SUM}
 
 \begin{table}[H]
 \begin{tabular}{|l|l|}
@@ -486,7 +579,7 @@ SELECT ProductID, SUM(Quantity)
 FROM 'Order Details'
 GROUP BY ProductID 
 LIMIT 5;
-\end{verbatim}
+\end{verbatim}\index{GROUP BY}\index{LIMIT}\index{SELECT}\index{SUM}
 
 \begin{table}[H]
 \begin{tabular}{|l|l|}
@@ -503,11 +596,169 @@ ProductID	& SUM(Quantity) \\
 \end{table}
 
 
-\subsection{Regions}
+
+\subsection{Aggregate Functions}
+
+\subsubsection{Maximum Unit Price of Products}
+
+\begin{verbatim}
+SELECT max(UnitPrice)
+FROM Products;
+\end{verbatim}\index{SELECT}\index{MAX}
+
+\begin{table}[H]
+\begin{tabular}{|l|}
+\hline
+max(UnitPrice) \\
+\hline
+263.5 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\subsubsection{Minimum and Maximum Prices of Products in Stock}
+
+\begin{verbatim}
+SELECT min(UnitPrice), max(UnitPrice)
+FROM Products
+WHERE UnitsInStock > 0;
+\end{verbatim}\index{SELECT}\index{MIN}\index{MAX}\index{WHERE}
+
+\begin{table}[H]
+\begin{tabular}{|l|l|}
+\hline
+min(UnitPrice)	& max(UnitPrice) \\
+\hline
+2.5	& 263.5 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\subsubsection{Average Unit Price of Products in Stock}
+
+\begin{verbatim}
+SELECT avg(UnitPrice) as 'Average'
+FROM Products
+WHERE UnitsInStock > 0;
+\end{verbatim}\index{SELECT}\index{AVG}\index{WHERE}
+
+\begin{table}[H]
+\begin{tabular}{|l|}
+\hline
+Average \\
+\hline
+27.6843055555556 \\
+\hline
+\end{tabular}
+\end{table}
+
+\noindent Outputs the same:
+
+\begin{verbatim}
+SELECT sum(UnitPrice)/count(UnitPrice) as 'Average'
+FROM Products
+WHERE UnitsInStock > 0;
+\end{verbatim}\index{SELECT}\index{SUM}\index{COUNT}\index{WHERE}
+
+
+\subsubsection{Count of Products in Stock}
+
+\begin{verbatim}
+SELECT sum(UnitsInStock)
+FROM Products;
+\end{verbatim}\index{SELECT}\index{SUM}
+
+
+\begin{table}[H]
+\begin{tabular}{|l|}
+\hline
+sum(UnitsInStock) \\
+\hline
+3119 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\subsubsection{Distinct Countries of Orders}
+\begin{verbatim}
+SELECT 
+DISTINCT(ShipCountry)
+FROM Orders;
+\end{verbatim}\index{DISTINCT}\index{SELECT}
+
+\begin{table}[H]
+\begin{tabular}{|l|}
+\hline
+ShipCountry \\
+\hline
+France \\
+Germany \\
+Brazil \\
+Belgium \\
+Switzerland \\
+Venezuela \\
+Austria \\
+Mexico \\
+USA \\
+Sweden \\
+Finland \\
+Italy \\
+Spain \\
+UK \\
+Ireland \\
+Portugal \\
+Canada \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Distinct Countries of Customers}
+
+\begin{verbatim}
+SELECT 
+DISTINCT(Country)
+FROM Customers;
+\end{verbatim}\index{DISTINCT}\index{SELECT}
+
+\begin{table}[H]
+\begin{tabular}{|l|}
+\hline
+Country \\
+\hline
+Germany \\
+Mexico \\
+UK \\
+Sweden \\
+France \\
+Spain \\
+Canada \\
+Argentina \\
+Switzerland \\
+Brazil \\
+Austria \\
+Italy \\
+Portugal \\
+USA \\
+Venezuela \\
+Ireland \\
+Belgium \\
+Norway \\
+Denmark \\
+Finland \\
+Poland \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\subsection{Regions Table}
 
 \begin{verbatim}
 SELECT * FROM Regions;
-\end{verbatim}
+\end{verbatim}\index{SELECT}
 
 
 \begin{table}[H]
@@ -529,7 +780,7 @@ SELECT * FROM Regions
 WHERE 
 RegionID < 3
 ORDER BY RegionDescription DESC;
-\end{verbatim}
+\end{verbatim}\index{WHERE}\index{ORDER BY}\index{SELECT}
 
 \begin{table}[H]
 \begin{tabular}{|l|l|}
@@ -542,9 +793,6 @@ RegionID	& RegionDescription \\
 \end{tabular}
 \end{table}
 
-
-
-
 \section{UPDATE}
 
 Description: Updates the unit price values of the products 
@@ -555,7 +803,7 @@ with product IDs 1, 2, 3, 4, and 5 by multiplying their current unit price value
 UPDATE Products
 SET UnitPrice = UnitPrice * 1.25
 WHERE ProductID IN (1, 2, 3, 4, 5);
-\end{verbatim}
+\end{verbatim}\index{UPDATE}\index{SET}\index{WHERE}\index{IN}
 
 \subsection{Increase Units in Stock of Specific Products}
 
@@ -568,7 +816,7 @@ UPDATE Products
 SET 
 UnitsInStock = UnitsInStock + 10
 WHERE ProductID IN (1, 2);
-\end{verbatim}
+\end{verbatim}\index{UPDATE}\index{SET}\index{WHERE}\index{IN}
 
 
 
@@ -584,7 +832,7 @@ City = 'İstanbul',
 Phone = '(90) 212 123 45 67' 
 WHERE 
 CustomerID = 1;
-\end{verbatim}
+\end{verbatim}\index{UPDATE}\index{SET}\index{WHERE}
 
 
 \section{DELETE}
@@ -597,7 +845,7 @@ the Products table.
 \begin{verbatim}
 DELETE FROM Products
 WHERE ProductID IN (1, 2, 3, 4, 5);
-\end{verbatim}
+\end{verbatim}\index{DELETE}\index{WHERE}\index{IN}
 
 
 \section{INSERT INTO}
@@ -613,7 +861,7 @@ INSERT INTO Products
 (ProductName, SupplierID, CategoryID, UnitPrice, UnitsInStock)
 VALUES 
 ('New Product', 1, 1, 9.99, 100);
-\end{verbatim}
+\end{verbatim}\index{INSERT INTO}\index{VALUES}
 
 
 \subsection{Insert a New Customer}
@@ -627,7 +875,7 @@ INSERT INTO Customers
 (CustomerName, ContactName, City, Country)
 VALUES
 ('New Customer', 'John Doe', 'New York', 'USA');
-\end{verbatim}
+\end{verbatim}\index{INSERT INTO}\index{VALUES}
 
 
 \section{DROP TABLE}
@@ -638,8 +886,71 @@ Description: Deletes the Products table from the database if it exists.
 
 \begin{verbatim}
 DROP TABLE IF EXISTS Products;
-\end{verbatim}
+\end{verbatim}\index{DROP TABLE}\index{IF EXISTS}
 
 
+\section{Exercises}
+
+Suppose that Prices table contains the following fields: ProductID, UnitPrice, and UnitsInStock.
+Here is the table data:
+
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+ProductID	& UnitPrice	& UnitsInStock \\
+\hline
+1	& 10	& 100 \\
+2	& 20	& 200 \\
+3	& 30	& 300 \\
+4	& 40	& 400 \\
+5	& 50	& 500 \\
+\hline
+\end{tabular}
+\end{table}
+
+Write SQL queries to perform the following operations:
+\begin{itemize}
+    \item Calculate the total value of the inventory (UnitPrice multiplied by UnitsInStock for each product, and then summed across all products).
+    \item Find the average unit price of the products in stock.
+    \item List the products that have a unit price greater than 25 and are in stock.
+    \item Update the unit price of all products by increasing it by 10%.
+    \item Delete the products that have a unit price less than 15.
+\end{itemize}
+
+Answers:
+
+\begin{verbatim}
+-- Total value of the inventory
+SELECT SUM(UnitPrice * UnitsInStock) AS TotalInventoryValue
+FROM Prices;
+\end{verbatim}\index{SELECT}\index{SUM}
+
+\begin{verbatim}
+-- Average unit price of the products in stock
+SELECT AVG(UnitPrice) AS AverageUnitPrice
+FROM Prices
+WHERE UnitsInStock > 0;
+\end{verbatim}\index{SELECT}\index{AVG}\index{WHERE}
+
+\begin{verbatim}
+-- List products with unit price greater than 25 and in stock
+SELECT ProductID, UnitPrice, UnitsInStock
+FROM Prices
+WHERE UnitPrice > 25 AND UnitsInStock > 0;
+\end{verbatim}\index{SELECT}\index{WHERE}\index{AND}
+
+\begin{verbatim}
+-- Update unit price by increasing it by 10%
+UPDATE Prices
+SET UnitPrice = UnitPrice * 1.10;
+\end{verbatim}\index{UPDATE}\index{SET}
+
+\begin{verbatim}
+-- Delete products with unit price less than 15
+DELETE FROM Prices
+WHERE UnitPrice < 15;
+\end{verbatim}\index{DELETE}\index{WHERE}
+
+\printindex
 
 \end{document}
