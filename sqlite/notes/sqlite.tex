@@ -1013,6 +1013,123 @@ OrderID	& CustomerID	& OrderDate	& Day \\
 \end{table}
 
 
+\section{The LENGTH Function}
+
+\begin{verbatim}
+SELECT 
+  ProductName, 
+  UnitPrice
+FROM Products
+WHERE LENGTH(ProductName) > 30 
+LIMIT 5;
+\end{verbatim}\index{LENGTH}\index{WHERE}\index{SELECT}\index{LIMIT}
+
+
+\begin{table}[H]
+\begin{tabular}{|l|l|}
+\hline
+ProductName	& UnitPrice \\
+\hline
+Uncle Bob's Organic Dried Pears	& 30 \\
+Jack's New England Clam Chowder	& 9.65 \\
+Louisiana Fiery Hot Pepper Sauce	& 21.05 \\
+Original Frankfurter grüne Soße	& 13 \\
+\hline
+\end{tabular}
+\end{table} 
+
+
+\section{LOWER and UPPER Functions}
+
+\begin{verbatim}
+SELECT 
+  LOWER(ProductName) AS 'L',
+  UPPER(ProductName) AS 'U', 
+  UnitPrice
+FROM Products
+WHERE 
+LENGTH(ProductName) > 30 
+LIMIT 5;
+\end{verbatim}\index{LOWER}\index{UPPER}\index{LENGTH}\index{WHERE}\index{SELECT}\index{LIMIT}
+
+
+
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+L & 	U & 	UnitPrice \\
+\hline
+uncle bob's organic dried pears	& UNCLE BOB'S ORGANIC DRIED PEARS	& 30 \\
+jack's new england clam chowder	& JACK'S NEW ENGLAND CLAM CHOWDER	& 9.65 \\
+louisiana fiery hot pepper sauce &	LOUISIANA FIERY HOT PEPPER SAUCE & 	21.05 \\
+original frankfurter grüne soße	& ORIGINAL FRANKFURTER GRüNE SOßE &	13 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+
+\section{LTRIM, RTRIM, and TRIM Functions}
+
+\begin{verbatim}
+SELECT 
+LTRIM('    Text  ') as 'L',
+RTRIM('    Text  ') as 'R',
+TRIM ('    Text  ') as 'T'
+FROM Products
+LIMIT 1;
+\end{verbatim}\index{LTRIM}\index{RTRIM}\index{TRIM}\index{SELECT}\index{LIMIT}
+
+
+\begin{table}[H]
+\begin{tabular}{|l|r|c|}
+\hline
+L & R & T \\
+\hline
+Text & Text & Text \\
+\hline
+\end{tabular}
+\end{table}
+
+\noindent \textbf{Note:} Since it's not clear in the output, 
+
+\begin{enumerate}
+    \item \texttt{LTRIM} removes the leading spaces from the string (Removes spaces from the left).
+    \item \texttt{RTRIM} removes the trailing spaces from the string (Removes spaces from the right).
+    \item \texttt{TRIM} removes both leading and trailing spaces from the string (Removes spaces from both sides).
+\end{enumerate}
+
+
+\section{The INSTR Function}
+
+\begin{verbatim}
+SELECT 
+ProductName
+FROM Products
+WHERE INSTR(ProductName, 'ea') > 0
+LIMIT 5;
+\end{verbatim}\index{INSTR}\index{WHERE}\index{SELECT}\index{LIMIT}
+
+\begin{table}[H]
+\begin{tabular}{|l|}
+\hline
+ProductName \\
+\hline
+Chef Anton's Cajun Seasoning \\
+Grandma's Boysenberry Spread \\
+Uncle Bob's Organic Dried Pears \\
+Teatime Chocolate Biscuits \\
+Boston Crab Meat \\
+\hline
+\end{tabular}
+\end{table}
+
+\noindent \textbf{Note:} The \texttt{INSTR} function returns the position of the first occurrence of a substring within a string.
+In the example above, it checks if the substring 'ea' exists in the ProductName and returns its position. 
+If the position is greater than 0, it means the substring is found in the ProductName.
+
+
+
 \section{UPDATE}
 
 Description: Updates the unit price values of the products 
