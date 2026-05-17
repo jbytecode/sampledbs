@@ -111,6 +111,55 @@ Berglunds snabbköp	& Christina Berglund	& Luleå \\
 \end{table}
 
 
+\subsection{Renaming Columns (Fields) by AS}
+
+\begin{verbatim}
+SELECT 
+  ProductName, 
+  UnitPrice
+FROM Products 
+LIMIT 5;
+\end{verbatim}\index{SELECT}\index{LIMIT}
+
+\begin{table}[H]
+\begin{tabular}{|l|l|}
+\hline
+ProductName	& UnitPrice \\
+\hline
+Chai	& 18 \\
+Chang	& 19 \\
+Aniseed Syrup	& 10 \\
+Chef Anton's Cajun Seasoning	& 22 \\
+Chef Anton's Gumbo Mix	& 21.35 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\begin{verbatim}
+SELECT 
+    ProductName as 'Name', 
+    UnitPrice as 'Price'
+FROM Products 
+LIMIT 5;
+\end{verbatim}\index{AS}\index{SELECT}\index{LIMIT}
+
+\begin{table}[H]
+\begin{tabular}{|l|l|}
+\hline
+Name 	& Price \\
+\hline
+Chai	& 18 \\
+Chang	& 19 \\
+Aniseed Syrup	& 10 \\
+Chef Anton's Cajun Seasoning	& 22 \\     
+Chef Anton's Gumbo Mix	& 21.35 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+
 \subsection{Filter by City}
 \begin{verbatim}
 SELECT CompanyName, ContactName, City FROM Customers 
@@ -793,6 +842,177 @@ RegionID	& RegionDescription \\
 \end{tabular}
 \end{table}
 
+
+
+\section{The SUBSTR Function}
+\texttt{SUBSTR} is a string function that extracts a substring from a given string based on specified 
+starting position and length parameters.\index{SUBSTR}
+
+For example \texttt{SUBSTR('Hello, World!', 1, 5)} would return 'Hello', as it starts at position 1 and extracts 5 characters.
+For example \texttt{SUBSTR('Hello, World!', 8, 5)} would return 'World', as it starts at position 8 and extracts 5 characters.
+For example \texttt{SUBSTR('Hello, World!', 8, 6)} would return 'World!', as it starts at position 8 and extracts 6 characters.
+
+\begin{verbatim}
+SELECT CompanyName, ContactName, Address, Country 
+FROM Customers 
+WHERE 
+SUBSTR(CompanyName, 1, 2) = 'Co';
+\end{verbatim}\index{SUBSTR}\index{WHERE}\index{SELECT}
+
+
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|}
+\hline
+CompanyName	& ContactName	& Address	& Country \\
+\hline
+Comércio Mineiro	& Pedro Afonso	& Av. dos Lusíadas, 23	& Brazil \\
+Consolidated Holdings	& Elizabeth Brown	& Berkeley Gardens 12  Brewery	& UK \\
+\hline
+\end{tabular}
+\end{table}
+
+
+
+\begin{verbatim}
+SELECT CompanyName, ContactName, Address, Country 
+FROM Customers 
+WHERE 
+SUBSTR(ContactName, 2, 2) = 'ed';
+\end{verbatim}\index{SUBSTR}
+
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|}
+\hline
+CompanyName	& ContactName	& Address	& Country \\
+\hline
+Comércio Mineiro	& Pedro Afonso	& Av. dos Lusíadas, 23	& Brazil \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\begin{verbatim}
+SELECT CompanyName, ContactName, Address, Country 
+FROM Customers 
+WHERE 
+SUBSTR(Country, 4, 3) = 'zil'
+LIMIT 5;
+\end{verbatim}\index{SUBSTR}\index{LIMIT}
+
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|}
+\hline
+CompanyName	& ContactName	& Address	& Country \\
+\hline
+Comércio Mineiro	& Pedro Afonso	& Av. dos Lusíadas, 23	& Brazil \\
+Familia Arquibaldo	& Aria Cruz	& Rua Orós, 92	& Brazil \\
+Gourmet Lanchonetes	& André Fonseca	& Av. Brasil, 442	& Brazil \\
+Hanari Carnes	& Mario Pontes	& Rua do Paço, 67	& Brazil \\
+Que Delícia	& Bernardo Batista	& Rua da Panificadora, 12	& Brazil \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\section{The STRFTIME Function}
+
+\begin{verbatim}
+SELECT OrderID, CustomerID, OrderDate 
+FROM Orders
+LIMIT 5;
+\end{verbatim}\index{SELECT}\index{LIMIT}
+
+
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+OrderID	& CustomerID	& OrderDate \\
+\hline
+10248	& VINET	& 1996-07-04 00:00:00.000 \\
+10249	& TOMSP	& 1996-07-05 00:00:00.000 \\
+10250	& HANAR	& 1996-07-08 00:00:00.000 \\
+10251	& VICTE	& 1996-07-08 00:00:00.000 \\
+10252	& SUPRD	& 1996-07-09 00:00:00.000 \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Extract Year from OrderDate}
+
+\begin{verbatim}
+SELECT 
+OrderID, CustomerID, 
+OrderDate, strftime("%Y", OrderDate) as Year
+FROM Orders
+LIMIT 5;
+\end{verbatim}\index{STRFTIME}\index{SELECT}\index{LIMIT}
+
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|}
+\hline
+OrderID	& CustomerID	& OrderDate	& Year \\
+\hline
+10248	& VINET	& 1996-07-04 00:00:00.000	& 1996 \\
+10249	& TOMSP	& 1996-07-05 00:00:00.000	& 1996 \\
+10250	& HANAR	& 1996-07-08 00:00:00.000	& 1996 \\
+10251	& VICTE	& 1996-07-08 00:00:00.000	& 1996 \\
+10252	& SUPRD	& 1996-07-09 00:00:00.000	& 1996 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\subsection{Extract Month from OrderDate}
+
+\begin{verbatim}
+SELECT 
+OrderID, CustomerID, 
+OrderDate, strftime("%m", OrderDate) as Month
+FROM Orders
+LIMIT 5;
+\end{verbatim}\index{STRFTIME}\index{SELECT}\index{LIMIT}
+
+
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|}
+\hline
+OrderID	& CustomerID	& OrderDate	& Month \\
+\hline
+10248	& VINET	& 1996-07-04 00:00:00.000	& 07 \\
+10249	& TOMSP	& 1996-07-05 00:00:00.000	& 07 \\
+10250	& HANAR	& 1996-07-08 00:00:00.000	& 07 \\
+10251	& VICTE	& 1996-07-08 00:00:00.000	& 07 \\
+10252	& SUPRD	& 1996-07-09 00:00:00.000	& 07 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\subsection{Extract Day from OrderDate}
+
+\begin{verbatim}
+SELECT 
+OrderID, CustomerID, 
+OrderDate, strftime("%d", OrderDate) as Day
+FROM Orders
+LIMIT 5;
+\end{verbatim}\index{STRFTIME}\index{SELECT}\index{LIMIT}
+
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|}
+\hline
+OrderID	& CustomerID	& OrderDate	& Day \\
+\hline
+10248	& VINET	& 1996-07-04 00:00:00.000	& 04 \\
+10249	& TOMSP	& 1996-07-05 00:00:00.000	& 05 \\
+10250	& HANAR	& 1996-07-08 00:00:00.000	& 08 \\
+10251	& VICTE	& 1996-07-08 00:00:00.000	& 08 \\
+10252	& SUPRD	& 1996-07-09 00:00:00.000	& 09 \\
+\hline
+\end{tabular}
+\end{table}
+
+
 \section{UPDATE}
 
 Description: Updates the unit price values of the products 
@@ -887,6 +1107,42 @@ Description: Deletes the Products table from the database if it exists.
 \begin{verbatim}
 DROP TABLE IF EXISTS Products;
 \end{verbatim}\index{DROP TABLE}\index{IF EXISTS}
+
+
+
+
+\section{CASE - WHEN}
+
+\begin{verbatim}
+SELECT 
+ProductName, UnitPrice, 
+CASE 
+    WHEN UnitPrice <= 20 THEN 'Low Price'
+    WHEN UnitPrice > 20 AND UnitPrice <= 40 THEN 'Moderate'
+    WHEN UnitPrice > 40 THEN 'High Price'
+END AS 'Price Description'
+FROM Products 
+LIMIT 10;
+\end{verbatim}\index{CASE}\index{WHEN}\index{SELECT}\index{LIMIT}
+
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+ProductName	& UnitPrice	& Price Description \\
+\hline
+Chai	& 18	& Low Price \\
+Chang	& 19	& Low Price \\
+Aniseed Syrup	& 10	& Low Price \\
+Chef Anton's Cajun Seasoning	& 22	& Moderate \\
+Chef Anton's Gumbo Mix	& 21.35	& Moderate \\
+Grandma's Boysenberry Spread	& 25	& Moderate \\
+Uncle Bob's Organic Dried Pears	& 30	& Moderate \\
+Northwoods Cranberry Sauce	& 40	& Moderate \\
+Mishi Kobe Niku	& 97	& High Price \\
+Ikura	& 31	& Moderate \\
+\hline
+\end{tabular}
+\end{table}
 
 
 \section{Exercises}
