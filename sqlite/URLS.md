@@ -6,4 +6,6 @@
 - https://sqlime.org/
 
 
+# Online DuckDB Shell
 
+- https://shell.duckdb.org/
