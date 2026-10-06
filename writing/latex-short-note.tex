@@ -5,6 +5,7 @@
 \usepackage{amssymb}
 \usepackage{lipsum}
 \usepackage{xcolor}
+\usepackage{color}
 \usepackage{hyperref}
 
 \title{A Brief Note on \LaTeX}
@@ -13,13 +14,24 @@
 
 \begin{document}
 \maketitle
+\newpage
 \tableofcontents
-
+\newpage
 \section{documentclass}
 
 \begin{verbatim}
 \documentclass[12pt]{article}
 \end{verbatim}
+
+Some possible options for the document class:
+
+\begin{itemize}
+\item article
+\item report
+\item book
+\item letter
+\item beamer
+\end{itemize}
 
 \section{Packages}
 \begin{verbatim}
@@ -139,9 +151,23 @@ Bold, italic, and Underline Text: \textbf{\textit{\underline{This text is bold, 
 \textbf{\textit{\underline{This text is bold, italic, and underlined.}}}
 \end{verbatim}  
 
+Script Text: \textsc{This text is in small capitals.}
+\begin{verbatim}
+\textsc{This text is in small capitals.}
+\end{verbatim}
+
+Computer code: \texttt{This text is in typewriter font.}
+\begin{verbatim}
+\texttt{This text is in typewriter font.}
+\end{verbatim}
+
+
+
+
 
 \section{Colored Text}
 
+\subsection{xcolor}
 Required package: \verb|\usepackage{xcolor}|
 
 Red : \textcolor{red}{This text is red.}
@@ -162,6 +188,26 @@ Green: \textcolor{green}{This text is green.}
 Orange: \textcolor{orange}{This text is orange.}
 \begin{verbatim}
 \textcolor{orange}{This text is orange.}
+\end{verbatim}
+
+\subsection{color}
+Required package: \verb|\usepackage{color}|
+
+Red : \textcolor{red}{This text is red.}
+\begin{verbatim}
+\textcolor{red}{This text is red.}
+\end{verbatim}
+
+Yellow background: \colorbox{yellow}{This text has a yellow background.}
+\begin{verbatim}
+\colorbox{yellow}{This text has a yellow background.}
+\end{verbatim}
+
+Yellow background with red border: \\
+\fcolorbox{red}{yellow}{This text has a yellow background with a red border.}
+
+\begin{verbatim}
+\fcolorbox{red}{yellow}{This text has a yellow background with a red border.}
 \end{verbatim}
 
 
@@ -380,44 +426,130 @@ $$
 
 \begin{table}[h!]
 \centering
-\begin{tabular}{|c|c|}
+\begin{tabular}{|c|c|c|}
 \hline
-Symbol & Description \\
+Order & Symbol & Code \\
 \hline
-$\alpha$ & \verb|\alpha| \\
-$\beta$ & \verb|\beta| \\
-$\gamma$ & \verb|\gamma| \\
-$\delta$ & \verb|\delta| \\
-$\Delta$ & \verb|\Delta| \\
-$\epsilon$ & \verb|\epsilon| \\
-$\varepsilon$ & \verb|\varepsilon| \\
-$\gamma$ & \verb|\gamma| \\
-$\Gamma$ & \verb|\Gamma| \\
-$\rho$ & \verb|\rho| \\
-$\eta$ & \verb|\eta| \\
-$\zeta$ & \verb|\zeta| \\
-$\theta$ & \verb|\theta| \\
-$\lambda$ & \verb|\lambda| \\
-$\mu$ & \verb|\mu| \\
-$\sigma$ & \verb|\sigma| \\
-$\pi$ & \verb|\pi| \\
-$\Sigma$ & \verb|\Sigma| \\
-$\int$ & \verb|\int| \\
-$\sum$ & \verb|\sum| \\
-$\frac{a}{b}$ & \verb|\frac{a}{b}| \\
-$\sqrt{x}$ & \verb|\sqrt{x}| \\
-$\sqrt[n]{x}$ & \verb|\sqrt[n]{x}| \\
-$\infty$ & \verb|\infty| \\
-$x_i$ & \verb|x_i| \\
-$x^n$ & \verb|x^n| \\
-$x_{i}^{n}$ & \verb|x_{i}^{n}| \\
+$1$ & $\alpha$ & \verb|\alpha| \\
+\hline
+$2$ & $\beta$ & \verb|\beta| \\
+\hline
+$3$ & $\gamma$ & \verb|\gamma| \\
+\hline
+$4$ & $\delta$ & \verb|\delta| \\
+\hline
+$5$ & $\Delta$ & \verb|\Delta| \\
+\hline
+$6$ & $\epsilon$ & \verb|\epsilon| \\
+\hline
+$7$ & $\varepsilon$ & \verb|\varepsilon| \\
+\hline
+$8$ & $\gamma$ & \verb|\gamma| \\
+\hline
+$9$ & $\Gamma$ & \verb|\Gamma| \\
+\hline
+$10$ & $\rho$ & \verb|\rho| \\
+\hline
+$11$ & $\eta$ & \verb|\eta| \\
+\hline
+$12$ & $\zeta$ & \verb|\zeta| \\
+\hline
+$13$ & $\theta$ & \verb|\theta| \\
+\hline
+$14$ & $\lambda$ & \verb|\lambda| \\
+\hline
+$15$ & $\mu$ & \verb|\mu| \\
+\hline
+$16$ & $\sigma$ & \verb|\sigma| \\
+\hline
+$17$ & $\pi$ & \verb|\pi| \\
+\hline
+$18$ & $\Sigma$ & \verb|\Sigma| \\
+\hline
+$19$ & $\int$ & \verb|\int| \\
+\hline
+$20$ & $\sum$ & \verb|\sum| \\
+\hline
+$21$ & $\frac{a}{b}$ & \verb|\frac{a}{b}| \\
+\hline
+$22$ & $\sqrt{x}$ & \verb|\sqrt{x}| \\
+\hline
+$23$ & $\sqrt[n]{x}$ & \verb|\sqrt[n]{x}| \\
+\hline
+$24$ & $\infty$ & \verb|\infty| \\
+\hline
+$25$ & $x_i$ & \verb|x_i| \\
+\hline
+$26$ & $x^n$ & \verb|x^n| \\
+\hline
+$27$ & $x_{i}^{n}$ & \verb|x_{i}^{n}| \\
 \hline
 \end{tabular}
 \caption{Common Mathematical Symbols in \LaTeX}
 \end{table}
 
 
-
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+Order & Symbol & Code \\
+\hline
+$1$ & $\pm$ & \verb|\pm| \\
+\hline
+$2$ & $\mp$ & \verb|\mp| \\
+\hline
+$3$ & $\times$ & \verb|\times| \\
+\hline
+$4$ & $\div$ & \verb|\div| \\
+\hline
+$5$ & $\cdot$ & \verb|\cdot| \\
+\hline
+$6$ & $\leq$ & \verb|\leq| \\
+\hline
+$7$ & $\geq$ & \verb|\geq| \\
+\hline
+$8$ & $\neq$ & \verb|\neq| \\
+\hline
+$9$ & $\approx$ & \verb|\approx| \\
+\hline
+$10$ & $\forall$ & \verb|\forall| \\
+\hline      
+$11$ & $\exists$ & \verb|\exists| \\
+\hline
+$12$ & $\in$ & \verb|\in| \\
+\hline
+$13$ & $\notin$ & \verb|\notin| \\
+\hline
+$14$ & $\subset$ & \verb|\subset| \\
+\hline
+$15$ & $\subseteq$ & \verb|\subseteq| \\
+\hline
+$16$ & $\cup$ & \verb|\cup| \\
+\hline
+$17$ & $\cap$ & \verb|\cap| \\
+\hline
+$18$ & $\setminus$ & \verb|\setminus| \\
+\hline
+$19$ & $\emptyset$ & \verb|\emptyset| \\
+\hline
+$20$ & $\mathcal{R}$ & \verb|\mathcal{R}| \\
+\hline
+$21$ & $\mathbb{R}$ & \verb|\mathbb{R}| \\
+\hline
+$22$ & $\mathbb{N}$ & \verb|\mathbb{N}| \\
+\hline
+$23$ & $\mathbb{Z}$ & \verb|\mathbb{Z}| \\
+\hline
+$24$ & $\mathbb{Q}$ & \verb|\mathbb{Q}| \\
+\hline
+$25$ & $\mathbb{C}$ & \verb|\mathbb{C}| \\
+\hline
+$26$ & $\ldots$ & \verb|\ldots| \\
+\hline
+\end{tabular}
+\caption{Common Mathematical Symbols in \LaTeX (Continued)}
+\end{table}
 
 
 
@@ -539,5 +671,106 @@ X & Y & Z \\
 \end{center}
 \end{verbatim}
 
+
+\section{Referencing}
+
+\subsection{Equation Referencing}
+
+\begin{equation}
+\Delta = b^2 - 4ac
+\label{eq:delta}
+\end{equation}
+
+\begin{verbatim}
+\begin{equation}
+\Delta = b^2 - 4ac
+\label{eq:delta}
+\end{equation}
+\end{verbatim}
+
+Referencing: Equation \ref{eq:delta} shows the discriminant of a quadratic equation.
+
+\begin{verbatim}
+Referencing: Equation \ref{eq:delta} shows the discriminant 
+of a quadratic equation.
+\end{verbatim}
+
+\subsection{Table Referencing}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+A & B & C \\
+\hline
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+\hline
+\end{tabular}
+\caption{A Simple Table}
+\label{tab:simple}
+\end{table}
+
+\begin{verbatim}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+A & B & C \\
+\hline
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+\hline
+\end{tabular}
+\caption{A Simple Table}
+\label{tab:simple}
+\end{table}
+\end{verbatim}
+
+Table \ref{tab:simple} shows a simple table with three columns and two rows of data.
+
+\begin{verbatim}
+Table \ref{tab:simple} shows a simple table with 
+three columns and two rows of data.
+\end{verbatim}
+
+
+
+\section{Presentations}
+
+Required package: \texttt{beamer}
+
+Example:
+\begin{verbatim}
+\documentclass{beamer}
+\begin{document}
+\begin{frame}
+\frametitle{Sample Slide}
+This is a sample slide in a Beamer presentation.
+\end{frame}
+\end{document}
+\end{verbatim}
+
+Changing the theme: 
+
+\begin{verbatim}
+\documentclass{beamer}
+\usetheme{Madrid}
+\begin{document}
+\begin{frame}
+\frametitle{Sample Slide with Theme}
+This is a sample slide in a Beamer presentation with the Madrid theme.
+\end{frame}
+\end{document}
+\end{verbatim}
+
+Some possible themes for Beamer presentations include:
+\begin{itemize}
+\item Madrid
+\item Berlin
+\item Copenhagen
+\item CambridgeUS
+\item Frankfurt
+\end{itemize}
 
 \end{document}
