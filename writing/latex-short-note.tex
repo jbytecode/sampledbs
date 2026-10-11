@@ -7,6 +7,7 @@
 \usepackage{xcolor}
 \usepackage{color}
 \usepackage{hyperref}
+\usepackage{graphicx}
 
 \title{A Brief Note on \LaTeX}
 \author{Mehmet Hakan Satman}
@@ -17,6 +18,13 @@
 \newpage
 \tableofcontents
 \newpage
+\listoftables
+\newpage
+\listoffigures
+\newpage
+
+
+
 \section{documentclass}
 
 \begin{verbatim}
@@ -41,8 +49,22 @@ Some possible options for the document class:
 \usepackage{amssymb}
 \usepackage{lipsum}
 \usepackage{xcolor}
+\usepackage{color}
 \usepackage{hyperref}
+\usepackage{graphicx}
 \end{verbatim}  
+
+\begin{itemize}
+    \item inputenc: Allows the user to specify the input encoding, such as UTF-8.
+    \item amsmath: Provides various features to facilitate writing math formulas.
+    \item amsfonts: Provides additional math fonts.
+    \item amssymb: Provides additional math symbols.
+    \item lipsum: Generates dummy text (Lorem Ipsum).
+    \item xcolor: Provides support for colored text.
+    \item color: Provides support for colored text (older package, often replaced by xcolor).
+    \item hyperref: Enables the creation of hyperlinks.
+    \item graphicx: Allows the inclusion of graphics.
+\end{itemize}
 
 
 \section{Meta information}
@@ -422,9 +444,105 @@ $$
 \end{equation}
 \end{verbatim}
 
+
+\hrule
+
+Suppose the quadratic equation is given by:
+
+$$
+f(x) = ax^2 + bx + c.
+$$
+
+\noindent so $\Delta = b^2 - 4ac$.
+
+
+\begin{verbatim}
+$$
+f(x) = ax^2 + bx + c.
+$$
+
+\noindent so $\Delta = b^2 - 4ac$.
+\end{verbatim}
+
 \hrule 
 
-\begin{table}[h!]
+The regression equation is given by:
+
+$$
+y = \beta_0 + \beta_1 x + \epsilon
+$$
+
+\noindent where $y$ is the dependent variable, $x$ is the independent variable, $\beta_0$ and $\beta_1$ 
+are the regression coefficients, and $\epsilon$ is the error term.
+
+\begin{verbatim}
+$$
+y = \beta_0 + \beta_1 x + \epsilon
+$$
+
+\noindent where $y$ is the dependent variable, $x$ is the 
+independent variable, $\beta_0$ and $\beta_1$ 
+are the regression coefficients, and $\epsilon$ 
+is the error term.
+\end{verbatim}
+
+\hrule 
+
+Binomial coefficient $n$ of $k$ is given by:
+
+$$
+\begin{pmatrix} n \\ k \end{pmatrix} = \frac{n!}{k!(n-k)!}
+$$
+
+\begin{verbatim}
+$$
+\begin{pmatrix} 
+    n \\
+    k 
+\end{pmatrix} = \frac{n!}{k!(n-k)!}
+$$
+\end{verbatim}
+
+\hrule
+
+$$
+P(X = x) = \begin{pmatrix} n \\ x \end{pmatrix} p^x (1-p)^{n-x}
+$$
+
+\noindent is the probability mass function of the Binomial distribution.
+
+\begin{verbatim}
+$$
+P(X = x) = \begin{pmatrix} n \\ x \end{pmatrix} p^x (1-p)^{n-x}
+$$
+
+\noindent is the probability mass function of the Binomial distribution.
+\end{verbatim}
+
+\hrule
+
+$$
+f(x, \lambda) = \frac{\lambda^x e^{-\lambda}}{x!}
+$$
+
+\noindent is the probability mass function of the Poisson distribution.
+
+\begin{verbatim}
+$$
+f(x, \lambda) = \frac{\lambda^x e^{-\lambda}}{x!}
+$$
+
+\noindent is the probability mass function of the Poisson distribution.
+\end{verbatim}
+
+\hrule
+
+
+\subsection{Common Mathematical Symbols}
+Common mathematical symbols used in \LaTeX documents are listed in Table \ref{tab:common-math-symbols-1} 
+and Table \ref{tab:common-math-symbols-2}.
+
+\begin{table}[t!]
 \centering
 \begin{tabular}{|c|c|c|}
 \hline
@@ -486,6 +604,7 @@ $27$ & $x_{i}^{n}$ & \verb|x_{i}^{n}| \\
 \hline
 \end{tabular}
 \caption{Common Mathematical Symbols in \LaTeX}
+\label{tab:common-math-symbols-1}
 \end{table}
 
 
@@ -549,6 +668,7 @@ $26$ & $\ldots$ & \verb|\ldots| \\
 \hline
 \end{tabular}
 \caption{Common Mathematical Symbols in \LaTeX (Continued)}
+\label{tab:common-math-symbols-2}
 \end{table}
 
 
@@ -613,6 +733,36 @@ X & Y & Z \\
 \caption{A Simple Table}
 \end{table}
 \end{verbatim}
+
+
+\subsection{Table placement options}
+
+\begin{itemize}
+    \item h: Place the table here, approximately at the same point it occurs in the source text.
+    \item t: Position the table at the top of the page.
+    \item b: Position the table at the bottom of the page.
+	\item p: Put the table on a special page (in a separate page).
+    \item !: Override internal parameters LaTeX uses for determining "good" float positions.
+	\item H: Places the float at precisely the location in the LaTeX code. Requires the `float` package.		
+\end{itemize}
+
+\subsubsection{Usage}
+
+\begin{verbatim}
+% Put table on top 
+\begin{table}[t]
+\end{verbatim}
+
+\begin{verbatim}
+% Put table on bottom
+\begin{table}[b]
+\end{verbatim}
+
+\begin{verbatim}
+% Put table on a special page
+\begin{table}[p]
+\end{verbatim}
+
 
 
 \section{Listings}
@@ -732,6 +882,32 @@ Table \ref{tab:simple} shows a simple table with three columns and two rows of d
 \begin{verbatim}
 Table \ref{tab:simple} shows a simple table with 
 three columns and two rows of data.
+\end{verbatim}
+
+\section{Figures}
+
+\subsection{Including Figures}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.5\textwidth]{iulogo.png}
+\caption{An Example Figure}
+\label{fig:example}
+\end{figure}
+
+\begin{verbatim}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.5\textwidth]{iulogo.png}
+\caption{An Example Figure}
+\label{fig:example}
+\end{figure}
+\end{verbatim}
+
+Referencing: Figure \ref{fig:example} shows an example figure.
+
+\begin{verbatim}
+Referencing: Figure \ref{fig:example} shows an example figure.
 \end{verbatim}
 
 
