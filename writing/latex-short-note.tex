@@ -8,6 +8,7 @@
 \usepackage{color}
 \usepackage{hyperref}
 \usepackage{graphicx}
+\usepackage{forest}
 
 \title{A Brief Note on \LaTeX}
 \author{Mehmet Hakan Satman}
@@ -948,5 +949,110 @@ Some possible themes for Beamer presentations include:
 \item CambridgeUS
 \item Frankfurt
 \end{itemize}
+
+
+\section{Expression trees with Forest package}
+
+Example:
+\begin{verbatim}
+\begin{forest}
+  [+
+    [a]
+    [b]
+  ]
+\end{forest}
+\end{verbatim}
+
+Rendered output:
+
+\begin{forest}
+  [+
+    [a]
+    [b]
+  ]
+\end{forest}
+
+\subsection{The Exponential Distribution}
+
+The function: $f(x;\theta) = \frac{1}{\theta} e^{-\frac{x}{\theta}}$
+
+\begin{forest}
+  [$\times$
+    [$\div$ 
+      [1]
+      [$\theta$]
+    ]
+    [pow
+      [$e$]
+      [$\div$
+        [$-x$]
+        [$\theta$]
+      ]
+    ]
+]
+\end{forest}
+
+The code:
+
+\begin{verbatim}
+\begin{forest}
+  [$\times$
+    [$\div$ 
+      [1]
+      [$\theta$]
+    ]
+    [pow
+      [$e$]
+      [$\div$
+        [$-x$]
+        [$\theta$]
+      ]
+    ]
+]
+\end{forest}
+\end{verbatim}
+
+\subsection{Delta!}
+
+The expression: $\Delta = b^2 - 4ac$.
+
+\begin{forest}
+  [$-$
+    [pow
+      [b]
+      [2]
+    ]
+    [$\times$
+        [$\times$
+        [4]
+        [a]
+        ]
+        [c]
+    ]
+  ]
+\end{forest}
+
+The code:
+
+\begin{verbatim}
+\begin{forest}
+  [$-$
+    [pow
+      [b]
+      [2]
+    ]
+    [$\times$
+        [$\times$
+        [4]
+        [a]
+        ]
+        [c]
+    ]
+  ]
+\end{forest}
+\end{verbatim}
+
+
+
 
 \end{document}
