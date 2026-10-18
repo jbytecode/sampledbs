@@ -9,6 +9,7 @@
 \usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{forest}
+\usepackage{tcolorbox}
 
 \title{A Brief Note on \LaTeX}
 \author{Mehmet Hakan Satman}
@@ -231,6 +232,41 @@ Yellow background with red border: \\
 
 \begin{verbatim}
 \fcolorbox{red}{yellow}{This text has a yellow background with a red border.}
+\end{verbatim}
+
+
+\subsection{tcolorbox}
+Required package: \verb|\usepackage{tcolorbox}|
+
+
+\begin{tcolorbox}
+  tcolorbox with default settings.
+\end{tcolorbox}
+
+\begin{verbatim}
+\begin{tcolorbox}
+  tcolorbox with default settings.
+\end{tcolorbox}
+\end{verbatim}
+
+\begin{tcolorbox}[colback=green,colframe=blue,title=Example]
+\textbf{This is a tcolorbox.}
+\end{tcolorbox}
+
+\begin{verbatim}
+\begin{tcolorbox}[colback=green,colframe=blue,title=Example]
+\textbf{This is a tcolorbox.}
+\end{tcolorbox}
+\end{verbatim}
+
+\begin{tcolorbox}[colback=white,colframe=black,title=Another Example]
+\textbf{This is another tcolorbox.}
+\end{tcolorbox}
+
+\begin{verbatim}
+\begin{tcolorbox}[colback=white,colframe=black,title=Another Example]
+\textbf{This is another tcolorbox.}
+\end{tcolorbox}
 \end{verbatim}
 
 
@@ -796,6 +832,27 @@ X & Y & Z \\
     \item Second item
     \item Third item
 \end{enumerate}
+\end{verbatim}
+
+
+\subsection{description}
+
+\begin{description}
+  \item[\LaTeX{}:] A typesetting system.
+  \item[HTML:] A markup language.
+  \item[Word:] A word processing software.
+  \item[Excel:] A spreadsheet software.
+  \item[beamer:] A presentation package for creating slides in \LaTeX{}.
+\end{description}
+
+\begin{verbatim}
+\begin{description}
+  \item[\LaTeX{}:] A typesetting system.
+  \item[HTML:] A markup language.
+  \item[Word:] A word processing software.
+  \item[Excel:] A spreadsheet software.
+  \item[beamer:] A presentation package for creating slides in \LaTeX{}.
+\end{description}
 \end{verbatim}
 
 
